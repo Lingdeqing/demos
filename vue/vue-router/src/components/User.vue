@@ -3,12 +3,8 @@
   UserId: {{$route.params.id}}
   Username: {{username}}
 
-  <p>
-    用户名 要随路由响应, 写在data或者生命周期函数中是无效的,用compute或者watch 或者路由守卫
-    <p>
-      最稳的是data加watch,最简单的是compute,路由守卫不太稳
-    </p>
-  </p>
+  <p>用户名 要随路由响应, 写在data或者生命周期函数中是无效的,用compute或者watch 或者路由守卫</p>
+  <p>最稳的是data加watch,最简单的是compute,路由守卫不太稳</p>
 </div>
 </template>
 
