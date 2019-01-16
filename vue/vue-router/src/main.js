@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from './examples/重定向.vue'
+import App from './examples/别名.vue'
 
 Vue.config.productionTip = false
 
