@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from '@/examples/mapState.vue'
+import App from '@/examples/mapGetter.vue'
 
 Vue.config.productionTip = false
 
