@@ -1,7 +1,10 @@
 import Vue from 'vue'
-import App from './examples/过度效果1.vue'
+import App from './examples/导航完成后获取数据.vue'
 
 Vue.config.productionTip = false
+
+import $ from 'jquery';
+window.$ = $;
 
 new Vue({
   render: h => h(App),
