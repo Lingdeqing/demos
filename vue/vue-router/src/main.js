@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from './examples/路由元信息.vue'
+import App from './examples/过度效果1.vue'
 
 Vue.config.productionTip = false
 
