@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from '@/examples/mutation.vue'
+import App from '@/examples/action.vue'
 
 Vue.config.productionTip = false
 
