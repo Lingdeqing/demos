@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from './examples/导航完成后获取数据.vue'
+import App from './examples/在导航完成前获取数据.vue'
 
 Vue.config.productionTip = false
 
