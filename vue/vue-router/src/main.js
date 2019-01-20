@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from './examples/路由懒加载.vue'
+import App from './examples/页面滚动.vue'
 
 Vue.config.productionTip = false
 
