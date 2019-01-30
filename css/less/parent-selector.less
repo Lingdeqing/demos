@@ -1,0 +1,56 @@
+a{
+    color: black;
+    &:hover{
+        color: green;
+    }
+}
+
+// 
+.btn{
+    &-primary{
+        color: blue;
+    }
+    &-success{
+        color: green;
+    }
+}
+
+// 多个&
+.link{
+    & + &{
+        margin-left: 5px;
+    }
+
+    &&{
+        color: black;
+    }
+    
+    & &{
+        color: blue;
+    }
+
+    &, &&ish{
+        color: cyan;
+    }
+}
+
+// 修改顺序
+.header {
+    .menu {
+        border: 1px solid gray;
+        .no-border &{
+            border: 0;
+        }
+
+        .no-border&{
+            border: 0;
+        }
+    }
+}
+
+// 排列组合
+p, ul, li{
+    & + &{
+        color: red;
+    }
+}
