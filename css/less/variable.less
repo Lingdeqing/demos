@@ -1,0 +1,68 @@
+// 变量基础
+@width: 10px;
+@height: @width +10px;
+#header {
+    width: @width;
+    height: @height;
+}
+
+
+// 变量基础
+@link-color: #428bca;
+@link-color-hover: darken(@link-color, 10%);
+a,
+.link {
+    color: @link-color;
+    :hover {
+        color: @link-color-hover;
+    }
+}
+
+.widget {
+    color: #fff;
+    background: @link-color;
+}
+
+
+// 插值
+@images: "../img";
+@selector: banner;
+@theme: "../less/";
+@color: background;
+@import "@{theme}parent-selector.less";
+body{
+    @{color}: url("@{images}/bg.png");
+}
+.@{selector}{
+    @width2: width;
+    font-size: 20px;
+    width: @@width2;
+}
+
+
+
+// 变量作用域
+@var: 0;
+.class{
+    @var: 1;
+    .brass {
+        @var: 2;
+        line-height: @var;
+        @var: 3;
+    }
+    line-height: @var;
+}
+
+
+// css属性
+.widget{
+    color: #efefef;
+    background-color: $color;
+}
+.block{
+    color: red;
+    .inner{
+        background-color: $color;
+    }
+    color: blue;
+}
