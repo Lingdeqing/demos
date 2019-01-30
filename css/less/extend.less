@@ -1,0 +1,49 @@
+// 基本继承
+.animal{
+    color: white;
+    background-color: black;
+}
+.bear{
+    &:extend(.animal);
+    background-color: brown;
+}
+
+// 借用其他类
+.inline-block{
+    display: inline-block;
+    font-size: 0;
+}
+.thing1{
+    &:extend(.inline-block);
+}
+.thing2{
+    &:extend(.inline-block);
+}
+
+// 借用其他样式
+li.list a{
+    text-decoration: none;
+}
+button.list-style{
+    &:extend(li.list a);
+}
+
+// 语法
+.c{
+    background: blue;
+}
+.c.hover{
+    background: pink;
+}
+.b{
+    color: red;
+}
+.a:extend(.b){
+    color: black;
+}
+// .a{
+//     &:extend(.b);
+//     color: black;
+// }
+.e:extend(.b, .c){} // 同时继承.b .c
+.f:extend(.b, .c all){} // 继承.c的全部样式
