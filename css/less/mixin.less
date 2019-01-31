@@ -1,0 +1,161 @@
+// 混入样式
+.a{
+    color: red;
+}
+#b{
+    background: pink;
+}
+.c{
+    .a();
+    #b();
+}
+
+// 不输出mixin
+.a1(){
+    color: red;
+}
+.c1{
+    .a1();
+}
+
+// 命名空间
+#outer{
+    .inner{
+        color: blue;
+    }
+}
+.c2{
+    // #outer.inner();
+    // #outer > .inner();
+    #outer .inner();
+}
+
+// 受保护的命名空间
+@color: red;
+#guard when(@color = red){
+    .a{
+        color: red;
+    }
+}
+.c3{
+    #guard.a();
+}
+
+// 参数
+.foo(@bg: red; @color: white){
+    color: @color;
+    background: @bg;
+}
+.unimportant{
+    .foo(blue, yellow);
+}
+.named{
+    .foo(@bg: blue, @color: yellow);    // 命名参数
+}
+.important{
+    .foo() !important;  // 带important
+}
+
+// @arguments
+.box-shadow(@x: 0; @y: 0; @blur: 1px; @color: #000){
+    -webkit-box-shadow: @arguments;
+    box-shadow: @arguments;
+}
+.block{
+    .box-shadow(2px; 5px);
+}
+
+// 重载
+.a(@a){
+    color: @a;
+}
+.a(@a;@b){
+    color: fade(@a, @b);
+}
+.b{
+    .a(red);
+}
+.c{
+    .a(red, blue);
+}
+
+// 函数
+.average(@a; @b){
+    @result: ((@a + @b) / 2);
+}
+div{
+    padding: .average(16px;20px)[@result];
+}
+
+// 递归
+.loop(@counter) when(@counter > 0){
+    .loop(@counter - 1);
+    width: (10px * @counter);
+}
+div{
+    .loop(5);
+}
+
+// 判断
+.a(@a) when(lightness(@a) >= 50%){
+    background-color: black;
+}
+.a(@a) when(lightness(@a) < 50%){
+    background-color: white;
+}
+.a(@a){
+    color: @a;
+}
+
+.c1{
+    .a(#ddd);
+}
+.c2{
+    .a(#555);
+}
+
+
+// 逻辑判断
+.m(@a; @b) when(@a > @b){
+    width: @a;
+}
+.m(@a; @b) when(@a < @b){
+    width: @b;
+}
+.c{
+    .m(1px;2px);
+}
+
+// 类型检查
+.m(@a) when(iscolor(@a)){
+    color: @a;
+}
+.m(@a) when(ispixel(@a)){
+    width: @a;
+}
+.c{
+    .m(red);
+}
+.c{
+    .m(20px);
+}
+
+// 变量引用mixin
+.colors(light){
+    primary: purple;
+}
+.colors(dark){
+    primary: black;
+    secondary: gray;
+}
+.m(){
+    line-height: 1;
+}
+.c{
+    @color: .colors(dark);
+    @r: .m();
+    background: @color[primary];
+    border: 1px solid @color[secondary];
+    @r();
+}
+
