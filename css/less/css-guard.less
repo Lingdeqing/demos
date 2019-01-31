@@ -1,0 +1,16 @@
+// css判断
+@theme: light;
+.c when(@theme = light){
+    color: gray;
+}
+.c when(@theme = dark){
+    color: black;
+}
+
+// if
+@dr: if(@theme = light, {
+    button {
+        color: white;
+    }
+});
+@dr();
