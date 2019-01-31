@@ -1,0 +1,53 @@
+// 基本用法
+@r: {
+    color: red;
+};
+.c{
+    @r();
+}
+
+// 作为mixin参数
+.m(@r){
+    @r();
+}
+.c{
+    .m({
+        color: blue;
+    })
+}
+
+// 作用域
+@v: global;
+@r: {
+    v: @v;
+}
+.c{
+    @r();
+    @v: local;
+}
+
+// 用作map
+// @config: {
+//     o1: true;
+//     o2: false;
+// }
+// .c when(@config[o1]){
+//     color: red;
+// }
+// .c when(@config[o2]){
+//     background: blue;
+// }
+
+// 变量嵌套
+@config: {
+    @dark: {
+        primary: darkblue;
+    }
+    @light: {
+        primary: lightblue;
+    }
+}
+.box{
+    @theme: dark;
+    color: @config[@@theme][primary];
+}
