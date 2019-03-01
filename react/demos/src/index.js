@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './examples/向父组件暴露dom节点';
+import App from './examples/子组件更新context';
 
 ReactDOM.render(<App />, document.getElementById('root'));
