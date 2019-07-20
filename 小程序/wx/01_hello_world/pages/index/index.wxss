@@ -1,1 +1,4 @@
 /* pages/index/index.wxss */
+text{
+    color: red;
+}
