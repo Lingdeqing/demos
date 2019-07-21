@@ -1,0 +1,9 @@
+<div>
+<p>
+<label>数据：</label>
+<pre>{{message}}</pre>
+</p>
+<button bindtap="onTap">
+    测试网络请求
+</button>
+</div>

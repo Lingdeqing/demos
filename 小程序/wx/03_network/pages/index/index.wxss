@@ -1,0 +1,5 @@
+/* pages/index/index.wxss */
+button{
+    margin: auto;
+    max-width: 200px;
+}
