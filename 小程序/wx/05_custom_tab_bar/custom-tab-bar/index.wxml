@@ -1,0 +1,12 @@
+<cover-view class="bottom-tab-bar">
+    <cover-view 
+        wx:for="{{list}}" 
+        wx:key="index" 
+        data-path="{{item.pagePath}}" 
+        data-index="{{index}}" 
+        bindtap="switch"
+        class="bottom-tab-bar-item {{selected === index ? 'selected' : ''}}">
+        <cover-image  src="{{selected == index ? item.selectedIconPath : item.iconPath}}"></cover-image>
+        <cover-view>{{item.text}}</cover-view>
+    </cover-view>
+</cover-view>

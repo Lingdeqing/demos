@@ -1,0 +1,31 @@
+.bottom-tab-bar{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100px;
+    background: #fff;
+    color: #333;
+    border-top: 1px solid green;
+}
+
+.bottom-tab-bar-item{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.bottom-tab-bar-item.selected{
+    color: green;
+}
+
+.bottom-tab-bar-item cover-image {
+    width: 27px;
+    height: 27px;
+    font-size: 10px;
+}
