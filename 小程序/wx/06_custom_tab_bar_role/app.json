@@ -1,0 +1,16 @@
+{
+  "pages": [
+    "pages/home/home"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "校园快递",
+    "navigationBarTextStyle": "black"
+  },
+  "usingComponents":{
+    "index-page": "pages/index/index",
+    "logs-page": "pages/logs/logs",
+    "admin-page": "pages/admin/admin"
+  }
+}

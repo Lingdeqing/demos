@@ -1,0 +1,26 @@
+<!-- index.wxml -->
+<view>
+    <view >
+        <switch checked="{{role==='admin'}}" bind:change="setAdmin"/>
+        是否是管理员
+    </view>
+    <view wx:if="{{ready}}">
+        <view wx:if="{{selectedPage === 'index'}}"><index-page /></view>
+        <view wx:if="{{selectedPage === 'logs'}}"><logs-page /></view>
+        <view wx:if="{{selectedPage === 'admin'}}"><admin-page /></view>
+        <cover-view class="bottom-tab-bar">
+            <cover-view 
+                wx:for="{{list}}" 
+                wx:key="index" 
+                data-page-id="{{item.pageId}}" 
+                bind:tap="switchTab" 
+                class="bottom-tab-bar-item {{selectedPage === item.pageId ? 'selected' : ''}}">
+                <cover-image src="{{selectedPage == item.pageId ? item.selectedIconPath : item.iconPath}}"></cover-image>
+                <cover-view>{{item.text}}</cover-view>
+            </cover-view>
+        </cover-view>
+    </view>
+    <view wx:else>
+        正在加载用户信息，稍等片刻...
+    </view>
+</view>
