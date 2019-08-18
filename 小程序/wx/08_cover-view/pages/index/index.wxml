@@ -1,0 +1,11 @@
+<cover-view class='cover-input' bindtap='tapInput'>
+    <cover-view >标题: </cover-view>
+    <cover-view class='text'>{{inputInfo}}</cover-view>
+    <input class='input' value='{{inputModel}}' focus='{{inputFocus}}' bindblur='blurInput' bindinput="onInput"></input>
+</cover-view>
+
+<view >哈哈哈哈</view>
+<view >
+    <input class="page-input" type="text" />
+</view>
+<!-- <input type="text" /> -->
