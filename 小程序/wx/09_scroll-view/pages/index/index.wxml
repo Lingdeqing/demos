@@ -1,0 +1,5 @@
+<scroll-view class="container" scroll-y="{{true}}" bindscrolltoupper="refresh" bindscrolltolower="loadMore">
+    <view wx:if="{{refreshing}}">刷新页面中...</view>
+    <view class="content"></view>
+    <view wx:if="{{loading}}">加载数据中...</view>
+</scroll-view>
