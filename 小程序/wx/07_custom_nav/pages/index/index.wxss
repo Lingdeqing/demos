@@ -1,0 +1,12 @@
+.page-nav{
+    height: 44px;
+}
+.page-nav input{
+    box-sizing: border-box;
+    height: inherit;
+    border: 1px solid red;
+}
+/* pages/index/index.wxss */
+text{
+    color: red;
+}

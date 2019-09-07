@@ -1,0 +1,2 @@
+<view class="page-nav" style="padding-top:{{sbh}}px;height:{{nh}}px;"><input type="text" placeholder="输入关键字" /></view>
+<text>hello world</text>
