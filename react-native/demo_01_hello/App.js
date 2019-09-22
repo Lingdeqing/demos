@@ -45,7 +45,7 @@ class App extends React.Component {
   }
   render() {
     return <Fragment>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar barStyle="light-content" backgroundColor="blue" hidden={true} networkActivityIndicatorVisible={false}/>
       <SafeAreaView>
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
