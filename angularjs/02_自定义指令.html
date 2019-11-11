@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>
+</head>
+
+<body>
+  <div ng-app="myApp3">
+    <h2>自定义指令</h2>
+    <custom-directive></custom-directive>
+  </div>
+
+  <script>
+    var app = angular.module('myApp3', []);
+    app.directive('customDirective', function () {
+      return {
+        template: '<h5>自定义指令</h5>'
+      }
+    })
+  </script>
+</body>
+
+</html>

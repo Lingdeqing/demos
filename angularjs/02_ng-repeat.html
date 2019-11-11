@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>
+</head>
+
+<body>
+  <div ng-app="myApp2" ng-init="names=['Jani', 'Hege', 'Kai']">
+    <h2>ng-repeat</h2>
+    <ul>
+      <li ng-repeat="x in names">{{ x }}</li>
+    </ul>
+  </div>
+
+  <script>
+    angular.module('myApp2', []);
+  </script>
+</body>
+
+</html>

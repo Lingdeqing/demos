@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>
+  <style>
+    input{
+      outline: none !important;
+    }
+  </style>
+</head>
+
+<body>
+
+  <form ng-app="myApp1" name="myForm" ng-controller="myCtrl">
+    <style>
+      input.ng-invalid{
+        border: 1px solid red;
+      }
+    </style>
+    <p>名字 : <input type="text" ng-model="name"></p>
+    <p>邮件 : <input type="email" name="myEmail" ng-model="email" require>
+    <span ng-show="myForm.myEmail.$error.email">不是合法的邮箱地址</span>
+    </p>
+    <h1>Hello {{name}}</h1>
+    <h2>状态</h2>
+    <p>$valid: {{myForm.myEmail.$valid}}</p>
+    <p>$dirty: {{myForm.myEmail.$dirty}}</p>
+    <p>$touched: {{myForm.myEmail.$touched}}</p>
+  </form>
+
+  <script>
+    var app = angular.module('myApp1', []);
+    app.controller('myCtrl', function($scope){
+      $scope.name = 'haha';
+      $scope.email = 'test@xiao.com'
+    })
+  </script>
+</body>
+
+</html>

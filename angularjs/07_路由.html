@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdn.bootcss.com/angular.js/1.7.0/angular.min.js"></script>
+  <script src="https://cdn.bootcss.com/angular.js/1.7.0/angular-route.min.js"></script>
+</head>
+
+<body ng-app="myApp">
+
+  <ul>
+    <li><a href="#!/">首页</a></li>
+    <li><a href="#!/computers">电脑</a></li>
+  </ul>
+
+  <div ng-view></div>
+
+  <script>
+    angular.module('myApp', ['ngRoute'])
+      .config(['$routeProvider', function ($routeProvider) {
+        $routeProvider
+          .when('/', { template: '这是首页页面' })
+          .when('/computers', { template: '这是电脑分类页面' })
+          .otherwise({ redirectTo: '/' });
+      }]);
+  </script>
+
+</body>
+
+</html>
