@@ -1,45 +1,82 @@
 import React from 'react';
-import {action, observable} from 'mobx';
-import {observer} from 'mobx-react';
+import {trace, spy, observe, toJS, action, observable, computed } from 'mobx';
+import { observer } from 'mobx-react';
+import "./App.css";
+
+// spy(change => console.log(change))
 
 class Todo {
+  id = Math.random()
   @observable desc = ''
   @observable complete = false
-  constructor(desc){
+  constructor(desc, complete) {
     this.desc = desc
+    this.complete = complete
   }
-  @action toggle(){
+  @action.bound toggle() {
     this.complete = !this.complete
   }
 }
 
 class Store {
+  disposers = []
   @observable todos = []
-  @action removeTodo(todo){
-    const index = this.todos.indexOf(todo)
-    this.todos.splice(index, 1)
+  constructor(){
+    // 初始化
+    const todos =  localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];
+    this.todos = todos.map(todo => new Todo(todo.desc, todo.complete))
+
+    // 持久化
+    this.observeTodos(this.todos)
+    observe(this.todos, (change) => {
+      this.observeTodos(change.object)
+      this.persist()
+    })
   }
-  @action addTodo(desc){
-    const todo = new Todo(desc)
+  @action removeTodo(todo) {
+    this.todos.remove(todo)
+  }
+  @action addTodo(desc) {
+    const todo = new Todo(desc, false)
     this.todos.push(todo)
+  }
+  @computed get unCompleteNum() {
+    return this.todos.filter(todo => !todo.complete).length
+  }
+  persist(){
+    localStorage.setItem('todos', JSON.stringify(toJS(this.todos)))
+  }
+  observeTodos(todos){
+    this.disposers.forEach(disposer => disposer())
+    this.disposers = []
+    for(let todo of todos){
+      const disposer = observe(todo, () => {
+        this.persist()
+      })
+      this.disposers.push(disposer)
+    }
   }
 }
 
 const store = new Store()
 
+
+
+@observer
 class TodoItem extends React.Component {
-  render(){
-  const {desc, complete, toggle} = this.props.todo;
+  render() {trace()
+    const { desc, complete, toggle } = this.props.todo;
     return (
-      <div className={complete ? 'complete': ''}>
-        <input type="checkbox" checked={complete} onChange={toggle}/>
+      <div className={complete ? 'complete' : ''}>
+        <input type="checkbox" checked={complete} onChange={toggle} />
         {desc}
-        <button type="button" onClick={() => {store.removeTodo(this.props.todo)}}>删除</button>
+        <button type="button" onClick={() => { store.removeTodo(this.props.todo) }}>x</button>
       </div>
     )
   }
 }
 
+@observer
 class TodoList extends React.Component {
   state = {
     input: ''
@@ -51,19 +88,23 @@ class TodoList extends React.Component {
   }
   addTodo = () => {
     store.addTodo(this.state.input)
+    this.setState({
+      input: ''
+    })
   }
-  render(){
+  render() {trace(true)
     return (
       <div>
         <div>
-        <input type="text" value={this.state.input} onChange={this.onInput}/>
-        <button type="button" onClick={this.addTodo}>add</button>
+          <input type="text" value={this.state.input} onChange={this.onInput} />
+          <button type="button" onClick={this.addTodo}>add</button>
         </div>
         <ol>
           {store.todos.map((todo) => {
-          return <li key={todo.id}>{<TodoItem todo={todo}/>}</li>
+            return <li key={todo.id}>{<TodoItem todo={todo} />}</li>
           })}
         </ol>
+        <div>total {store.unCompleteNum} items not complete</div>
       </div>
     )
   }
