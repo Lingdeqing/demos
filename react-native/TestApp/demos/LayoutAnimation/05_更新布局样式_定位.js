@@ -8,6 +8,10 @@ const styles = StyleSheet.create({
         fontSize: 30,
         lineHeight: 48,
         marginTop: 30
+    },
+    desc: {
+        textAlign: 'center',
+        fontSize: 15
     }
 })
 
@@ -32,7 +36,13 @@ export default class Demo extends React.PureComponent {
             }
         })
         this.setState({
-            active: !this.state.active
+            active: true
+        })
+    }
+
+    reset = () => {
+        this.setState({
+            active: false
         })
     }
 
@@ -41,22 +51,26 @@ export default class Demo extends React.PureComponent {
         return (
             <SafeAreaView>
                 <Button title="测试" onPress={this.onPress} />
+                <Button title="reset" onPress={this.reset} />
                 <ScrollView>
 
                 {/* top */}
                 <Text style={styles.title}>指定宽高，修改top</Text>
+                <Text style={styles.desc}>0 =&gt; 100</Text>
                 <View style={{ width: 150, height: 150, borderWidth: 1, borderColor: 'black' }}>
                     <View style={{position: 'absolute', left: 0, top: active ? 100 : 0 , width: 80, height: 80, backgroundColor: 'pink' }}></View>
                 </View>
 
                 {/* top */}
                 <Text style={styles.title}>不指定宽高，修改top</Text>
+                <Text style={styles.desc}>0 =&gt; 100</Text>
                 <View style={{ width: 150, height: 150, borderWidth: 1, borderColor: 'black' }}>
                     <View style={{position: 'absolute', left: 0, right: 0, top: active ? 100 : 0 ,bottom: 0, backgroundColor: 'pink' }}></View>
                 </View>
 
                 {/* position */}
                 <Text style={styles.title}>position</Text>
+                <Text style={styles.desc}>relative =&gt; absolute</Text>
                 <View style={{ width: 150, height: 150, borderWidth: 1, borderColor: 'black' }}>
                     <View style={{position: active ? 'absolute' : 'relative' , left: 50, top: 0 , width: 80, height: 80, backgroundColor: 'pink', zIndex: 1 }}></View>
                     <View style={{width: 80, height: 80, backgroundColor: 'red'}}></View>
@@ -64,6 +78,7 @@ export default class Demo extends React.PureComponent {
 
                 {/* zIndex */}
                 <Text style={styles.title}>zIndex无效</Text>
+                <Text style={styles.desc}>0 =&gt; 1</Text>
                 <View style={{ width: 150, height: 150, borderWidth: 1, borderColor: 'black' }}>
                     <View style={{position: 'absolute' , left: 50, top: 0 , width: 80, height: 80, backgroundColor: 'pink', zIndex: active ? 1: 0 }}></View>
                     <View style={{width: 80, height: 80, backgroundColor: 'red'}}></View>

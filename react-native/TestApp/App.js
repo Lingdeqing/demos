@@ -4,6 +4,7 @@ import { ScrollView, View, Text, Button, } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LayoutAnimation1 from "./demos/LayoutAnimation/01_创建节点";
+import LayoutAnimation1_1 from "./demos/LayoutAnimation/01_删除节点";
 import LayoutAnimation2 from "./demos/LayoutAnimation/02_更新布局样式_宽高";
 import LayoutAnimation3 from "./demos/LayoutAnimation/03_更新布局样式_盒子模型";
 import LayoutAnimation4 from "./demos/LayoutAnimation/04_更新布局样式_flex";
@@ -35,6 +36,10 @@ const LayoutAnimationRoutes = [
   {
     name: '01_创建节点',
     component: LayoutAnimation1,
+  },
+  {
+    name: '01_删除节点',
+    component: LayoutAnimation1_1,
   },
   {
     name: '02_更新布局样式_宽高',

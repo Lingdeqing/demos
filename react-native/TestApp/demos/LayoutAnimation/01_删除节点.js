@@ -20,13 +20,13 @@ const styles = StyleSheet.create({
 export default class Demo extends React.PureComponent {
 
     state = {
-        show: false
+        show: true
     }
 
     onPress = () => {
         LayoutAnimation.configureNext({
             duration: 1000,
-            create: {
+            delete: {
                 type: 'linear', // linear|spring|easeIn|easeOut|easeInEaseOut
                 property: 'scaleXY', // scaleX, scaleY, opacity
 
@@ -37,13 +37,13 @@ export default class Demo extends React.PureComponent {
             }
         })
         this.setState({
-            show: true
+            show: false
         })
     }
 
     reset = () => {
         this.setState({
-            show: false
+            show: true
         })
     }
 
@@ -51,16 +51,16 @@ export default class Demo extends React.PureComponent {
         const { show } = this.state
         return (
             <SafeAreaView>
-                <Button title="创建节点" onPress={this.onPress} />
+                <Button title="删除节点" onPress={this.onPress} />
                 <Button title="reset" onPress={this.reset} />
 
                 {show &&
                     <View style={styles.cube}>
-                        <Text style={styles.cubeTitle}>创建节点</Text>
+                        <Text style={styles.cubeTitle}>删除节点</Text>
                     </View>
                 }
                 <View style={[styles.cube, show ? null : { display: 'none' }]}>
-                    <Text style={styles.cubeTitle}>显示节点</Text>
+                    <Text style={styles.cubeTitle}>隐藏节点</Text>
                 </View>
             </SafeAreaView>
         )

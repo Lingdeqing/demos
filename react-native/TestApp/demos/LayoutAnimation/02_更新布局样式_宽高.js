@@ -26,8 +26,7 @@ export default class Demo extends React.PureComponent {
             duration: 1000,
             update: {
                 type: 'linear', // linear|spring|easeIn|easeOut|easeInEaseOut
-                property: 'scaleXY', // scaleX, scaleY, opacity
-
+                
                 // springDamping: 0.3, 
                 // initialVelocity: 0,
                 // duration: 1000,

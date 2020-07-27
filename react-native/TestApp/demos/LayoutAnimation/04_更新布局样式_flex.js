@@ -8,6 +8,10 @@ const styles = StyleSheet.create({
         fontSize: 30,
         lineHeight: 48,
         marginTop: 30
+    },
+    desc: {
+        textAlign: 'center',
+        fontSize: 15
     }
 })
 
@@ -32,7 +36,13 @@ export default class Demo extends React.PureComponent {
             }
         })
         this.setState({
-            active: !this.state.active
+            active: true
+        })
+    }
+
+    reset = () => {
+        this.setState({
+            active: false
         })
     }
 
@@ -41,10 +51,12 @@ export default class Demo extends React.PureComponent {
         return (
             <SafeAreaView>
                 <Button title="测试" onPress={this.onPress} />
+                <Button title="reset" onPress={this.reset} />
                 <ScrollView>
 
                     {/* alignContent */}
                     <Text style={styles.title}>alignContent</Text>
+                    <Text style={styles.desc}>flex-end =&gt; flex-start</Text>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', flexWrap: 'wrap', borderWidth: 1, borderColor: 'blue', height: 180, alignItems: 'center', alignContent: active ? 'flex-start' : 'flex-end' }}>
                         <View style={{ width: 100, height: 30, backgroundColor: 'orange' }}></View>
                         <View style={{ width: 110, height: 40, backgroundColor: 'pink' }}></View>
@@ -56,6 +68,7 @@ export default class Demo extends React.PureComponent {
 
                     {/* alignItems */}
                     <Text style={styles.title}>alignItems</Text>
+                    <Text style={styles.desc}>flex-end =&gt; flex-start</Text>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', borderWidth: 1, borderColor: 'blue', height: 100, alignItems: active ? 'flex-start' : 'flex-end' }}>
                         <View style={{ width: 30, height: 30, backgroundColor: 'orange' }}></View>
                         <View style={{ width: 40, height: 40, backgroundColor: 'pink' }}></View>
@@ -63,12 +76,14 @@ export default class Demo extends React.PureComponent {
 
                     {/* alignSelf */}
                     <Text style={styles.title}>alignSelf</Text>
+                    <Text style={styles.desc}>flex-end =&gt; flex-start</Text>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', borderWidth: 1, borderColor: 'blue', height: 100, alignItems: 'center' }}>
                         <View style={{ width: 30, height: 30, backgroundColor: 'orange', alignSelf: active ? 'flex-start' : 'flex-end' }}></View>
                     </View>
 
                     {/* flex */}
                     <Text style={styles.title}>flex</Text>
+                    <Text style={styles.desc}>1 =&gt; 2</Text>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', borderWidth: 1, borderColor: 'blue', height: 100, alignItems: active ? 'flex-start' : 'flex-end' }}>
                         <View style={{ flex: active ? 1 : 2, height: 30, backgroundColor: 'orange' }}></View>
                         <View style={{ flex: active ? 2 : 1, height: 40, backgroundColor: 'pink' }}></View>
@@ -76,6 +91,7 @@ export default class Demo extends React.PureComponent {
 
                     {/* flexDirection */}
                     <Text style={styles.title}>flexDirection</Text>
+                    <Text style={styles.desc}>row =&gt; column</Text>
                     <View style={{ flexDirection: active ? 'column' : 'row', justifyContent: 'space-around', borderWidth: 1, borderColor: 'blue', height: 100,}}>
                         <View style={{ width: 30, height: 30, backgroundColor: 'orange' }}></View>
                         <View style={{ width: 40, height: 40, backgroundColor: 'pink' }}></View>
@@ -83,6 +99,7 @@ export default class Demo extends React.PureComponent {
 
                     {/* justifyContent */}
                     <Text style={styles.title}>justifyContent</Text>
+                    <Text style={styles.desc}>flex-end =&gt; flex-start</Text>
                     <View style={{ flexDirection:'row', justifyContent:active ? 'flex-start' : 'space-around', borderWidth: 1, borderColor: 'blue', height: 100,}}>
                         <View style={{ width: 30, height: 30, backgroundColor: 'orange' }}></View>
                         <View style={{ width: 40, height: 40, backgroundColor: 'pink' }}></View>

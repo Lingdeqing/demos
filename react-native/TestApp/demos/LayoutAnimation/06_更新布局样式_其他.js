@@ -7,6 +7,10 @@ const styles = StyleSheet.create({
         fontSize: 30,
         lineHeight: 48,
         marginTop: 30,
+    },
+    desc: {
+        textAlign: 'center',
+        fontSize: 15
     }
 })
 
@@ -31,7 +35,13 @@ export default class Demo extends React.PureComponent {
             }
         })
         this.setState({
-            active: !this.state.active
+            active: true
+        })
+    }
+
+    reset = () => {
+        this.setState({
+            active: false
         })
     }
 
@@ -40,19 +50,23 @@ export default class Demo extends React.PureComponent {
         return (
             <SafeAreaView>
                 <Button title="测试" onPress={this.onPress} />
+                <Button title="reset" onPress={this.reset} />
 
                 {/* direction */}
                 <Text style={styles.title}>direction</Text>
-                <View style={{ direction: active ? 'rtl' : 'ltr', width: 300, height: 300, borderWidth: 1, borderColor: 'black' }}>
+                <Text style={styles.desc}>ltr =&gt; rtl</Text>
+                <View style={{ direction: active ? 'rtl' : 'ltr', width: 150, height: 150, borderWidth: 1, borderColor: 'black' }}>
                     <View style={{ position: 'absolute', left: 0, top: 0, width: 80, height: 80, backgroundColor: 'pink' }}></View>
                 </View>
 
                 {/* display */}
                 <Text style={styles.title}>display</Text>
-                <View style={[{ width: 80, height: 80, backgroundColor: 'pink' }, active ? null : { display: 'none' }]}></View>
+                <Text style={styles.desc}>none =&gt; flex</Text>
+                <View style={{ width: 80, height: 80, backgroundColor: 'pink', display: active ? 'flex': 'none'  }}></View>
 
                 {/* overflow */}
                 <Text style={styles.title}>overflow无效</Text>
+                <Text style={styles.desc}>hidden =&gt; visible</Text>
                 <View style={{ width: 200, height: 200, overflow: active ? 'visible': 'hidden', borderColor: 'purple', borderWidth: 1 }}>
                     <View style={{position: 'absolute', right: -50, top: -50, width: 100, height: 100, backgroundColor: 'black'}}></View>
                 </View>
