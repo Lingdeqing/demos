@@ -10,9 +10,9 @@ import LayoutAnimation3 from "./demos/LayoutAnimation/03_更新布局样式_盒�
 import LayoutAnimation4 from "./demos/LayoutAnimation/04_更新布局样式_flex";
 import LayoutAnimation5 from "./demos/LayoutAnimation/05_更新布局样式_定位";
 import LayoutAnimation6 from "./demos/LayoutAnimation/06_更新布局样式_其他";
-import LayoutAnimation7 from "./demos/LayoutAnimation/07_create快捷函数";
-import LayoutAnimation8 from "./demos/LayoutAnimation/08_预设配置";
-import LayoutAnimation9 from "./demos/LayoutAnimation/09_使用setNativeProps更新布局样式";
+import LayoutAnimation7 from "./demos/LayoutAnimation/07_使用setNativeProps更新布局样式";
+import LayoutAnimation8 from "./demos/LayoutAnimation/08_create快捷函数";
+import LayoutAnimation9 from "./demos/LayoutAnimation/09_预设配置";
 
 
 import Animated1 from "./demos/Animated/01_timing动画";
@@ -62,15 +62,15 @@ const LayoutAnimationRoutes = [
     component: LayoutAnimation6,
   },
   {
-    name: '07_create快捷函数',
+    name: '07_使用setNativeProps更新布局样式',
     component: LayoutAnimation7,
   },
   {
-    name: '08_预设配置',
+    name: '08_create快捷函数',
     component: LayoutAnimation8,
   },
   {
-    name: '09_使用setNativeProps更新布局样式',
+    name: '09_预设配置',
     component: LayoutAnimation9,
   },
 ]

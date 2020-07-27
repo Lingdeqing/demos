@@ -59,17 +59,17 @@ export default class Demo extends React.PureComponent {
                     <View style={{ position: 'absolute', left: 0, top: 0, width: 80, height: 80, backgroundColor: 'pink' }}></View>
                 </View>
 
-                {/* display */}
-                <Text style={styles.title}>display</Text>
-                <Text style={styles.desc}>none =&gt; flex</Text>
-                <View style={{ width: 80, height: 80, backgroundColor: 'pink', display: active ? 'flex': 'none'  }}></View>
-
                 {/* overflow */}
                 <Text style={styles.title}>overflow无效</Text>
                 <Text style={styles.desc}>hidden =&gt; visible</Text>
                 <View style={{ width: 200, height: 200, overflow: active ? 'visible': 'hidden', borderColor: 'purple', borderWidth: 1 }}>
                     <View style={{position: 'absolute', right: -50, top: -50, width: 100, height: 100, backgroundColor: 'black'}}></View>
                 </View>
+
+                {/* display */}
+                <Text style={styles.title}>display</Text>
+                <Text style={styles.desc}>none =&gt; flex</Text>
+                <View style={{ width: 80, height: 80, backgroundColor: 'pink', display: active ? 'flex': 'none'  }}></View>
 
             </SafeAreaView>
         )
