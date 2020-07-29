@@ -17,8 +17,8 @@ export default class Demo extends React.PureComponent {
 
     onPress = () => {
         Animated.decay(this.translateY, {
-            duration: 1000,
-            velocity: 0.1, // 必填，不填报错
+            duration: 500,
+            velocity: 0.2, // 必填，不填报错
             deceleration: 0.999, // 越接近1，速度衰减的越慢
 
             // delay: 10000, // 无用

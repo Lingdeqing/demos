@@ -9,7 +9,7 @@ export default class Demo extends React.PureComponent {
     onPress = () => {
         this.translateY.setValue(0)
         Animated.timing(this.translateY, {
-            duration: 1000,
+            duration: 500,
             toValue: 100,
             easing: (n) => {
                 if (n > 0.5) return 1 - n

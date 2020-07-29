@@ -59,9 +59,9 @@ export default class Demo extends React.PureComponent {
                         <Text style={styles.cubeTitle}>删除节点</Text>
                     </View>
                 }
-                <View style={[styles.cube, show ? null : { display: 'none' }]}>
+                {/* <View style={[styles.cube, show ? null : { display: 'none' }]}>
                     <Text style={styles.cubeTitle}>隐藏节点</Text>
-                </View>
+                </View> */}
             </SafeAreaView>
         )
     }

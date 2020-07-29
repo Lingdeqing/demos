@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Button, Text, SafeAreaView, StyleSheet, LayoutAnimation } from 'react-native';
+import { View, Button, ScrollView, Text, SafeAreaView, StyleSheet, LayoutAnimation } from 'react-native';
 
 const styles = StyleSheet.create({
     title: {
@@ -52,6 +52,7 @@ export default class Demo extends React.PureComponent {
                 <Button title="测试" onPress={this.onPress} />
                 <Button title="reset" onPress={this.reset} />
 
+                <ScrollView>
                 {/* direction */}
                 <Text style={styles.title}>direction</Text>
                 <Text style={styles.desc}>ltr =&gt; rtl</Text>
@@ -71,6 +72,13 @@ export default class Demo extends React.PureComponent {
                 <Text style={styles.desc}>none =&gt; flex</Text>
                 <View style={{ width: 80, height: 80, backgroundColor: 'pink', display: active ? 'flex': 'none'  }}></View>
 
+                {/* display */}
+                <Text style={styles.title}>display</Text>
+                <Text style={styles.desc}>flex =&gt; none</Text>
+                <View style={{ width: 80, height: 80, backgroundColor: 'pink', display: active ? 'none': 'flex'  }}></View>
+
+                <View style={{height: 100}}></View>
+                </ScrollView>
             </SafeAreaView>
         )
     }

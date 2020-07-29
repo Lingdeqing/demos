@@ -23,7 +23,7 @@ export default class Demo extends React.PureComponent {
 
     onPress = () => {
         LayoutAnimation.configureNext({
-            duration: 1000,
+            duration: 500,
             update: {
                 type: 'linear', // linear|spring|easeIn|easeOut|easeInEaseOut
                 
