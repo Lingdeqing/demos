@@ -30,6 +30,7 @@ import Animated11 from "./demos/Animated/11_组合动画_循环执行";
 import Animated12 from "./demos/Animated/12_组合动画_任意组合";
 import Animated13 from "./demos/Animated/13_isInteraction参数";
 import Animated14 from "./demos/Animated/14_useNativeDriver";
+import Animated15 from "./demos/Animated/15_自定义Animated";
 
 
 const LayoutAnimationRoutes = [
@@ -135,6 +136,10 @@ const AnimatedRoutes = [
   {
     name: '14_useNativeDriver',
     component: Animated14,
+  },
+  {
+    name: '15_自定义Animated',
+    component: Animated15,
   },
 ]
 

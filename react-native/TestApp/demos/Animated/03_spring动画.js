@@ -14,11 +14,11 @@ export default class Demo extends React.PureComponent {
             duration: 1000,
             toValue: 100, 
 
-            fraction: 7,    // 测试感觉没有用
-            tension: 40,   // 弹力，值越大，弹的次数越多
+            fraction: 800,    // 弹性
+            tension: 200,   // 速度
 
-            // speed: 12,  // 控制速度
-            // bounciness: 8 // 没有用
+            // bounciness: 20, // 弹性
+            // speed: 12,  // 速度
 
             // stiffness: 100, // 可以很好的模拟弹簧震动
             // damping: 10,
@@ -31,7 +31,7 @@ export default class Demo extends React.PureComponent {
             // restSpeedThreshold: 10000,  // 静止速度判定阈值 没啥用的样子
 
             // delay: 1000, 
-            // useNativeDriver: true,
+            useNativeDriver: true,
             // isInteraction: true
         }).start(() => {
 
