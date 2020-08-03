@@ -1,6 +1,6 @@
 {
   "name": "test-lerna-mod2",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.2",
-    "test-lerna-mod1": "^1.0.0"
+    "test-lerna-mod1": "^0.0.1"
   }
 }
