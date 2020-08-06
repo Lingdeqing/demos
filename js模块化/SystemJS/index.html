@@ -1,20 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/systemjs/6.4.1/system.js"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/systemjs/6.4.1/extras/amd.js"></script> -->
 
-  <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/system.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/amd.js"></script>
+<body>
+
+    <script type="systemjs-importmap">
+        {
+          "imports": {
+            "testAMD": "./amd/entry.js",
+            "testSystemJS": "./sjs/entry.js",
+            "testES6": "./es6ToSjs/dist/entry.js",
+            "testES6ToAmd": "./es6ToAmd/dist/entry.js"
+          }
+        }
+      </script>
+    <script src="./vendor/system.js"></script>
+    <script src="./vendor/extras/amd.js"></script>
+    <script src="./vendor/extras/named-exports.js"></script>
     <script>
-        System.import('./js/amd.js').then(res => {
-            console.log(res.type)
-        })
+        System.import('testAMD')
+        System.import('testSystemJS')
+        System.import('testES6')
+        System.import('testES6ToAmd')
+        // System.import('./dist/umd.js').then(res => {
+        //     console.log(res.type)
+        // })
+        // System.import('./dist/es6.js').then(res => {
+        //     console.log(res.type)
+        // })
     </script>
 </body>
+
 </html>
