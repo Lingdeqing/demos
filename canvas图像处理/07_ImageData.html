@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas1"></canvas>
+    <script>
+        const canvas1 = document.getElementById('canvas1')
+        const context1 = canvas1.getContext('2d')
+
+        // 设置画布大小
+        canvas1.width = 600
+        canvas1.height = 450
+
+        // 创建ImageData
+        const imageData = context1.createImageData(100, 100)
+
+        // 逐行初始化每个像素
+        const data = imageData.data
+        for(let x = 0; x < imageData.height; x++){
+            for(let y = 0; y < imageData.width; y++){
+                const i = x * imageData.width + y
+
+                // 每10像素循环赋值红绿蓝三色
+                const r = Math.floor(x/10) % 3 === 0 ? 255 : 0
+                const g = Math.floor(x/10) % 3 === 1 ? 255 : 0
+                const b = Math.floor(x/10) % 3 === 2 ? 255 : 0
+
+                // 设置像素值
+                data[4*i + 0] = r;        
+                data[4*i + 1] = g;        
+                data[4*i + 2] = b;
+                data[4*i + 3] = 255; 
+            }
+        }
+
+        // 放到画布上
+        context1.putImageData(imageData, 100, 100)
+    </script>
+</body>
+</html>

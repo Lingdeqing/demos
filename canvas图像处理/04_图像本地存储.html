@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas{
+            display: block;
+            margin: 0 auto;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <button id="save-btn">保存图片到本地</button>
+    <script>
+        const canvas = document.getElementById('canvas')
+        const context = canvas.getContext('2d')
+
+        // 设置画布大小
+        canvas.width = 800
+        canvas.height = 800
+
+        // 将图像绘制到canvas上面
+        const image = new Image();
+        image.src = './images/food.png'
+        image.onload = function(){
+            context.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height)
+        }
+
+        const saveBtn = document.getElementById('save-btn');
+        saveBtn.onclick = function(){
+            canvas.toBlob(blob => {
+                const url = URL.createObjectURL(blob)
+                const a = document.createElement('a')
+                a.href = url
+                a.download = '图片名.png'
+                a.click()
+                URL.revokeObjectURL(url)
+            }, 'image/png')
+        }
+        
+    </script>
+</body>
+</html>

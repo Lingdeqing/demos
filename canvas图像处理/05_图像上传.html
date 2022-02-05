@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas{
+            display: block;
+            margin: 0 auto;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <button id="save-btn">上传图片到后台</button>
+    <script>
+        const canvas = document.getElementById('canvas')
+        const context = canvas.getContext('2d')
+
+        // 设置画布大小
+        canvas.width = 800
+        canvas.height = 800
+
+        // 将图像绘制到canvas上面
+        const image = new Image();
+        image.src = './images/food.png'
+        image.onload = function(){
+            context.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height)
+        }
+
+        const saveBtn = document.getElementById('save-btn');
+        saveBtn.onclick = function(){
+            canvas.toBlob(blob => {
+                const formData = new FormData()
+                formData.append('file', blob, '图片名.png')
+                fetch('http://192.168.94.102:23333/upload', {
+                    method: 'POST',
+                    body: formData,
+                }).then(response => response.json())
+                .then(result => {
+                    alert(result.data)
+                })
+            }, 'image/png')
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas{
+            display: block;
+            margin: 0 auto;
+            border: 1px solid black;
+        }
+        #slider{
+            display: block;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <canvas id="watermark" style="display:none;"></canvas>
+    <input id="slider" type="range" min="1" max="3" step="0.01" value="1">
+    <script>
+        const canvas = document.getElementById('canvas')
+        const context = canvas.getContext('2d')
+        const slider = document.getElementById('slider')
+
+        const watermarkCanvas = document.getElementById('watermark')
+        const watermarkContext = watermarkCanvas.getContext('2d')
+
+        // 设置画布大小
+        canvas.width = 600
+        canvas.height = 450
+
+        // 将图像绘制到canvas上面
+        const image = new Image();
+        image.src = './images/food.png'
+        image.onload = function(){
+            scaleImage(slider.value)
+        }
+
+        slider.oninput = function(){
+            scaleImage(slider.value)
+        }
+
+        function scaleImage(scale){
+            const imageWidth = scale * image.naturalWidth
+            const imageHeight = scale * image.naturalHeight
+            const dx = (canvas.width - imageWidth)/2
+            const dy = (canvas.height - imageHeight)/2
+            context.clearRect(0, 0, canvas.width, canvas.height)
+            context.drawImage(image, dx, dy, imageWidth, imageHeight)
+            // 绘制水印
+            context.drawImage(watermarkCanvas, canvas.width - watermarkCanvas.width, canvas.height - watermarkCanvas.height)
+        }
+
+        // 初始化水印
+        drawWatermark()
+        function drawWatermark(){
+            watermarkCanvas.width = 250
+            watermarkCanvas.height = 100
+            watermarkContext.font = '30px 宋体'
+            watermarkContext.fillStyle = 'red'
+            watermarkContext.textBaseline = 'middle'
+            watermarkContext.fillText('-- 小米有品 --', 20, 50)
+        }
+    </script>
+</body>
+</html>

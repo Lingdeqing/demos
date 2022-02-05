@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas1"></canvas>
+    <canvas id="canvas2"></canvas>
+    <script>
+        const canvas1 = document.getElementById('canvas1')
+        const context1 = canvas1.getContext('2d')
+
+        const canvas2 = document.getElementById('canvas2')
+        const context2 = canvas2.getContext('2d')
+
+        // 设置画布大小
+        canvas1.width = 600
+        canvas1.height = 450
+        canvas2.width = 600
+        canvas2.height = 450
+
+        // 将图像绘制到canvas上面
+        const image = new Image();
+        image.src = './images/food.png'
+        image.onload = function(){
+            const imageWidth = image.naturalWidth
+            const imageHeight = image.naturalHeight
+            context1.drawImage(image, 0, 0, imageWidth, imageHeight)
+
+            // 从画布1获取像素信息
+            const imageData = context1.getImageData(0, 0, canvas1.width, canvas1.height)
+
+            // 遍历修改像素
+            var data = imageData.data
+            for(var i = 0; i < canvas1.width*canvas1.height; i++){
+                // data[i*4] = 0
+                // data[i*4+1] = 0
+                data[i*4+2] = 0 // 去除蓝色分量
+            }
+
+            // 放到画布2上
+            context2.putImageData(imageData, 0, 0, 0, 0, canvas1.width,  canvas1.height)
+        }
+
+        
+    </script>
+</body>
+</html>
