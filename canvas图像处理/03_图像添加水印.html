@@ -19,14 +19,13 @@
 </head>
 <body>
     <canvas id="canvas"></canvas>
-    <canvas id="watermark" style="display:none;"></canvas>
     <input id="slider" type="range" min="1" max="3" step="0.01" value="1">
     <script>
         const canvas = document.getElementById('canvas')
         const context = canvas.getContext('2d')
         const slider = document.getElementById('slider')
 
-        const watermarkCanvas = document.getElementById('watermark')
+        const watermarkCanvas = document.createElement('canvas')
         const watermarkContext = watermarkCanvas.getContext('2d')
 
         // 设置画布大小
