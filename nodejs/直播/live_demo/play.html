@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        video{
+            display: block;
+            width: 100vw;
+            height: 100vh;
+        }
+        #play{
+            position: fixed;
+            left: 100px;
+            bottom: 100px;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <video id="videoElement"></video>
+    <button type="button" id="play">开播</button>
+    <script src="./flv.js"></script>
+    <script>
+        window.onload = function(){
+            document.getElementById('play').onclick = function(){
+                if (flvjs.isSupported()) {
+                    var videoElement = document.getElementById('videoElement');
+                    var flvPlayer = flvjs.createPlayer({
+                        type: 'flv',
+                        url: 'http://10.241.190.194:9999/live/test.flv'
+                    });
+                    flvPlayer.attachMediaElement(videoElement);
+                    flvPlayer.load();
+                    flvPlayer.play();
+                }
+            }
+        }
+    </script>
+</body>
+</html>
