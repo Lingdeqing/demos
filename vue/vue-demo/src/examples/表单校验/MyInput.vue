@@ -1,5 +1,5 @@
 <template>
-  <input type="text" :value="value" @input="onInput" @blur="onBlur" />
+  <input type="text" :value="currentValue" @input="onInput" @blur="onBlur" />
 </template>
 <script>
 import EmitterMixin from "../dispatch和broadcast";

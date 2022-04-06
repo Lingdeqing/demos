@@ -59,7 +59,11 @@ export default {
     getRules(trigger) {
       return (this.form.rules?.[this.prop] || []).filter(
         (rule) => !trigger || rule.trigger === trigger
-      );
+      ).map(rule => {
+        const r = {...rule}
+        delete r.trigger
+        return r
+      });
     },
     validate(trigger, cb) {
       // 获取对应rules
