@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from './examples/表单校验'
+import App from './examples/Tree/index'
 
 Vue.config.productionTip = false
 
