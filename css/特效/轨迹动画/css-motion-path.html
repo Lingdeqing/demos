@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        section{
+            margin: 120px;
+        }
+        .line {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(#fc0, #f0c);
+            offset-path: path("M 0 0 L 100 100");
+            offset-rotate: 0deg;
+            animation: move 2000ms infinite alternate ease-in-out;
+        }
+
+        @keyframes move {
+            0% {
+                offset-distance: 0%;
+            }
+
+            100% {
+                offset-distance: 100%;
+            }
+        }
+
+        .curve {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(#fc0, #f0c);
+            offset-path: path('M 10 80 C 80 10, 130 10, 190 80 S 300 150, 360 80');
+            animation: move 2000ms infinite alternate ease-in-out;
+        }
+
+        .anchor {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(#fc0, #f0c);
+            clip-path: polygon(0 0, 100% 50%, 0 100%);
+            offset-anchor: 0 100%;
+            offset-path: path('M 0 0 L 300 0');
+            animation: move 2000ms infinite alternate ease-in-out;
+        }
+
+        .track {
+            position: absolute;
+            height: 2px;
+            background: black;
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <h1>直线运动</h1>
+        <div class="line"></div>
+    </section>
+    <section>
+        <h1>曲线运动</h1>
+        <div class="curve"></div>
+    </section>
+    <section>
+        <h1>offset-anchor</h1>
+        <div class="track"></div>
+        <div class="anchor"></div>
+    </section>
+    参考：<a href="https://segmentfault.com/a/1190000039916159">探秘神奇的运动路径动画 Motion Path</a>
+</body>
+
+</html>
