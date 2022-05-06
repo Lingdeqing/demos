@@ -11,7 +11,8 @@ function singleNumbers(nums) {
     for (let num of nums) {
         res ^= num
     }
-    let m = 1;
+    let m = 1; // 我们根据异或的性质可以知道：res中至少有一位是1，否则x与y就是相等的
+    // 可能有多个位都为1，我们找到最低位的1，用那个位置的1划分为为两个子数组
     while ((m & res) === 0) { // 说明res当前的bit位是0，说明 x⊕y 对应bit位相等
         m <<= 1; // 不断向高位探测，直到bit位是1，也就是 x⊕y 对应bit位不相等
     }
