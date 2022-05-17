@@ -1,6 +1,9 @@
 // 31. 下一个排列
 // 图形题解
 // https://leetcode.cn/problems/next-permutation/solution/xia-yi-ge-pai-lie-suan-fa-xiang-jie-si-lu-tui-dao-/
+
+// 将一个左边的「较小数」与一个右边的「较大数」交换
+// 这个「较小数」尽量靠右，而「较大数」尽可能小
 function nextPermutation(nums) {
     if (nums.length <= 1) return
     let i = nums.length - 2, j = nums.length - 1;
