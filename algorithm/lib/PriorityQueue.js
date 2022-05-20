@@ -1,3 +1,6 @@
+/**
+ * 优先级队列、堆
+ */
 export default class PriorityQueue {
     constructor(less = null) {
         this.pq = [null]
