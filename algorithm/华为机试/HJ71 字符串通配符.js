@@ -1,6 +1,12 @@
 // https://www.nowcoder.com/practice/43072d50a6eb44d2a6c816a283b02036
 
-
+// 实在写不过用正则吧
+function isMatch3(s, p) {
+    const reg = new RegExp('^' + p.replace(/\./g, '\\.')
+        .replace(/\*/g, '[a-z0-9]*')
+        .replace(/\?/g, '[a-z0-9]{1}') + '$', 'i')
+    return reg.test(s)
+}
 // 递归写法，写起来简洁，但是可能会超时
 function isMatch2(s, p) {
     if (!s && !p) return true; // 都为空
@@ -63,13 +69,16 @@ function isWord(ch) {
     return (ch >= '0' && ch <= '9') || (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z')
 }
 
-console.log(isMatch(
+console.log(isMatch3(
     // 'txt12.xls',
     // 't?t*1*.*',
     // 'txt12.xls',
     // 'te?t*.*'
-    'hhhhhhhahhaahhahhhhaaahhahhahaaahhahahhhahhhahaaahaah',
-    'h*h*ah**ha*h**h***hha',
+    // 'hhhhhhhahhaahhahhhhaaahhahhahaaahhahahhhahhhahaaahaah',
+    // 'h*h*ah**ha*h**h***hha',
     // '13',
     // '*123'
+
+    'abcd',
+    '?*Bc*?'
 ))
