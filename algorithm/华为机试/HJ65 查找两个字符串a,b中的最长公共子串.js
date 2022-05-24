@@ -1,6 +1,9 @@
 // https://www.nowcoder.com/practice/181a1a71c7574266ad07f9739f791506
 
 
+// 力扣题解：https://leetcode.cn/problems/maximum-length-of-repeated-subarray/solution/zui-chang-zhong-fu-zi-shu-zu-by-leetcode-solution/
+
+
 
 // 动态规划
 function longestLengthOfCommonStr(s1, s2) {
