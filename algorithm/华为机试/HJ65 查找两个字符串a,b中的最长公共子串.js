@@ -3,7 +3,60 @@
 
 // 力扣题解：https://leetcode.cn/problems/maximum-length-of-repeated-subarray/solution/zui-chang-zhong-fu-zi-shu-zu-by-leetcode-solution/
 
+// 滑动窗口法-更好想，但是这边要获取短串中第一次出现的最长公共子串，写起来不太好写
+// 还是用动态规划公共后缀法吧，想清楚了一气呵成
+// 题解：https://leetcode.cn/problems/maximum-length-of-repeated-subarray/solution/wu-li-jie-fa-by-stg-2/
+function findLength(s1, s2) {
+    if (s1.length > s2.length) { // 控制s1是短串
+        ;[s1, s2] = [s2, s1];
+    }
+    const m = s1.length, n = s2.length;
+    let maxCommonLen = 0, maxCommonStr = '', maxCommonStart = 0;
+    for (let i = 0; i < m; i++) {
+        findMax(i, 0, Math.min(n, m - i))
+    }
+    for (let i = 0; i < n; i++) {
+        findMax(0, i, Math.min(m, n - i))
+    }
+    function findMax(s1Start, s2Start, len) {
+        let commonLen = 0, commonStart = 0, commonEnd = 0
+        for (let k = 0; k < len; k++) {
+            if (s1[s1Start + k] === s2[s2Start + k]) {
+                commonLen++
+                commonEnd = k
+            } else {
+                if (commonLen > maxCommonLen) {
+                    maxCommonLen = commonLen
+                    maxCommonStr = s1.slice(commonStart + s1Start, commonEnd + s1Start + 1)
+                    maxCommonStart = commonStart + s1Start; // 记录下在短串中的起点
+                } else if (commonLen === maxCommonLen) {
+                    if (maxCommonStart > commonStart + s1Start) {
+                        maxCommonStr = s1.slice(commonStart + s1Start, commonEnd + s1Start + 1)
+                        maxCommonStart = commonStart + s1Start; // 更靠近短串前面的公共子串
+                    }
+                }
+                commonLen = 0
+                commonStart = k + 1
+            }
+        }
+        if (commonLen > maxCommonLen) {
+            maxCommonLen = commonLen
+            maxCommonStr = s1.slice(commonStart + s1Start, commonEnd + s1Start + 1)
+            maxCommonStart = commonStart + s1Start; // 记录下在短串中的起点
+        } else if (commonLen === maxCommonLen) {
+            if (maxCommonStart > commonStart + s1Start) {
+                maxCommonStr = s1.slice(commonStart + s1Start, commonEnd + s1Start + 1)
+                maxCommonStart = commonStart + s1Start; // 更靠近短串前面的公共子串
+            }
+        }
+    }
+    return maxCommonStr
+}
 
+console.log(findLength(
+    'efgyiffxoonftmmvd',
+    'exwzdcwjsttuhsxrcpzplpnfqxqsqtlfctdkgacejitayoafucmfxxhkxyixxykndchyjc'
+))
 
 // 动态规划
 function longestLengthOfCommonStr(s1, s2) {
