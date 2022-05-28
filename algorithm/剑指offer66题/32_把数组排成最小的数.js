@@ -10,8 +10,8 @@ function minNumber(arr) {
         if (left >= right) return
         let i = left, j = right;
         while (i < j) {
-            while (i < j & compare2(arr[j], arr[left])) j--;
-            while (i < j & compare(arr[i], arr[left])) i++;
+            while (i < j && compare2(arr[j], arr[left])) j--;
+            while (i < j && compare(arr[i], arr[left])) i++;
             ;[arr[i], arr[j]] = [arr[j], arr[i]];
         }
         ;[arr[left], arr[i]] = [arr[i], arr[left]];
