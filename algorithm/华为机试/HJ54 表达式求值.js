@@ -27,7 +27,7 @@ function calc(str) {
             while (!canPush(str[i])) {
                 compute()
             }
-            if (str[i] === '-' && (i === 0 || str[i - 1] === '(')) { // 负号判断，不入栈，直接在下个数字时把符号带上
+            if (str[i] === '-' && (i === 0 || str[i - 1] === '(')) { // 负号判断，不入栈，直接在下个数字时把符号带上，这边测试用例没有测试到正号，如果是正号，得忽略
                 sig = -1
             } else {
                 ops.push(str[i])
