@@ -41,7 +41,7 @@
                     calcOnce()
                 }
                 ops.push(str[i])
-            }
+            }   
             i++
         }
     }
