@@ -10,7 +10,7 @@ function primes(n) {
             n = n / i
         }
     }
-    if (res !== 1) res.push(n)
+    if (n !== 1) res.push(n)
     return res
 }
 function isPrime(n) {
