@@ -18,7 +18,7 @@ function judgePoint24(cards) {
             // if (Math.abs(nums[0] - 24) < 0.00001) {
             //     console.log(path)
             // }
-            return Math.abs(nums[0] - 24) < 0.00001 // 注意这边以防浮点数运算精度问题
+            return Math.abs(nums[0] - 24) < EPSILON// 注意这边以防浮点数运算精度问题
         }
 
         for (let i = 0; i < nums.length; i++) {
