@@ -1,6 +1,8 @@
 // https://www.nowcoder.com/practice/9566499a2e1546c0a257e885dfdbf30d
 
+// 最全面的题解 参考 224. 基本计算器
 
+// 这个解负号有瑕疵 
 function calc(str) {
     // return eval('(' + str + ')')
     const ops = [], nums = []

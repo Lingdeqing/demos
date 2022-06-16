@@ -1,5 +1,7 @@
 // https://www.nowcoder.com/practice/9999764a61484d819056f807d2a91f1e
 
+// 最全面的题解 参考 224. 基本计算器
+
 // 最清楚解法
 // 直接用双栈做
 /**
@@ -14,7 +16,7 @@
  * 
  * 上面运算符出栈的同时，取数字栈顶两个数字运算，把结果放回数字栈中
  */
- function calc(str) {
+function calc(str) {
     const nums = [], ops = []
     for (let i = 0; i < str.length;) {
         if (isDigit(str[i])) {
@@ -41,7 +43,7 @@
                     calcOnce()
                 }
                 ops.push(str[i])
-            }   
+            }
             i++
         }
     }

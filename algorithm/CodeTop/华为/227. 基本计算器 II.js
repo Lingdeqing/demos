@@ -1,6 +1,8 @@
 // 227. 基本计算器 II
 // https://leetcode.cn/problems/basic-calculator-ii/
 
+// 最全面的题解 参考 224. 基本计算器
+
 // 刷烂了
 function calculate(s) {
     const ops = [], nums = []
