@@ -1,6 +1,8 @@
 // 224. 基本计算器
 // https://leetcode.cn/problems/basic-calculator/
 
+// 注意这题只有+-()，没有*/ 简单很多，可以展开括号，括号前面是-号则，括号里面每一项得添负
+// 官解：https://leetcode.cn/problems/basic-calculator/solution/ji-ben-ji-suan-qi-by-leetcode-solution-jvir/
 function calculate(s) {
     let ops = [], nums = [], num = 0, isNeg = false, isMinus = false
     for (let i = 0; i < s.length;) {
