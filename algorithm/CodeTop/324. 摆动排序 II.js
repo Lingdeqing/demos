@@ -1,6 +1,7 @@
 // 324. 摆动排序 II
 // https://leetcode.cn/problems/wiggle-sort-ii/
 
+// https://leetcode.cn/problems/wiggle-sort-ii/solution/yi-bu-yi-bu-jiang-shi-jian-fu-za-du-cong-onlognjia/
 function wiggleSort(nums) {
     nums.sort((a, b) => a - b)
     let res = []
