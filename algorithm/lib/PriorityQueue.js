@@ -1,7 +1,7 @@
 /**
  * 优先级队列、堆
  */
-export default class PriorityQueue {
+module.exports = class PriorityQueue {
     constructor(less = null) {
         this.pq = [null]
         this._less = less
