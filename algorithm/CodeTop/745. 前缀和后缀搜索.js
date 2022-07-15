@@ -33,3 +33,7 @@ WordFilter.prototype.f = function (pref, suff) {
 
 a = new WordFilter(['apple'])
 a.f('a', 'e')
+
+
+// 前缀树
+// todo
