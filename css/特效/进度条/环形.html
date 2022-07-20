@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="canvas" class="circle-progress"> </canvas>
+    <script>
+        var vueConfig = {
+            props: {
+                size: {
+                    type: Number,
+                    default: 152
+                },
+                lineWidth: {
+                    type: Number,
+                    default: 6
+                },
+                progress: {
+                    type: Number,
+                    default: 0
+                },
+                startAngle: {
+                    type: Number,
+                    default: 60
+                }, // 起始角度
+                totalAngle: {
+                    type: Number,
+                    default: 340
+                }, // 总角度
+                anticlockwise: {
+                    type: Boolean,
+                    default: false
+                }
+            },
+            mounted() {
+                const $canvas = this.$refs.canvas
+                this.context = $canvas.getContext('2d')
+                $canvas.width = this.size
+                $canvas.height = this.size
+
+                this.radius = this.size / 2 - this.lineWidth / 2
+                this.centerX = $canvas.width / 2
+                this.centerY = $canvas.height / 2
+
+                this.current = 0
+                this.speed = 100
+                this.rafId = null
+            },
+            computed: {
+                startRad() {
+                    return (this.startAngle / 180) * Math.PI
+                },
+                totalRad() {
+                    return (this.totalAngle / 180) * Math.PI
+                }
+            },
+            watch: {
+                progress() {
+                    if (this.progress < this.current) {
+                        // 重置
+                        this.isDraw = false
+                        cancelAnimationFrame(this.rafId)
+                        this.current = this.progress
+                        this.draw()
+                        return
+                    }
+                    this.getSpeed()
+                    this.startDraw()
+                }
+            },
+            beforeDestroy() {
+                cancelAnimationFrame(this.rafId)
+            },
+            methods: {
+                drawProgress(n) {
+                    this.context.save()
+                    this.context.beginPath()
+                    const gradient = this.context.createConicGradient(
+                        this.startRad,
+                        this.centerX,
+                        this.centerY
+                    )
+
+                    gradient.addColorStop(0, '#3583FB')
+                    gradient.addColorStop(1, '#65B9FD')
+                    this.context.strokeStyle = gradient
+
+                    this.context.lineWidth = this.lineWidth
+                    this.context.lineCap = 'round'
+                    this.context.arc(
+                        this.centerX,
+                        this.centerY,
+                        this.radius,
+                        this.startRad,
+                        this.startRad + (this.totalRad * n) / 100,
+                        this.anticlockwise
+                    )
+                    this.context.stroke()
+                    this.context.restore()
+                },
+                drawTrack() {
+                    this.context.save()
+                    this.context.beginPath()
+                    this.context.strokeStyle = '#dae6fc'
+                    this.context.lineWidth = this.lineWidth
+                    this.context.arc(
+                        this.centerX,
+                        this.centerY,
+                        this.radius,
+                        0,
+                        Math.PI * 2,
+                        false
+                    )
+                    this.context.stroke()
+                    this.context.closePath()
+                    this.context.restore()
+                },
+                draw() {
+                    if (this.current < 0) {
+                        this.current = 0
+                    }
+                    if (this.current > 100) {
+                        this.current = 100
+                    }
+                    this.context.clearRect(0, 0, this.size, this.size)
+                    if (this.current > 0) {
+                        this.drawTrack()
+                    }
+                    this.drawProgress(this.current)
+                },
+                getSpeed() {
+                    this.speed = (this.progress - this.current) / (200 / 16) // 200 毫秒走完，每一帧步长
+                },
+                drawAni() {
+                    if (this.current >= this.progress) {
+                        this.isDraw = false
+                        this.current = this.progress
+                    } else {
+                        this.isDraw = true
+                        this.rafId = requestAnimationFrame(this.drawAni)
+                        this.current += this.speed
+                    }
+
+                    this.draw()
+                },
+                startDraw() {
+                    if (this.isDraw) return
+                    this.isDraw = true
+                    cancelAnimationFrame(this.rafId)
+                    this.rafId = requestAnimationFrame(this.drawAni)
+                }
+            },
+        }
+
+
+
+
+
+
+        Object.keys(vueConfig.props).forEach(prop => {
+            vueConfig[prop] = vueConfig.props[prop].default
+        })
+        Object.keys(vueConfig.methods).forEach(method => {
+            vueConfig[method] = vueConfig.methods[method].bind(vueConfig)
+        })
+        Object.keys(vueConfig.computed).forEach(compute => {
+            Object.defineProperty(vueConfig, compute, {
+                get() {
+                    return vueConfig.computed[compute].call(vueConfig)
+                }
+            })
+        })
+        vueConfig.$refs = {
+            canvas: document.getElementById('canvas')
+        }
+        vueConfig.mounted()
+
+        function test() {
+            let progress = 0
+            let timer = setInterval(() => {
+                if (progress > 100) {
+                    clearInterval(timer)
+                }
+                progress++
+                vueConfig.progress = progress
+                vueConfig.watch.progress.call(vueConfig)
+            }, 10)
+        }
+        test()
+    </script>
+</body>
+
+</html>
