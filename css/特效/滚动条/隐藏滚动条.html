@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            height: 200px;
+            overflow: auto;
+            border: 1px solid red;
+        }
+
+        .container li {
+            height: 40px;
+        }
+
+        .hide-scroll::-webkit-scrollbar {
+            /* width: 0; */
+            /* height: 0; */
+            display: none;
+        }
+
+        .hide-scroll2.container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hide-scroll2 .content {
+            position: absolute;
+            left: 0;
+            /*根据浏览器具体滚动条宽度*/
+            right: -17px;
+            top: 0;
+            bottom: 0;
+            overflow: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="https://juejin.cn/post/6844904094272847880">2种方法隐藏滚动条</a>
+    <h1>通过::-webkit-scrollbar</h1>
+    <div class="container hide-scroll">
+        <ul class="content ">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>10</li>
+        </ul>
+    </div>
+
+
+    <h1>通过将滚动条位置overflow:hidden</h1>
+    <div class="container hide-scroll2">
+        <ul class="content">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>10</li>
+        </ul>
+    </div>
+</body>
+
+</html>
