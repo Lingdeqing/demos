@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .tabs {
+            height: 44px;
+            background: orange;
+        }
+
+        .tab-list {
+            width: 100%;
+            padding: 0 8px;
+            height: 46px;
+            white-space: nowrap;
+            color: #fff;
+            overflow-x: auto;
+            box-sizing: border-box;
+        }
+
+        .tab-list::-webkit-scrollbar {
+            /* display: none; */
+            height: 0;
+        }
+
+        .tab-item {
+            cursor: pointer;
+            display: inline-block;
+            padding: 0 8px;
+            height: 44px;
+            line-height: 44px;
+        }
+
+        .tab-item.active {
+            border-bottom: 2px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tabs">
+        <div class="tab-list">
+            <div class="tab-item active">苹果</div>
+            <div class="tab-item">橘子</div>
+            <div class="tab-item">香蕉</div>
+            <div class="tab-item">哈士奇</div>
+            <div class="tab-item">美利坚</div>
+            <div class="tab-item">小日本</div>
+            <div class="tab-item">苹果</div>
+            <div class="tab-item">橘子</div>
+            <div class="tab-item">香蕉</div>
+            <div class="tab-item">哈士奇</div>
+            <div class="tab-item">美利坚</div>
+            <div class="tab-item">小日本</div>
+        </div>
+    </div>
+</body>
+
+</html>
