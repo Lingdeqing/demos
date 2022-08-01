@@ -1,3 +1,5 @@
+//德科： http://www.amoscloud.com/?cat=57
+
 // 题目描述：
 // 如果三个正整数A、B、C ,A²+B²=C²则为勾股数
 // 如果ABC之间两两互质，即A与B，A与C，B与C均互质没有公约数，

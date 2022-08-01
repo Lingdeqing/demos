@@ -24,7 +24,7 @@ function wiggleMaxLength(nums) {
 // https://leetcode.cn/problems/wiggle-subsequence/solution/376-bai-dong-xu-lie-tan-xin-jing-dian-ti-vyxt/
 // 贪心找峰值，注意开头技巧
 function wiggleMaxLength2(nums) {
-    if (nums.lengt === 0) return0
+    if (nums.length === 0) return 0
     let res = 1, preDiff = 0, curDiff = 0
     for (let i = 0; i < nums.length - 1; i++) {
         curDiff = nums[i + 1] - nums[i]
