@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .mark {
+      background: #bad7fb;
+    }
+
+    #editor {
+      height: 300px;
+    }
+  </style>
+</head>
+
+<body>
+  <p id="editor" contenteditable="false">哈哈哈<span>呵呵呵</span>哦哦哦哦哦<span>嘿嘿嘿</span></p>
+  <p id="log"></p>
+  <button type="button" id="tool">标红</button>
+  <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
+  <script>
+    // VConsole will be exported to `window.VConsole` by default.
+    var vConsole = new window.VConsole();
+  </script>
+  <script>
+
+    // 统一ios微信、安卓微信、pc端chrome选区处理逻辑
+
+    const uaText = navigator.userAgent
+    const android = /Android/i.test(uaText)
+    const iOS = /(iPad|iPhone|iPod)\s+OS\s([\d_.]+)/i.test(uaText)
+    const pc = !android && !iOS;
+    const ua = {
+      pc,
+      iOS
+    }
+
+    // 选中指定选区区域
+    const lastSelection = {
+      range: null,
+      getLastRange() {
+        return this.range
+      },
+      /**
+       * 设置最后一次的选区变量range，ios会用span模拟包裹选区的效果
+       * */
+      setLastRange(range) {
+        this.range = range || null;
+        if (ua.iOS) {
+          // 选中ios模拟选区
+          if (range) {
+            const doc = range.extractContents()
+            const span = document.createElement('span')
+            span.className = 'mark'
+            span.appendChild(doc)
+            range.insertNode(span)
+            this.range = document.createRange()
+            this.range.selectNodeContents(span)
+          } else {
+            // 去除ios模拟选区
+            [...document.querySelectorAll('.mark')].forEach(mark => {
+              const doc = document.createDocumentFragment();
+              while (mark.firstChild) {
+                doc.appendChild(mark.firstChild)
+              }
+              mark.parentNode.replaceChild(doc, mark)
+            })
+          }
+        }
+      },
+      // 清除选区，最后一次的选区变量range变为null，ios会清除模拟span，其他会清除选中效果
+      removeLastRange() {
+        this.setLastRange(null)
+        window.getSelection().removeAllRanges()
+      }
+    }
+
+
+
+    if (ua.iOS) {
+      // ios hack
+      const $editor = document.getElementById('editor')
+      let isMoved = false
+      $editor.addEventListener('touchstart', (e) => {
+        isMoved = false
+        lastSelection.setLastRange(null)
+      })
+      $editor.addEventListener('touchmove', (e) => {
+        isMoved = true
+      })
+      $editor.addEventListener('touchend', (e) => {
+        // 测试得知ios微信中当 选区 点击空白清除时，无法获取到清除的选区，获取到的仍然是上一次的选区
+        // 所以这边hack下，当ios出现选区一样时，则认为是点击空白取消选区动作
+        // 点击编辑器内空白，则取消选区，页面其他地方的点击由那些地方的点击事件决定是否取消选中
+        if (!isMoved) {
+          log('清除选区')
+          lastSelection.setLastRange(null)
+        } else {
+          // 滑动选中
+          const selection = window.getSelection()
+          const newRange = selection.rangeCount > 0 ? selection.getRangeAt(0) : null
+          if (newRange) {
+            log('选中选区')
+            lastSelection.setLastRange(newRange)
+          } else {
+            log('清除选区')
+            lastSelection.setLastRange(null)
+          }
+        }
+        isMoved = false
+      })
+    } else {
+      // 其他平台
+      document.addEventListener('selectionchange', (e) => {
+        const selection = window.getSelection()
+        const newRange = selection.rangeCount > 0 ? selection.getRangeAt(0) : null
+
+        if (!newRange || newRange.collapsed) {
+          log('清除选区')
+          lastSelection.setLastRange(null)
+        } else {
+          log('选中选区')
+          lastSelection.setLastRange(newRange)
+        }
+      })
+    }
+
+
+    // 工具栏功能
+    // document.getElementById('tool-bar').addEventListener('click', () => {
+    //   document.getElementById('tool').hidden = !document.getElementById('tool').hidden
+    // })
+    document.getElementById('tool').addEventListener('click', (e) => {
+      const range = lastSelection.getLastRange()
+      if (range) {
+        const mark = document.createElement('span')
+        mark.style.color = 'red'
+        mark.appendChild(range.extractContents())
+        range.insertNode(mark)
+        lastSelection.removeLastRange()
+      }
+    })
+
+
+
+    let counter = 1
+    function log(msg) {
+      document.getElementById('log').innerHTML = msg + counter++
+      console.log(msg)
+    }
+  </script>
+</body>
+
+</html>
