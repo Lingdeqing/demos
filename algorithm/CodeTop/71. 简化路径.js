@@ -83,7 +83,7 @@ function simplifyPath(path) {
             stack.push(item)
         }
     })
-    return stack.length > 0 ? '/' + stack.join('/') : '/'
+    return '/' + stack.join('/')
 }
 
 console.log(simplifyPath("/a//b////c/d//././/.."))

@@ -21,10 +21,7 @@ function trap(height) {
 
 // 双指针遍历一遍
 function trap(height) {
-    if (height.length < 3) return 0
-    let leftMax = height[0], rightMax = height.at(-1)
-    let i = 1, j = height.length - 2;
-    let res = 0
+    let leftMax = 0, rightMax = 0, i = 0, j = height.length - 1, res = 0
     while (i <= j) {
         if (leftMax < rightMax) { //对于i元素来说leftMax是对的，leftMax只要小于右边一个就可以了
             res += Math.max(0, leftMax - height[i])
