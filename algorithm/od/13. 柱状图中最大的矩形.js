@@ -64,7 +64,7 @@ function largestRectangleArea(heights) {
         while (stack.length > 0 && heights[stack[stack.length - 1]] >= heights[i]) {
             stack.pop()
         }
-        right[i] = stack.length > 0 ? stack[stack.length - 1] : -1
+        right[i] = stack.length > 0 ? stack[stack.length - 1] : heights.length
         stack.push(i)
     }
 
@@ -82,10 +82,7 @@ function largestRectangleArea(heights) {
     // 遍历得到最值
     let ans = 0
     for (let i = 0; i < heights.length; i++) {
-        let l = left[i] === -1 ? -1 : left[i]
-        let r = right[i] === -1 ? heights.length : right[i]
-        let area = (r - l - 1) * heights[i]
-        ans = Math.max(area, ans)
+        ans = Math.max((right[i] - left[i] - 1) * heights[i], ans)
     }
     return ans;
 }
