@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <!-- 子应用根节点id要和主应用和其他子应用区分开 -->
+  <div id="dupdub-editor-app"></div>
+
+  <!-- 三方脚本 用async避免阻塞子应用加载 -->
+  <script async defer crossorigin="anonymous"
+    src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v14.0&appId=415785557095681&autoLogAppEvents=1"
+    nonce="fPqG5LyT"></script>
+  <script async defer src="https://accounts.google.com/gsi/client"></script>
+</body>
+
+</html>
