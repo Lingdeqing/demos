@@ -21,18 +21,16 @@ var watchedVideosByFriends = function (watchedVideos, friends, id, level) {
 
     // bfs
     const queue = [id], visited = { [id]: true }
-    while (level) {
+    while (level--) {
         let size = queue.length;
-        while (size) {
-            const id = queue.shift()
-            friends[id].forEach(id => {
+        while (size--) {
+            const cur = queue.shift()
+            friends[cur].forEach(id => {
                 if (visited[id]) return
                 visited[id] = true
                 queue.push(id)
             })
-            size--
         }
-        level--
     }
 
 
