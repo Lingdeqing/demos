@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const addSelectorPrefix = require('./addSelectorPrefix')
 module.exports = {
   // 线上采用绝对路径，cdn路径一定要支持跨域访问
   // 开发环境采用相对路径即可
@@ -34,6 +35,17 @@ module.exports = {
       // 开发环境允许静态资源跨域访问，注意上线时，线上的静态资源也要允许跨域访问，因为qiankun是用ajax去拉取各种资源的
       'Access-Control-Allow-Origin': '*',
     },
+  },
+  css: {
+    loaderOptions: {
+      postcss: {
+        postcssOptions: {
+          plugins: [
+            addSelectorPrefix
+          ]
+        }
+      }
+    }
   },
 }
 
