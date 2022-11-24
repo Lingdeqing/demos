@@ -25,3 +25,20 @@ function stopScrollChaining(event, innerScroll = null) {
         event.preventDefault();
     }
 }
+
+
+// 安卓键盘收起事件，点击键盘自带的收起按钮，默认不触发blur事件
+const winHeight = window.innerHeight
+function onAndroidKeyboardDown(callback) {
+    const handler = () => {
+        if (window.innerHeight === winHeight) {
+            callback()
+        }
+    }
+    if (callback) {
+        window.addEventListener('resize', handler)
+    }
+    return () => {
+        window.removeEventListener('resize', handler)
+    }
+}
