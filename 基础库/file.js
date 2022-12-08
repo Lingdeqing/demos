@@ -27,3 +27,46 @@ export function isAcceptFile(file, accept) {
         extensions.indexOf(extension) !== -1
     )
 }
+
+
+// 解析audio文件时长
+function getAudioFileDuration(file) {
+    return new Promise(resolve => {
+        const url = URL.createObjectURL(file)
+        const $audio = document.createElement('audio')
+        $audio.src = url
+        $audio.addEventListener('durationchange', () => {
+            URL.revokeObjectURL(url)
+            resolve($audio.duration)
+        })
+        $audio.onerror = e => {
+            console.log('解析音频时长出错', e)
+            URL.revokeObjectURL(url)
+            resolve(0)
+        }
+    })
+}
+
+// 解析video文件时长
+function getVideoFileDuration(file) {
+    return new Promise(resolve => {
+        const url = URL.createObjectURL(file)
+        const $video = document.createElement('video')
+        $video.src = url
+        $video.addEventListener('durationchange', () => {
+            URL.revokeObjectURL(url)
+            resolve($video.duration)
+        })
+        $video.onerror = e => {
+            console.log('解析视频时长出错', e)
+            URL.revokeObjectURL(url)
+            resolve(0)
+        }
+    })
+}
+
+// 解析文件时长
+export function getFileDuration(file) {
+    const isVideo = ['mp4'].includes(file.name.split('.')[1])
+    return isVideo ? getVideoFileDuration(file) : getAudioFileDuration(file)
+}
