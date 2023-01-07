@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .sankey-chart {
+            position: relative;
+            margin: auto;
+            height: 500px;
+            width: 500px;
+        }
+
+        .sankey-chart .chart {
+            height: 500px;
+            width: 500px;
+        }
+
+        .sankey-chart .particle {
+            pointer-events: none;
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: url(./111.gif);
+            height: 500px;
+            width: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sankey-chart">
+        <div class="chart"></div>
+        <div class="particle"></div>
+    </div>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts.js"></script>
+    <script>
+
+        var sankeyDom = document.querySelector('.sankey-chart');
+        var chartDom = sankeyDom.querySelector('.chart');
+        var particleDom = sankeyDom.querySelector('.particle');
+        var myChart = echarts.init(chartDom, '', { renderer: 'svg' });
+        var option;
+
+        option = {
+            series: {
+                type: 'sankey',
+                layout: 'none',
+                draggable: false,
+                emphasis: {
+                    focus: 'adjacency'
+                },
+                data: [
+                    {
+                        name: 'a'
+                    },
+                    {
+                        name: 'b'
+                    },
+                    {
+                        name: 'a1'
+                    },
+                    {
+                        name: 'a2'
+                    },
+                    {
+                        name: 'b1'
+                    },
+                    {
+                        name: 'c'
+                    }
+                ],
+                links: [
+                    {
+                        source: 'a',
+                        target: 'a1',
+                        value: 5
+                    },
+                    {
+                        source: 'a',
+                        target: 'a2',
+                        value: 3
+                    },
+                    {
+                        source: 'b',
+                        target: 'b1',
+                        value: 8
+                    },
+                    {
+                        source: 'a',
+                        target: 'b1',
+                        value: 3
+                    },
+                    {
+                        source: 'b1',
+                        target: 'a1',
+                        value: 1
+                    },
+                    {
+                        source: 'b1',
+                        target: 'c',
+                        value: 2
+                    }
+                ]
+            }
+        };
+
+        option && myChart.setOption(option);
+        myChart.on('mouseover', function (event) {
+            if (event.dataType === 'edge') {
+                const pathDom = event.event.event.target
+                if (pathDom.nodeName.toLowerCase() === 'path') {
+                    createClipPath(sankeyDom, pathDom)
+                    particleDom.style.display = 'block'
+                    particleDom.style.clipPath = `url(#particleClipPath)`;
+                }
+            }
+        })
+        myChart.on('mouseout', function (event) {
+            if (event.dataType === 'edge') {
+                particleDom.style.display = 'none'
+            }
+        })
+
+        function createClipPath(sankeyDom, pathDom) {
+            const svgns = 'http://www.w3.org/2000/svg'
+            const oldSvg = sankeyDom.querySelector('.clip-path-svg')
+            if (oldSvg) {
+                oldSvg.parentNode.removeChild(oldSvg)
+            }
+
+            const svg = sankeyDom.querySelector('svg').cloneNode();
+            svg.style.zIndex = -1
+            svg.setAttribute('class', 'clip-path-svg')
+            sankeyDom.appendChild(svg)
+            const defs = document.createElementNS(svgns, 'defs');
+            svg.appendChild(defs)
+            const clipPath = document.createElementNS(svgns, 'clipPath');
+            defs.appendChild(clipPath)
+            clipPath.id = 'particleClipPath'
+            clipPath.appendChild(pathDom.cloneNode())
+        }
+
+
+        // var myChart = echarts.init(chartDom);
+        // var option;
+
+        // option = {
+        //     backgroundColor: 'transparent',
+        //     series: [
+        //         {
+        //             type: 'gauge',
+        //             startAngle: 180,
+        //             endAngle: 0,
+        //             min: 0,
+        //             max: 100,
+        //             anchor: {
+        //                 show: true,
+        //                 showAbove: false,
+        //                 size: 25,
+        //                 icon: 'circle',
+        //                 itemStyle: {
+        //                     borderColor: 'red',
+        //                     borderWidth: 5
+        //                 }
+        //             },
+        //             pointer: {
+        //                 icon: 'path://M2090.36389,615.30999 L2090.36389,615.30999 C2091.48372,615.30999 2092.40383,616.194028 2092.44859,617.312956 L2096.90698,728.755929 C2097.05155,732.369577 2094.2393,735.416212 2090.62566,735.56078 C2090.53845,735.564269 2090.45117,735.566014 2090.36389,735.566014 L2090.36389,735.566014 C2086.74736,735.566014 2083.81557,732.63423 2083.81557,729.017692 C2083.81557,728.930412 2083.81732,728.84314 2083.82081,728.755929 L2088.2792,617.312956 C2088.32396,616.194028 2089.24407,615.30999 2090.36389,615.30999 Z',
+        //                 length: '50%',
+        //                 width: 16,
+        //                 offsetCenter: ['0', '-20']
+        //             },
+        //             axisLine: {
+        //                 show: false
+        //             },
+        //             axisTick: {
+        //                 show: false
+        //             },
+        //             splitLine: {
+        //                 show: false
+        //             },
+        //             axisLabel: {
+        //                 show: false
+        //             },
+        //             title: {
+        //                 show: false
+        //             },
+        //             detail: {
+        //                 show: false,
+        //             },
+        //             data: [
+        //                 {
+        //                     value: 40
+        //                 }
+        //             ]
+        //         }
+        //     ]
+        // };
+
+        // option && myChart.setOption(option);
+
+    </script>
+</body>
+
+</html>
