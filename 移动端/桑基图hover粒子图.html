@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>桑基图</title>
     <style>
         * {
             margin: 0;
@@ -13,26 +13,47 @@
         }
 
         .sankey-chart {
-            position: relative;
-            margin: auto;
-            height: 500px;
+            margin: 0;
             width: 500px;
+            height: 500px;
+
+            /* position: relative; */
         }
 
         .sankey-chart .chart {
-            height: 500px;
             width: 500px;
+            height: 500px;
         }
 
         .sankey-chart .particle {
             pointer-events: none;
-            display: none;
+            width: 50px;
+            height: 500px;
+            background: red;
             position: absolute;
             left: 0;
             top: 0;
-            background: url(./111.gif);
-            height: 500px;
+            animation: move 3s infinite linear;
+            display: none;
+        }
+
+        .sankey-chart .particle-wrapper {
+            pointer-events: none;
             width: 500px;
+            height: 500px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        @keyframes move {
+            0% {
+                offset-distance: 0%;
+            }
+
+            100% {
+                offset-distance: 100%;
+            }
         }
     </style>
 </head>
@@ -40,15 +61,16 @@
 <body>
     <div class="sankey-chart">
         <div class="chart"></div>
-        <div class="particle"></div>
+        <div class="particle-wrapper">
+            <div class="particle"></div>
+        </div>
     </div>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts.js"></script>
     <script>
-
         var sankeyDom = document.querySelector('.sankey-chart');
         var chartDom = sankeyDom.querySelector('.chart');
         var particleDom = sankeyDom.querySelector('.particle');
+        var particleWrapper = sankeyDom.querySelector('.particle-wrapper');
         var myChart = echarts.init(chartDom, '', { renderer: 'svg' });
         var option;
 
@@ -115,14 +137,44 @@
             }
         };
 
+
+        // M 197.5 185.4452 C   25 185.4452 276.25 310.5626 355 310.5626 L 355 357.0889 C 276.25 357.0889 276.25 231.9715 197.5 231.9715 Z
+        var computedOffsetPath = (path, matrix) => {
+            const values = path.split(' ').map(n => +(n))
+            const x1 = values[1]
+            const y1 = values[2]
+            const x2 = values[values.length - 3]
+            const y2 = values[values.length - 2]
+            const x3 = values[8]
+            const y3 = values[9]
+            const x4 = values[11]
+            const y4 = values[12]
+            const cx = (x1 + x3) / 2
+            const cy1 = (y1 + y2) / 2
+            const cy2 = (y3 + y4) / 2
+
+            // matrix(1,0,0,1,25,25)
+            matrix = /\((.+)\)/.exec(matrix)[1].split(',').map(n => +(n))
+            const matrixFn = (x, y) => [
+                matrix[0] * x + matrix[2] * y + matrix[4],
+                matrix[1] * x + matrix[3] * y + matrix[5]
+            ].join(' ')
+
+            return `M ${matrixFn(x1, cy1)} C ${matrixFn(cx, cy1)} ${matrixFn(cx, cy2)}  ${matrixFn(x3, cy2)}`
+        }
+
         option && myChart.setOption(option);
         myChart.on('mouseover', function (event) {
             if (event.dataType === 'edge') {
                 const pathDom = event.event.event.target
                 if (pathDom.nodeName.toLowerCase() === 'path') {
-                    createClipPath(sankeyDom, pathDom)
+                    let svgPath = pathDom && pathDom.getAttribute('d')
+                    let particlePath = computedOffsetPath(svgPath, pathDom.getAttribute('transform'))
                     particleDom.style.display = 'block'
-                    particleDom.style.clipPath = `url(#particleClipPath)`;
+                    particleDom.style.offsetPath = `path("${particlePath}")`
+
+                    createClipPath(sankeyDom, pathDom);
+                    particleWrapper.style.clipPath = `url(#particleClipPath)`;
                 }
             }
         })
@@ -150,65 +202,6 @@
             clipPath.id = 'particleClipPath'
             clipPath.appendChild(pathDom.cloneNode())
         }
-
-
-        // var myChart = echarts.init(chartDom);
-        // var option;
-
-        // option = {
-        //     backgroundColor: 'transparent',
-        //     series: [
-        //         {
-        //             type: 'gauge',
-        //             startAngle: 180,
-        //             endAngle: 0,
-        //             min: 0,
-        //             max: 100,
-        //             anchor: {
-        //                 show: true,
-        //                 showAbove: false,
-        //                 size: 25,
-        //                 icon: 'circle',
-        //                 itemStyle: {
-        //                     borderColor: 'red',
-        //                     borderWidth: 5
-        //                 }
-        //             },
-        //             pointer: {
-        //                 icon: 'path://M2090.36389,615.30999 L2090.36389,615.30999 C2091.48372,615.30999 2092.40383,616.194028 2092.44859,617.312956 L2096.90698,728.755929 C2097.05155,732.369577 2094.2393,735.416212 2090.62566,735.56078 C2090.53845,735.564269 2090.45117,735.566014 2090.36389,735.566014 L2090.36389,735.566014 C2086.74736,735.566014 2083.81557,732.63423 2083.81557,729.017692 C2083.81557,728.930412 2083.81732,728.84314 2083.82081,728.755929 L2088.2792,617.312956 C2088.32396,616.194028 2089.24407,615.30999 2090.36389,615.30999 Z',
-        //                 length: '50%',
-        //                 width: 16,
-        //                 offsetCenter: ['0', '-20']
-        //             },
-        //             axisLine: {
-        //                 show: false
-        //             },
-        //             axisTick: {
-        //                 show: false
-        //             },
-        //             splitLine: {
-        //                 show: false
-        //             },
-        //             axisLabel: {
-        //                 show: false
-        //             },
-        //             title: {
-        //                 show: false
-        //             },
-        //             detail: {
-        //                 show: false,
-        //             },
-        //             data: [
-        //                 {
-        //                     value: 40
-        //                 }
-        //             ]
-        //         }
-        //     ]
-        // };
-
-        // option && myChart.setOption(option);
-
     </script>
 </body>
 
