@@ -14,14 +14,14 @@ export const UATest = (uaText) => {
     const QQ = /QQ\//.test(uaText);
     const QQBrowserCore = /MQQBrowser\//.test(uaText);
     const QQBrowser = QQBrowserCore && !weixin;
-    const miuiBrowser = /XiaoMi\/MiuiBrowser\/([\d\.]+)(-Beta)?$/i.test(uaText);
+    const miuiBrowser = /XiaoMi\/MiuiBrowser\/([\d.]+)(-Beta)?$/i.test(uaText);
     const chrome = (() => {
         if (QQ || uc || miuiBrowser) {
             return false;
         }
         return /(Chrome\/([\d.]+))|(CriOS\/([\d.]+))/i.test(uaText);
     })();
-    const safari = /version\/([\w\.]+).+?mobile\/\w+\s(safari)/i.test(uaText);
+    const safari = /version\/([\w.]+).+?mobile\/\w+\s(safari)/i.test(uaText);
 
     // 小程序
     const ttminiprogram = /(?:toutiaomicroapp)|(?:ToutiaoMicroApp)|(?:toutiaodevtools)|(?:tt_micro_devtools)/.test(
