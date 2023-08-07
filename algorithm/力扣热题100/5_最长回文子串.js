@@ -48,3 +48,32 @@ function isPalindrome(s, a, b) {
     }
     return true
 }
+
+var longestPalindrome = function (s) {
+    let maxLen = 0, res = ''
+    for (let i = 0; i < s.length; i++) {
+        let p = palindrome(s, i, i)
+        if (p.length > maxLen) {
+            maxLen = p.length
+            res = p
+        }
+        if (i + 1 < s.length) {
+            let p = palindrome(s, i, i + 1)
+            if (p.length > maxLen) {
+                maxLen = p.length
+                res = p
+            }
+        }
+    }
+    function palindrome(s, i, j) {
+        while (i >= 0 && j < s.length && s[i] === s[j]) {
+            i--;
+            j++
+        }
+        return s.slice(i + 1, j)
+    }
+    return res
+};
+
+console.log(longestPalindrome("babad"
+))
