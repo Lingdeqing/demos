@@ -52,6 +52,7 @@ function isPalindrome(s, a, b) {
 var longestPalindrome = function (s) {
     let maxLen = 0, ri = 0, rj = 0
     for (let i = 0; i < s.length; i++) {
+        if (maxLen > (s.length - i) * 2) continue
         palindrome(s, i, i)
         if (i + 1 < s.length) {
             palindrome(s, i, i + 1)
