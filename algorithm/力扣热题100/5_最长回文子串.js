@@ -50,19 +50,11 @@ function isPalindrome(s, a, b) {
 }
 
 var longestPalindrome = function (s) {
-    let maxLen = 0, res = ''
+    let maxLen = 0, ri = 0, rj = 0
     for (let i = 0; i < s.length; i++) {
-        let p = palindrome(s, i, i)
-        if (p.length > maxLen) {
-            maxLen = p.length
-            res = p
-        }
+        palindrome(s, i, i)
         if (i + 1 < s.length) {
-            let p = palindrome(s, i, i + 1)
-            if (p.length > maxLen) {
-                maxLen = p.length
-                res = p
-            }
+            palindrome(s, i, i + 1)
         }
     }
     function palindrome(s, i, j) {
@@ -70,9 +62,14 @@ var longestPalindrome = function (s) {
             i--;
             j++
         }
-        return s.slice(i + 1, j)
+        const len = j - i - 1
+        if (len > maxLen) {
+            maxLen = len
+            ri = i + 1
+            rj = j - 1
+        }
     }
-    return res
+    return maxLen > 0 ? s.slice(ri, rj + 1) : ''
 };
 
 console.log(longestPalindrome("babad"
