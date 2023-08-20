@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <!-- <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script> -->
+    <script src="./cdn.jsdelivr.net_npm_echarts@5.4.3_dist_echarts.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            padding: 50px;
+            background-color: #030e2a;
+        }
+
+        .sankey-chart {
+            margin: 0;
+            width: 1000px;
+            height: 400px;
+
+            position: relative;
+        }
+
+        .sankey-chart .chart {
+            width: 1000px;
+            height: 400px;
+        }
+
+        .sankey-chart .particle {
+            pointer-events: none;
+            width: 100px;
+            height: 682px;
+            background-image: url(./sankey_particles_0.png);
+            position: absolute;
+            left: 0;
+            top: 0;
+            animation: move 1.5s infinite linear;
+            display: none;
+        }
+
+        .sankey-chart .particle-wrapper {
+            pointer-events: none;
+            width: 1000px;
+            height: 400px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        @keyframes move {
+            0% {
+                offset-distance: 0%;
+            }
+
+            100% {
+                offset-distance: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sankey-chart">
+        <div class="chart" id="main"></div>
+        <div class="particle-wrapper">
+            <div class="particle"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById('main'), '', { renderer: 'svg' });
+
+        let data = [
+            {
+                name: "特急",
+                itemStyle: {
+                    color: "#ec8179"
+                },
+                depth: 0
+            },
+            {
+                name: "加急",
+                itemStyle: {
+                    color: "#eda278"
+                },
+                depth: 0
+            },
+            {
+                name: "一般",
+                itemStyle: {
+                    color: "#f3d07c"
+                },
+                depth: 0
+            },
+            {
+                name: "已推送",
+                itemStyle: {
+                    color: "#689eeb"
+                },
+                depth: 1
+            },
+            {
+                name: "未推送",
+                itemStyle: {
+                    color: "#479081"
+                },
+                depth: 1
+            },
+            {
+                name: "已处置",
+                itemStyle: {
+                    color: "#478f80"
+                },
+                label: {
+                    position: 'left',
+                    distance: 20
+                },
+                depth: 2
+            },
+            {
+                name: "未处置",
+                itemStyle: {
+                    color: "#83cd9d"
+                },
+                label: {
+                    position: 'left',
+                    distance: 20
+                },
+                depth: 2
+            }
+        ]
+
+        let links = [
+            {
+                source: "特急",
+                target: "已推送",
+                value: 20
+            },
+            {
+                source: "特急",
+                target: "未推送",
+                value: 1
+            },
+            {
+                source: "加急",
+                target: "已推送",
+                value: 35
+            },
+            {
+                source: "加急",
+                target: "未推送",
+                value: 1
+            },
+            {
+                source: "一般",
+                target: "已推送",
+                value: 60
+            },
+            {
+                source: "已推送",
+                target: "已处置",
+                value: 32
+            },
+            {
+                source: "已推送",
+                target: "未处置",
+                value: 83
+            }
+        ]
+
+        option = {
+            series: {
+                type: 'sankey',
+                data: data,
+                links: links,
+                draggable: false,
+                layoutIterations: 0,
+                label: { // 标签配置
+                    color: '#FFFFFF',
+                    formatter: '{bStyle|{b}}  {cStyle|{c}}',
+                    rich: {
+                        bStyle: {},
+                        cStyle: {
+                            fontSize: 20,
+                            fontWeight: 700
+                        }
+                    },
+                    distance: 20
+                },
+                itemStyle: { // 类目样式配置
+                    borderWidth: 0
+                },
+                lineStyle: {
+                    color: 'gradient'
+                },
+                emphasis: {
+                    itemStyle: {
+                        borderWidth: 2,
+                        borderColor: '#FFFFFF'
+                    }
+                }
+            }
+        };
+
+        myChart.setOption(option);
+
+
+
+
+
+        var sankeyDom = document.querySelector('.chart');
+        var particleWrapper = document.querySelector('.particle-wrapper');
+        myChart.on('mouseover', function (event) {
+            if (event.dataType === 'edge') {
+                const pathDom = event.event.event.target
+                if (pathDom.nodeName.toLowerCase() === 'path') {
+                    let svgPath = pathDom && pathDom.getAttribute('d')
+                    let particlePath = computedOffsetPath(svgPath, pathDom.getAttribute('transform'))
+
+                    // 删除旧节点
+                    let particleDom = document.querySelector('.particle')
+                    if (particleDom) {
+                        particleDom.remove()
+                    }
+                    // 创建新节点
+                    particleDom = document.createElement('div')
+                    particleDom.classList.add('particle')
+                    particleWrapper.append(particleDom)
+
+                    // 创建动画
+                    particleDom.style.display = 'block'
+                    particleDom.style.offsetPath = `path("${particlePath}")`
+                    particleDom.style.backgroundImage = `url(./sankey_particles_${getEdgeDepth(option.series.data, event.data.source)}.png)`
+
+                    // 截掉多余部分
+                    createClipPath(sankeyDom, pathDom);
+                    particleWrapper.style.clipPath = `url(#particleClipPath)`;
+                }
+            }
+        })
+        // myChart.on('mouseout', function (event) {
+        //     if (event.dataType === 'edge') {
+        //         particleDom.style.display = 'none'
+        //     }
+        // })
+
+
+
+        // M 197.5 185.4452 C   25 185.4452 276.25 310.5626 355 310.5626 L 355 357.0889 C 276.25 357.0889 276.25 231.9715 197.5 231.9715 Z
+        function computedOffsetPath(path, transform) {
+            const values = path.split(/\s+|(?<=[MCZL])|(?=[MCZL])/i).map(n => +(n))
+            const x1 = values[1]
+            const y1 = values[2]
+            const x2 = values[values.length - 3]
+            const y2 = values[values.length - 2]
+            const x3 = values[8]
+            const y3 = values[9]
+            const x4 = values[11]
+            const y4 = values[12]
+            const cx = (x1 + x3) / 2
+            const cy1 = (y1 + y2) / 2
+            const cy2 = (y3 + y4) / 2
+
+            // translate(1,0,0,1,25,25)
+            if (transform.indexOf('translate') !== -1) {
+                transform = /\((.+)\)/.exec(transform)[1].split(' ').map(n => +(n))
+                const transformFn = (x, y) => [
+                    x + transform[0],
+                    y + transform[1]
+                ].join(' ')
+                return `M ${transformFn(x1, cy1)} C ${transformFn(cx, cy1)} ${transformFn(cx, cy2)}  ${transformFn(x3, cy2)}`
+            }
+        }
+
+        function createClipPath(sankeyDom, pathDom) {
+            const svgns = 'http://www.w3.org/2000/svg'
+            const oldSvg = sankeyDom.querySelector('.clip-path-svg')
+            if (oldSvg) {
+                oldSvg.parentNode.removeChild(oldSvg)
+            }
+
+            const svg = sankeyDom.querySelector('svg').cloneNode();
+            svg.style.zIndex = -1
+            svg.setAttribute('class', 'clip-path-svg')
+            sankeyDom.appendChild(svg)
+            const defs = document.createElementNS(svgns, 'defs');
+            svg.appendChild(defs)
+            const clipPath = document.createElementNS(svgns, 'clipPath');
+            defs.appendChild(clipPath)
+            clipPath.id = 'particleClipPath'
+            clipPath.appendChild(pathDom.cloneNode())
+        }
+
+        function getEdgeDepth(data, source) {
+            return data.find(item => item.name === source).depth
+        }
+    </script>
+</body>
+
+</html>
