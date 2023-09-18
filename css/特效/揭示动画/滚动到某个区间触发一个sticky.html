@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ScrollMagic #1 Setup</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            margin: 55vh 0;
+            padding: 50px;
+            outline: 1px dashed orange;
+        }
+
+        #block {
+            padding: 10px;
+            border: 1px solid black;
+            font-family: Helvetica;
+        }
+    </style>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.14.2/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/ScrollMagic.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/plugins/animation.gsap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/plugins/debug.addIndicators.js"></script>
+
+</head>
+
+<body>
+    <div id="container">
+        <div id="block">
+            Hi there !
+        </div>
+    </div>
+    <script>
+        $(function () {
+            var controller = new ScrollMagic.Controller();
+            var containerScene = new ScrollMagic.Scene({
+                triggerElement: '#container',
+                duration: 50 // #container在滚到页面50%位置后，持续滚动50px#block不再移动
+            })
+                .setPin('#block')
+                .addIndicators()
+                .addTo(controller);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ScrollMagic #1 Setup</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            margin: 55vh 0;
+            padding: 50px;
+            outline: 1px dashed orange;
+        }
+
+        #block {
+            padding: 50px;
+            border: 1px solid black;
+            font-family: Helvetica;
+            transition: all 1s;
+            transform: translateY(100%);
+            opacity: 0;
+            background: orange;
+        }
+
+        #block.visible {
+            transform: translateY(0);
+            opacity: 1;
+            background: green;
+        }
+    </style>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.14.2/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/ScrollMagic.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/plugins/animation.gsap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/plugins/debug.addIndicators.js"></script>
+
+</head>
+
+<body>
+    <div id="container">
+        <div id="block">
+            Hi there !
+        </div>
+    </div>
+    <script>
+        $(function () {
+            var controller = new ScrollMagic.Controller();
+
+            var containerScene = new ScrollMagic.Scene({
+                // 触发位置由triggerElement，triggerHook，offset共同决定
+                // 参考：https://ihatetomatoes.net/svg-scrolling-animation-triggered-scrollmagic/
+                // 默认是triggerElement过视口50%触发
+                triggerElement: '#container',
+                // triggerHook: 'onEnter', // onEnter 刚进入视口，即视口底部 onLeave视口顶部
+                // offset: 100 // triggerElement顶部偏移
+
+                // 动画持续由duration决定，会覆盖上面TweenMax定义的持续时间
+                // duration是长度单位，指滚动这么长的距离
+                duration: 0
+            })
+                // 文档：http://scrollmagic.io/docs/ScrollMagic.Scene.html#removeClassToggle
+                .setClassToggle('#block', 'visible')
+                .addIndicators()
+                .addTo(controller)
+                .on('enter', () => {
+                    containerScene.removeClassToggle()
+                })
+        });
+    </script>
+</body>
+
+</html>
