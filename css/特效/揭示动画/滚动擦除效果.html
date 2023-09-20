@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ScrollMagic #1 Setup</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #pinContainer {
+            border: 1px solid red;
+            margin: auto;
+            position: relative;
+            padding: 50px;
+            width: 500px;
+            height: 300px;
+        }
+
+        .panel-list {
+            position: relative;
+        }
+
+        .panel {
+            position: absolute;
+            top: 0;
+            width: 500px;
+            height: 300px;
+        }
+
+        .blue {
+            background-color: #3883d8;
+        }
+
+        .turqoise {
+            background-color: #38ced7;
+        }
+
+        .brown {
+            background-color: #a66f28;
+        }
+
+        .green {
+            background-color: #22d659;
+        }
+
+        .bordeaux {
+            background-color: #953543;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+    <div style="height: 500px;">
+        参考：<a
+            href="https://scrollmagic.io/examples/advanced/section_wipes_manual.html">https://scrollmagic.io/examples/advanced/section_wipes_manual.html</a>
+    </div>
+    <div id="pinContainer">
+        <div class="panel-list">
+            <section class="panel blue">
+                <b>ONE</b>
+            </section>
+            <section class="panel turqoise">
+                <b>TWO</b>
+            </section>
+            <section class="panel green">
+                <b>THREE</b>
+            </section>
+            <section class="panel bordeaux">
+                <b>FOUR</b>
+            </section>
+        </div>
+    </div>
+    <div style="height: 1500px;"></div>
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.14.2/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/ScrollMagic.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/plugins/animation.gsap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/plugins/debug.addIndicators.js"></script>
+    <script>
+        $(function () {
+            // init
+            var controller = new ScrollMagic.Controller();
+
+            // define movement of panels
+            var wipeAnimation = new TimelineMax()
+                .fromTo("section.panel.blue", 1, { y: "100%" }, { y: "0%", ease: Linear.easeNone })  // in from bottom
+                .fromTo("section.panel.turqoise", 1, { x: "-100%" }, { x: "0%", ease: Linear.easeNone })  // in from left
+                .fromTo("section.panel.green", 1, { x: "100%" }, { x: "0%", ease: Linear.easeNone })  // in from right
+                .fromTo("section.panel.bordeaux", 1, { y: "-100%" }, { y: "0%", ease: Linear.easeNone }); // in from top
+
+            // create scene to pin and link animation
+            new ScrollMagic.Scene({
+                triggerElement: "#pinContainer",
+                // triggerHook: "onLeave",
+                // duration: "300%" // 300%相对于屏幕
+                duration: 300 * 4
+            })
+                .setPin("#pinContainer")
+                .setTween(wipeAnimation)
+                .addIndicators() // add indicators (requires plugin)
+                .addTo(controller);
+        });
+    </script>
+</body>
+
+</html>
