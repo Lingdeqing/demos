@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #chart {
+            position: relative;
+            margin: auto;
+            height: 298px;
+            width: 763px;
+            background: url("https://img.youpin.mi-img.com/daren/ef621053_7d7b_4522_9d7f_93235517af00.jpeg@base@tag=imgScale&w=1200&h=486&F=webp");
+        }
+
+
+        #chart .spiner {
+            position: absolute;
+            width: 180px;
+            height: 20px;
+            left: 349px;
+            top: 230px;
+            transition: all .1s linear;
+            transform: rotate(-180deg);
+            transform-origin: 10px 10px;
+        }
+
+        #chart .anchor {
+            width: 10px;
+            height: 10px;
+            border: 5px solid #06a43a;
+            border-radius: 100%;
+        }
+
+        #chart .pointer {
+            position: absolute;
+            left: 30px;
+            top: 0;
+            border-style: solid;
+            border-color: transparent;
+            border-left-color: #06a43a;
+            width: 0;
+            height: 0;
+            border-width: 10px 0 10px 120px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="chart">
+        <div class="spiner">
+            <div class="anchor"></div>
+            <div class="pointer"></div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
+    <script>
+        function setValue(value) {
+            const spiner = document.querySelector('.spiner')
+            // 0=> -180， 100 => 0 
+            const degree = 180 * (value / 100 - 1)
+            spiner.style.transform = `rotate(${degree}deg)`
+        }
+        setInterval(() => {
+            setValue(Math.random() * 100)
+        }, 1000)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .mark {
+      background: #bad7fb;
+    }
+
+    #editor {
+      height: 300px;
+    }
+
+    * {
+      -webkit-user-select: none;
+      user-select: none;
+    }
+  </style>
+</head>
+
+<body>
+  <p id="editor" contenteditable="false">哈哈哈<span>呵呵呵</span>哦哦哦哦哦<span>嘿嘿嘿</span></p>
+  <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
+  <script>
+    // VConsole will be exported to `window.VConsole` by default.
+    var vConsole = new window.VConsole();
+  </script>
+  <script>
+
+    // const selection = document.getSelection();
+    // const range = document.createRange();
+    // const txt = document.getElementById('editor')
+    // range.setStart(txt.firstChild, 0);
+    // range.setEnd(txt.firstChild, 2);
+    // selection.removeAllRanges();
+    // selection.addRange(range);
+    document.addEventListener('selectionchange', () => {
+      const selection = window.getSelection()
+      console.log(selection.rangeCount)
+      const newRange = selection.rangeCount == 1 ? selection.getRangeAt(0) : null
+      if (newRange) {
+        lastRange = newRange
+        console.log(`newRange: "${lastRange.toString()}", "${lastRange.collapsed}"`)
+      } else if (lastRange) {
+        console.log(`lastRange: "${lastRange.toString()}", "${lastRange.collapsed}"`)
+      }
+    })
+
+
+
+
+    // /**
+    // * 设置最后一次的选区变量range，ios会用span模拟包裹选区的效果
+    // * */
+    // selectIOSRange() {
+    //   this.removeIOSRange()
+    //   if (this.isIOS) {
+    //     // 选中ios模拟选区
+    //     const range = this.lastSelection.range
+    //     if (range && this.lastSelection.rangeText) {
+    //       // 包裹选区
+    //       const doc = range.extractContents()
+    //       const span = document.createElement('span')
+    //       span.className = 'ios-range-mark'
+    //       span.style.backgroundColor = '#bad7fb'
+    //       span.appendChild(doc)
+    //       range.insertNode(span)
+    //       // 更新选区
+    //       range.selectNode(span)
+    //     }
+    //   }
+    // }
+    // removeIOSRange() {
+    //   if (this.isIOS) {
+    //     // 去除ios模拟选区
+    //     const range = this.lastSelection.range
+    //     const node = document.querySelector('.ios-range-mark')
+    //     if (node && range) {
+    //       // 去除包裹span
+    //       let newNode = null
+    //       if ((node.childNodes.length === 1 && node.childNodes[0].nodeName === 'span')) {
+    //         newNode = node.childNodes[0]
+    //       } else {
+    //         newNode
+    //       }
+    //       node.parentNode.replaceChild(doc, node)
+    //       // 更新选区
+    //       range.selectNode(doc)
+    //     }
+    //   }
+    // }
+
+  </script>
+</body>
+
+</html>

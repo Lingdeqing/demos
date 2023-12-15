@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #cloud-container {
+            margin: auto;
+            width: 500px;
+            height: 500px;
+            border: 1px solid red;
+        }
+
+        .cloud-item {
+            position: absolute;
+            padding: 5px 20px;
+            background: rgb(233, 233, 235);
+            border: 1px solid #DCDFE6;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cloud-container"></div>
+    <script>
+
+        var datas = [{
+            name: "雨伞",
+            value: 130
+        },
+        {
+            name: "晴天",
+            value: 28
+        },
+        {
+            name: "电话",
+            value: 24
+        },
+        {
+            name: "手机",
+            value: 23
+        },
+        {
+            name: "下雨",
+            value: 22
+        },
+        {
+            name: "暴雨",
+            value: 21
+        },
+        {
+            name: "多云",
+            value: 20
+        },
+        {
+            name: "雨衣",
+            value: 29
+        },
+        {
+            name: "屋檐",
+            value: 28
+        },
+        {
+            name: "大风",
+            value: 27
+        },
+        {
+            name: "台风",
+            value: 26
+        },
+        {
+            name: "下雪",
+            value: 25
+        },
+        {
+            name: "打雷",
+            value: 24
+        },
+        {
+            name: "小雨",
+            value: 30
+        },
+        {
+            name: "中雨",
+            value: 18
+        },
+        {
+            name: "大雨",
+            value: 14
+        },
+        {
+            name: "雷阵雨",
+            value: 13
+        },
+        {
+            name: "下雪",
+            value: 12
+        },
+        {
+            name: "小雪",
+            value: 11
+        },
+        {
+            name: "中雪",
+            value: 10
+        },
+        {
+            name: "大雪",
+            value: 9
+        },
+        {
+            name: "暴雪",
+            value: 8
+        },
+        {
+            name: "东风",
+            value: 7
+        },
+        {
+            name: "南风",
+            value: 6
+        },
+        {
+            name: "西北风",
+            value: 5
+        },
+        {
+            name: "北风",
+            value: 4
+        },
+        {
+            name: "闪电",
+            value: 3
+        }
+        ];
+    </script>
+    <script>
+        // 生成结构
+        function buildHTML(datas) {
+            return datas.map(item => {
+                return `<div class="cloud-item" data-weight="${item.value}">${item.name}(${item.value})</div>`
+            }).join('')
+        }
+        // 布局结构
+        function layoutCloud(container) {
+            const containerWidth = container.clientWidth
+            const containerHeight = container.clientHeight
+            const getWeight = (node) => +node.dataset.weight
+            const nodes = [...container.childNodes].sort((a, b) => {
+                return getWeight(b) - getWeight(a)
+            })
+
+            for (let i = 0; i < nodes.length; i++) {
+
+            }
+        }
+
+
+        document.getElementById('cloud-container').innerHTML = buildHTML(datas)
+        layoutCloud(document.getElementById('cloud-container'))
+
+    </script>
+</body>
+
+</html>

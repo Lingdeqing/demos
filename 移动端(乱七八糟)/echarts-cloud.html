@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #chart {
+            margin: auto;
+            height: 500px;
+            width: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="chart"></div>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts.js"></script>
+    <script src="./echarts-cloud.js"></script>
+    <script>
+
+        const originData = [
+            {
+                name: 'SSH(80)',
+                value: 10,
+            },
+            {
+                name: 'TCP/IP(100)',
+                value: 140,
+            },
+            {
+                name: 'SSH(80)',
+                value: 120,
+            },
+            {
+                name: '协议(端口)主机',
+                value: 120,
+            }
+        ];
+
+
+        const minRatio = 1.5, // 最小缩放比例
+            maxRatio = 2 // 最大缩放比例
+        const scaleRatio = maxRatio / Math.max(...originData.map(item => item.value)) // 缩放比例
+        const data = originData.map(item => {
+            // 转换原始数据
+            const label = `${item.name} ${item.value}`
+            return {
+                name: label,
+                ...getCardOption(label, scaleRatio * item.value)
+            }
+        })
+
+        // 计算卡片配置
+        function getCardOption(label = '', weight = 1) {
+            weight = Math.min(maxRatio, Math.max(weight, minRatio)) // 缩放1-1.5之间，最大的值放大到2倍尺寸
+            const em = 12 // 基准字体大小
+            const cardHeight = 2.5 * em // 卡片高度
+            const cardWidth = 2 * em + getTextWidth(label, em) // 卡片宽度
+            const cardRadius = 4 // 卡片圆角
+            return {
+                symbol: roundRect(cardWidth, cardHeight, cardRadius),
+                symbolSize: [weight * cardWidth, weight * cardHeight],
+                label: {
+                    fontSize: weight * em
+                }
+            }
+        }
+        // 获取文字宽度
+        function getTextWidth(text, fontSize) {
+            const textNode = document.createElement('div')
+            textNode.innerText = text
+            textNode.style.fontSize = fontSize + 'px'
+            textNode.style.position = 'absolute'
+            document.body.appendChild(textNode)
+            const width = textNode.offsetWidth
+            document.body.removeChild(textNode)
+            return width
+        }
+        // 计算背景路径
+        function roundRect(w, h, r) {
+            return `path://M${r} 0 H ${w - r} Q ${w} 0 ${w} ${r} V ${h - r} Q${w} ${h} ${w - r} ${h} H ${r} Q0 ${h} 0 ${h - r} V${r} Q0 0 ${r} 0`
+        }
+
+        document.body.innerHTML = '<div id="chart" style="width:500px;height:500px;"></div>'
+        var chartDom = document.getElementById('chart');
+        var myChart = echarts.init(chartDom, {
+            renderer: 'svg'
+        });
+        var option = {
+            series: [{
+                type: 'wordCloud',
+
+                // The shape of the "cloud" to draw. Can be any polar equation represented as a
+                // callback function, or a keyword present. Available presents are circle (default),
+                // cardioid (apple or heart shape curve, the most known polar equation), diamond (
+                // alias of square), triangle-forward, triangle, (alias of triangle-upright, pentagon, and star.
+
+                shape: 'circle',
+
+                // A silhouette image which the white area will be excluded from drawing texts.
+                // The shape option will continue to apply as the shape of the cloud to grow.
+
+                // maskImage: maskImage,
+
+                // Folllowing left/top/width/height/right/bottom are used for positioning the word cloud
+                // Default to be put in the center and has 75% x 80% size.
+
+                left: 'center',
+                top: 'center',
+                width: '70%',
+                height: '80%',
+                right: null,
+                bottom: null,
+
+                // Text size range which the value in data will be mapped to.
+                // Default to have minimum 12px and maximum 60px size.
+
+                sizeRange: [12, 60],
+
+                // Text rotation range and step in degree. Text will be rotated randomly in range [-90, 90] by rotationStep 45
+
+                rotationRange: [-90, 90],
+                rotationStep: 45,
+
+                // size of the grid in pixels for marking the availability of the canvas
+                // the larger the grid size, the bigger the gap between words.
+
+                gridSize: 8,
+
+                // set to true to allow word being draw partly outside of the canvas.
+                // Allow word bigger than the size of the canvas to be drawn
+                drawOutOfBound: true,
+
+                // Global text style
+                textStyle: {
+                    normal: {
+                        fontFamily: 'sans-serif',
+                        fontWeight: 'bold',
+                        // Color can be a callback function or a color string
+                        color: 'red'
+
+                        // function () {
+                        //     // Random color
+                        //     return 'rgb(' + [
+                        //         Math.round(Math.random() * 160),
+                        //         Math.round(Math.random() * 160),
+                        //         Math.round(Math.random() * 160)
+                        //     ].join(',') + ')';
+                        // }
+                    },
+                    // emphasis: {
+                    //     shadowBlur: 10,
+                    //     shadowColor: 'red'
+                    // }
+                },
+
+                // Data is an array. Each array item must have name and value property.
+                data: [{
+                    name: 'Farrah Abraham',
+                    value: 366,
+                    // Style of single text
+                    // textStyle: {
+                    //     normal: {
+                    //         color: 'blue',
+                    //     },
+                    //     emphasis: {
+                    //         color: 'yellow',
+                    //         textShadowBlur: 10,
+                    //         textShadowColor: 'blue'
+                    //     }
+                    // }
+                }, ...[
+                    {
+                        name: 'SSH(80)',
+                        value: 10,
+                    },
+                    {
+                        name: 'TCP/IP(100)',
+                        value: 140,
+                    },
+                    {
+                        name: 'SSH(80)',
+                        value: 120,
+                    },
+                    {
+                        name: '协议(端口)主机',
+                        value: 120,
+                    }
+                ]]
+            }]
+        };
+        option && myChart.setOption(option);
+
+
+    </script>
+</body>
+
+</html>

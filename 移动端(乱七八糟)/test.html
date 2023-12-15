@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no" />
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* .input-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+        } */
+
+        /* .input-wrapper input {
+            position: absolute;
+            top: 500px;
+            opacity: 1;
+        } */
+
+        .input-wrapper .fake-input {
+            position: absolute;
+            left: 0;
+            right: 0;
+            /* top: 0; */
+            height: 16px;
+            width: 200px;
+            background: pink;
+        }
+
+        /* .input-wrapper.focus input {
+            opacity: 1;
+        } */
+
+        /* .input-wrapper.focus .fake-input {
+            display: none;
+        } */
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+        <li>11</li>
+        <li>12</li>
+        <li>13</li>
+        <li>14</li>
+        <li>15</li>
+        <li>16</li>
+        <li>17</li>
+        <li>18</li>
+        <li>19</li>
+        <li>20</li>
+        <li>21</li>
+        <li>22</li>
+        <li>23</li>
+        <li>24</li>
+        <li>25</li>
+        <li>26</li>
+        <li>27</li>
+        <li>28</li>
+        <li>29</li>
+        <li>30</li>
+        <li>31</li>
+        <li>32</li>
+        <li>33</li>
+        <li>34</li>
+        <li>35</li>
+        <li>36</li>
+        <li>37</li>
+        <li>38</li>
+        <li>39</li>
+        <li>40</li>
+        <li>41</li>
+        <li>42</li>
+        <li>43</li>
+        <li>44</li>
+        <li>45</li>
+        <li>46</li>
+        <li>47</li>
+        <li>48</li>
+        <li>49</li>
+        <li>50</li>
+        <li>51</li>
+        <li>52</li>
+        <li>53</li>
+        <li>54</li>
+        <li>55</li>
+        <li>56</li>
+        <li>57</li>
+        <li>58</li>
+        <li>59</li>
+        <li>60</li>
+        <li>61</li>
+        <li>62</li>
+        <li>63</li>
+        <li>64</li>
+        <li>65</li>
+        <li>66</li>
+        <li>67</li>
+        <li>68</li>
+        <li>69</li>
+        <li>70</li>
+        <li>71</li>
+        <li>72</li>
+        <li>73</li>
+        <li>74</li>
+        <li>75</li>
+        <li>76</li>
+        <li>77</li>
+        <li>78</li>
+        <li>79</li>
+        <li>80</li>
+        <li>81</li>
+        <li>82</li>
+        <li>83</li>
+        <li>84</li>
+        <li>85</li>
+        <li>86</li>
+        <li>87</li>
+        <li>88</li>
+        <li>89</li>
+        <li>90</li>
+        <li>91</li>
+        <li>92</li>
+        <li>93</li>
+        <li>94</li>
+        <li>95</li>
+        <li>96</li>
+        <li>97</li>
+        <li>98</li>
+        <li>99</li>
+        <li>100</li>
+    </ul>
+    <div class="input-wrapper">
+        <div class="fake-input"></div>
+    </div>
+    <input type="text">
+    <script>
+        let gotKeyboardHeight = false, keyboardHeight = 0, winHeight = window.innerHeight // 键盘弹起前窗口高度
+        document.querySelector('.fake-input').addEventListener('click', function () {
+            document.querySelector('input').focus()
+        })
+        document.querySelector('input').addEventListener('focus', function () {
+            if (gotKeyboardHeight) {
+                document.querySelector('.fake-input').style.top = (winHeight - keyboardHeight - 16) + 'px' // 将假输入框放到键盘上方
+                return
+            }
+            gotKeyboardHeight = true
+            const scrollTop = document.body.scrollTop || document.documentElement.scrollTop
+            setTimeout(() => {
+                keyboardHeight = winHeight - window.innerHeight // 键盘高度
+                document.querySelector('li:nth-child(2)').innerHTML = [winHeight, keyboardHeight, scrollTop]
+                document.querySelector('.fake-input').style.top = (winHeight - keyboardHeight - 16) + 'px' // 将假输入框放到键盘上方
+                document.querySelector('input').style.position = 'absolute' // 真输入框放到页面顶部，在下次时不再顶起页面
+                document.querySelector('input').style.top = 0 + 'px'
+                // window.scrollTo(0, scrollTop) // 将页面滚动到之前的位置，第一次时页面可能会跳动下
+            }, 200)
+        })
+        document.querySelector('input').addEventListener('blur', function () {
+            // 失焦，恢复假输入框位置
+            document.querySelector('.fake-input').style.top = 'auto'
+        })
+    </script>
+</body>
+
+</html>

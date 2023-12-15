@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>桑基图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .sankey-chart {
+            margin: auto;
+            width: 500px;
+            height: 500px;
+
+            /* position: relative; */
+        }
+
+        .sankey-chart .chart {
+            width: 500px;
+            height: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sankey-chart">
+        <div class="chart"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@4.2.1/dist/echarts.js"></script>
+    <script>
+        var chartDom = document.querySelector('.chart');
+        var myChart = echarts.init(chartDom);
+        // var data = [120, 200, 150, 80, 70, 110, 130];
+        var data = [5875, 1294, 439, 15, 4, 70, 110]
+
+        /**
+         * x/(x+y) = (a-b)/a => x+y = a*x/(a-b)
+        |-----------------|--字--|
+        |-------x---------|-- y--|
+        |-------(a-b)-----|-- b--|
+         * **/
+        const maxValue = Math.max(...data)
+        const a = 500 // bar最大宽度
+        const b = 8 * maxValue.toString().length + 10 // 文字占据的最大宽度 8是单个文字的宽度，10是文字距离bar顶部距离
+        const x = maxValue
+        const x_y = Math.ceil(a * x / (a - b))
+
+        var option;
+        option = option = {
+            yAxis: {
+                type: 'category',
+                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            },
+            xAxis: {
+                type: 'value',
+                max: x_y
+            },
+            grid: {
+                right: 0,
+                left: 0
+            },
+            label: {
+                show: true,
+                position: 'right'
+            },
+            series: [
+                {
+                    data,
+                    type: 'bar'
+                }
+            ]
+        };
+        option && myChart.setOption(option);
+
+    </script>
+</body>
+
+</html>

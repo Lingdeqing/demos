@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #chart {
+            margin: auto;
+            height: 500px;
+            width: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="chart"></div>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts.js"></script>
+    <script>
+
+        const originData = [
+            {
+                name: 'SSH(80)',
+                value: 10,
+            },
+            {
+                name: 'TCP/IP(100)',
+                value: 140,
+            },
+            {
+                name: 'SSH(80)',
+                value: 120,
+            },
+            {
+                name: '协议(端口)主机',
+                value: 120,
+            }
+        ];
+
+
+        const minRatio = 1.5, // 最小缩放比例
+            maxRatio = 2 // 最大缩放比例
+        const scaleRatio = maxRatio / Math.max(...originData.map(item => item.value)) // 缩放比例
+        const data = originData.map(item => {
+            // 转换原始数据
+            const label = `${item.name} ${item.value}`
+            return {
+                name: label,
+                ...getCardOption(label, scaleRatio * item.value)
+            }
+        })
+
+        // 计算卡片配置
+        function getCardOption(label = '', weight = 1) {
+            weight = Math.min(maxRatio, Math.max(weight, minRatio)) // 缩放1-1.5之间，最大的值放大到2倍尺寸
+            const em = 12 // 基准字体大小
+            const cardHeight = 2.5 * em // 卡片高度
+            const cardWidth = 2 * em + getTextWidth(label, em) // 卡片宽度
+            const cardRadius = 4 // 卡片圆角
+            return {
+                symbol: roundRect(cardWidth, cardHeight, cardRadius),
+                symbolSize: [weight * cardWidth, weight * cardHeight],
+                label: {
+                    fontSize: weight * em
+                }
+            }
+        }
+        // 获取文字宽度
+        function getTextWidth(text, fontSize) {
+            const textNode = document.createElement('div')
+            textNode.innerText = text
+            textNode.style.fontSize = fontSize + 'px'
+            textNode.style.position = 'absolute'
+            document.body.appendChild(textNode)
+            const width = textNode.offsetWidth
+            document.body.removeChild(textNode)
+            return width
+        }
+        // 计算背景路径
+        function roundRect(w, h, r) {
+            return `path://M${r} 0 H ${w - r} Q ${w} 0 ${w} ${r} V ${h - r} Q${w} ${h} ${w - r} ${h} H ${r} Q0 ${h} 0 ${h - r} V${r} Q0 0 ${r} 0`
+        }
+
+
+        var chartDom = document.getElementById('chart');
+        var myChart = echarts.init(chartDom);
+        var option = {
+            series: [
+                {
+                    type: 'graph',
+                    layout: 'force',
+                    animation: false,
+                    draggable: true,
+                    data: data,
+                    force: {
+                        repulsion: 300, // 排斥力
+                        edgeLength: 5
+                    },
+                    edges: [],
+                    roam: true,
+                    label: {
+                        show: true,
+                        color: '#666666' // 字的颜色
+                    },
+                    itemStyle: { // 卡片背景
+                        color: "#f8f8f8",
+                        borderColor: '#e9e9e9',
+                        borderWidth: 0.3
+                    },
+                    symbolSize: [320, 80],
+                    data: data,
+                    edges: []
+                }
+            ]
+        };
+        option && myChart.setOption(option);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no" />
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+            position: relative;
+        }
+
+        #bottom {
+            position: absolute;
+            height: 100px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: pink;
+        }
+
+        #editor {
+            /* -webkit-transform: translate3d(0, 0, 0);
+            -moz-transform: translate3d(0, 0, 0);
+            -ms-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+            position: relative;
+            z-index: 1;
+            overflow-x: hidden;
+            padding: 0.22rem 0.24rem 4rem;
+            height: 100%;
+            font-size: 20px;
+            color: #333;
+            line-height: 30px;
+            border: none;
+            outline: none;
+            caret-color: #000;
+            background: white;
+            overflow-y: scroll;
+            box-sizing: border-box; */
+            /* line-break: anywhere; */
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="editor" contenteditable="false">哈是打舒服</div>
+    <div id="bottom"></div>
+    <script>
+        a = document.getElementById('editor')
+        a.addEventListener('click', () => {
+            a.contentEditable = true
+            a.focus()
+        })
+    </script>
+</body>
+
+</html>

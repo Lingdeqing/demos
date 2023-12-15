@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>桑基图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .sankey-chart {
+            margin: 0;
+            width: 500px;
+            height: 500px;
+
+            /* position: relative; */
+        }
+
+        .sankey-chart .chart {
+            width: 500px;
+            height: 500px;
+        }
+
+        .sankey-chart .particle {
+            pointer-events: none;
+            width: 50px;
+            height: 500px;
+            background: red;
+            position: absolute;
+            left: 0;
+            top: 0;
+            animation: move 3s infinite linear;
+            display: none;
+        }
+
+        .sankey-chart .particle-wrapper {
+            pointer-events: none;
+            width: 500px;
+            height: 500px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        @keyframes move {
+            0% {
+                offset-distance: 0%;
+            }
+
+            100% {
+                offset-distance: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sankey-chart">
+        <div class="chart"></div>
+        <div class="particle-wrapper">
+            <div class="particle"></div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@4.2.1/dist/echarts.js"></script>
+    <script>
+        var sankeyDom = document.querySelector('.sankey-chart');
+        var chartDom = sankeyDom.querySelector('.chart');
+        var particleDom = sankeyDom.querySelector('.particle');
+        var particleWrapper = sankeyDom.querySelector('.particle-wrapper');
+        var myChart = echarts.init(chartDom);
+        var option;
+        option = {
+            title: {
+                left: 'center',
+                top: '36%',
+                text: `{b|11}\n{a|攻击总数}`,
+                textStyle: {
+                    fontSize: 14,
+                    rich: {
+                        a: {
+                            color: '#A0A7C0',
+                            align: 'center',
+                            padding: [0, 0, 3, 0],
+                            fontFamily: 'DINAlternate-Bold',
+                            fontWeight: 700
+                        },
+                        b: {
+                            color: '#FFFFFF',
+                            align: 'center',
+                            fontSize: 20,
+                            fontFamily: 'PingFangSC-Regular'
+                        }
+                    }
+                }
+            },
+            series: [
+                {
+                    // selectedMode: true,
+                    // selectedOffset: 0,
+                    // select: {
+                    //     scaleSize: 1000,
+                    //     itemStyle: {
+                    //         color: 'red'
+                    //     }
+                    // },
+
+                    name: 'level',
+                    type: 'pie',
+                    radius: ['57%', '68%'],
+                    center: ['50%', '50%'],
+                    label: {
+                        show: false
+                    },
+                    labelLine: {
+                        show: false
+                    },
+                    data: [
+                        { value: 1048, name: 'Search Engine' },
+                        { value: 735, name: 'Direct' },
+                        { value: 580, name: 'Email' },
+                    ],
+                    zlevel: -1,
+                    animation: true,
+                    hoverAnimation: true,
+                    animationDuration: 1000,
+                    // hoverOffset: 50
+                }
+            ]
+        };
+        option && myChart.setOption(option);
+
+        myChart.on('pieselectchanged', function (event) {
+            console.log(event)
+            // if (event.dataType === 'edge') {
+            //     const pathDom = event.event.event.target
+            //     if (pathDom.nodeName.toLowerCase() === 'path') {
+            //         let svgPath = pathDom && pathDom.getAttribute('d')
+            //         let particlePath = computedOffsetPath(svgPath, pathDom.getAttribute('transform'))
+            //         particleDom.style.display = 'block'
+            //         particleDom.style.offsetPath = `path("${particlePath}")`
+
+            //         createClipPath(sankeyDom, pathDom);
+            //         particleWrapper.style.clipPath = `url(#particleClipPath)`;
+            //     }
+            // }
+        })
+
+        // var dis = yl.__proto__.dispatchAction
+        // yl.dispatchAction = function (...args) {
+        //     console.log('====>>', args)
+        //     yl.__proto__.dispatchAction.apply(this, args)
+        // }
+        currentIndex = -1
+        tipInterval = setInterval(
+            function () {
+                myChart.dispatchAction({
+                    type: 'downplay',
+                    seriesIndex: 0,
+                    dataIndex: currentIndex
+                });
+                currentIndex = (currentIndex + 1) % 3;
+                myChart.dispatchAction({
+                    type: 'highlight',
+                    seriesIndex: 0,
+                    dataIndex: currentIndex
+                });
+            },
+            3000
+        );
+
+
+
+        // const refChart = ref(null)
+        // var currentIndex = -1
+        // var chartInstance: echarts.ECharts;
+
+        // const dispatchActionPie = () => {
+        //     let refValueNew = refChart.value
+        //     let dataLength = props?.data?.length;
+        //     if (refValueNew && dataLength) {
+        //         chartInstance = refValueNew?.getChartInstance()
+        //         if (chartInstance) {
+        //             if (currentIndex) {
+        //                 chartInstance.dispatchAction({
+        //                     type: 'downplay',
+        //                     seriesIndex: 0,
+        //                     dataIndex: currentIndex
+        //                 });
+        //             }
+        //             currentIndex = (currentIndex + 1) % dataLength;
+        //             chartInstance.dispatchAction({
+        //                 type: 'highlight',
+        //                 seriesIndex: 0,
+        //                 dataIndex: currentIndex
+        //             });
+        //         }
+        //     }
+        // }
+
+
+    </script>
+</body>
+
+</html>

@@ -39,3 +39,8 @@ function isMatch(s, p) {
     }
     return dp[m - 1][n - 1]
 }
+
+
+var isMatch = function(s, p) {
+    
+};

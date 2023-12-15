@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="file" id="file">
+    <input type="text" placeholder="输入水印文字" id="watermark">
+    <button type="button">下载图片</button>
+    <canvas id="canvas"></canvas>
+    <script>
+
+
+        // 绘制图片到canvas
+        var watermark = document.getElementById('watermark')
+        var canvas = document.getElementById('canvas')
+        var context = canvas.getContext('2d')
+        var image = new Image()
+        function drawImage() {
+            if (!file) return
+
+            // 清空
+            context.clearRect(0, 0, canvas.width, canvas.height)
+
+            const draw = () => {
+                context.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height)
+
+                context.font = "64px serif";
+                context.fillStyle = 'rgba(0,0,0,0.3)'
+                context.translate(0, 0)
+                context.rotate(60 * Math.PI / 180)
+
+                const text = '仅用作营业执照注销'
+                let { width: textWidth, fontBoundingBoxAscent: textHeight } = context.measureText(text)
+                textWidth += 100
+                textHeight += 100
+                for (let i = -30; i < 30; i++) {
+                    for (let j = 0; j < 10; j++) {
+                        context.fillText(text, j * textWidth, i * textHeight);
+                    }
+                }
+            }
+            // 将图像绘制到canvas上面
+            if (image.naturalHeight) {
+                draw()
+            } else {
+                image.onload = function () {
+                    canvas.width = image.width
+                    canvas.height = image.height
+                    draw()
+                }
+            }
+        }
+
+        document.getElementById('file').onchange = function (e) {
+            var file = e.target.files[0]
+            e.target.value = ''
+            image = new Image();
+            image.src = URL.createObjectURL(file)
+            drawImage()
+        }
+
+
+
+
+        document.getElementById('watermark').oninput = function () {
+            drawImage()
+        }
+    </script>
+</body>
+
+</html>
