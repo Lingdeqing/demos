@@ -4,10 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class UserService {
 	private List<User> userList = List.of(new User("abc", "121"),
 			new User("def", "456"), new User("ghi", "789"));
 
+	@Autowired
 	private MailService mailService;
 
 	public void setMailService(MailService mailService) {
