@@ -5,7 +5,6 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
@@ -15,15 +14,19 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.yaolin.www.entity.AbstractEntity;
 import com.yaolin.www.entity.User;
 import com.yaolin.www.service.UserService;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+
+import jakarta.persistence.EntityManagerFactory;
 
 @Configuration
 @ComponentScan
@@ -47,21 +50,22 @@ public class App {
     }
 
     @Bean
-    LocalSessionFactoryBean createSessionFactory(@Autowired DataSource dataSource) {
+    LocalContainerEntityManagerFactoryBean createSessionFactory(@Autowired DataSource dataSource) {
         Properties props = new Properties();
         props.setProperty("hibernate.hbm2ddl.auto", "update"); // 生产环境不要使用
         props.setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
         props.setProperty("hibernate.show_sql", "true");
-        LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
-        sessionFactoryBean.setDataSource(dataSource);
-        sessionFactoryBean.setPackagesToScan("com.yaolin.www.entity");
-        sessionFactoryBean.setHibernateProperties(props);
-        return sessionFactoryBean;
+        LocalContainerEntityManagerFactoryBean emFactory = new LocalContainerEntityManagerFactoryBean();
+        emFactory.setDataSource(dataSource);
+        emFactory.setPackagesToScan(AbstractEntity.class.getPackageName());
+        emFactory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        emFactory.setJpaProperties(props);
+        return emFactory;
     }
 
     @Bean
-    PlatformTransactionManager createTxManager(@Autowired SessionFactory sessionFactory) {
-        return new HibernateTransactionManager(sessionFactory);
+    PlatformTransactionManager createTxManager(@Autowired EntityManagerFactory emFactory) {
+        return new JpaTransactionManager(emFactory);
     }
 
     public static void main(String[] argv) {

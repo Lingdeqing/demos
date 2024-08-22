@@ -2,31 +2,32 @@ package com.yaolin.www.service;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yaolin.www.entity.User;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+
 @Component
 @Transactional
 public class UserService {
-    @Autowired
-    SessionFactory sessionFactory2;
+    @PersistenceContext
+    EntityManager em;
 
     public User getUserByName(String name) {
-        List<User> list = sessionFactory2.getCurrentSession().createQuery("from User u where u.name = ?1", User.class)
+        List<User> list = em.createQuery("from User u where u.name = ?1", User.class)
                 .setParameter(1, name)
-                .list();
+                .getResultList();
         return list.isEmpty() ? null : list.get(0);
     }
 
     public User getUserByEmail(String email) {
-        List<User> list = sessionFactory2.getCurrentSession().createQuery("from User u where u.email = ?1", User.class)
+        List<User> list = em.createQuery("from User u where u.email = ?1", User.class)
                 .setParameter(1, email)
                 .setMaxResults(1)
-                .list();
+                .getResultList();
         return list.isEmpty() ? null : list.get(0);
     }
 
@@ -34,26 +35,26 @@ public class UserService {
         int limit = 10;
         int offset = (pageIndex - 1) * limit;
 
-        List<User> list = sessionFactory2.getCurrentSession().createQuery("from User u", User.class)
+        List<User> list = em.createQuery("from User u", User.class)
                 .setFirstResult(offset)
                 .setMaxResults(limit)
-                .list();
+                .getResultList();
         return list;
 
     }
 
     public User login(String email, String password) {
-        List<User> list = sessionFactory2.getCurrentSession().createNamedQuery("login", User.class)
+        List<User> list = em.createNamedQuery("login", User.class)
                 .setParameter("e", email)
-                .setParameter("pwd", password).list();
+                .setParameter("pwd", password).getResultList();
         return list.isEmpty() ? null : list.get(0);
     }
 
     public void updateUser(Long id, String name) {
-        User user = sessionFactory2.getCurrentSession().byId(User.class).load(id);
+        User user = em.find(User.class, id);
         if (user != null) {
             user.setName(name);
-            sessionFactory2.getCurrentSession().merge(user);
+            em.merge(user);
         }
     }
 
@@ -62,15 +63,15 @@ public class UserService {
         user.setName(name);
         user.setEmail(email);
         user.setPassword(password);
-        sessionFactory2.getCurrentSession().persist(user);
+        em.persist(user);
         System.out.printf("registerUser, %s\n", user);
         return user;
     }
 
     public boolean deleteUser(Long id) {
-        User user = sessionFactory2.getCurrentSession().byId(User.class).load(id);
+        User user = em.find(User.class, id);
         if (user != null) {
-            sessionFactory2.getCurrentSession().remove(user);
+            em.remove(user);
             return true;
         }
         return false;
