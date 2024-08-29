@@ -1,4 +1,4 @@
-package com.itranswarp.learnjava.bean;
+package com.yaolin.www.bean;
 
 public class User {
 

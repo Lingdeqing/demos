@@ -1,4 +1,4 @@
-package com.itranswarp.learnjava.framework;
+package com.yaolin.www.framework;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;

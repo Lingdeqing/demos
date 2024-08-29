@@ -1,4 +1,4 @@
-package com.itranswarp.learnjava.controller;
+package com.yaolin.www.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,11 +9,11 @@ import java.util.Map;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-import com.itranswarp.learnjava.bean.SignInBean;
-import com.itranswarp.learnjava.bean.User;
-import com.itranswarp.learnjava.framework.GetMapping;
-import com.itranswarp.learnjava.framework.ModelAndView;
-import com.itranswarp.learnjava.framework.PostMapping;
+import com.yaolin.www.bean.SignInBean;
+import com.yaolin.www.bean.User;
+import com.yaolin.www.framework.GetMapping;
+import com.yaolin.www.framework.ModelAndView;
+import com.yaolin.www.framework.PostMapping;
 
 public class UserController {
 

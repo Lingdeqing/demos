@@ -1,4 +1,4 @@
-package com.itranswarp.learnjava.framework;
+package com.yaolin.www.framework;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,8 +22,8 @@ import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.itranswarp.learnjava.controller.IndexController;
-import com.itranswarp.learnjava.controller.UserController;
+import com.yaolin.www.controller.IndexController;
+import com.yaolin.www.controller.UserController;
 
 @WebServlet(urlPatterns = "/")
 public class DispatcherServlet extends HttpServlet {
