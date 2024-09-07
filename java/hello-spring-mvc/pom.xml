@@ -1,4 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.yaolin.www</groupId>
@@ -14,6 +16,7 @@
 		<java.version>17</java.version>
 
 		<spring.version>6.0.0</spring.version>
+		<jackson.version>2.14.0</jackson.version>
 		<pebble.version>3.2.0</pebble.version>
 		<logback.version>1.4.4</logback.version>
 		<tomcat.version>10.1.1</tomcat.version>
@@ -44,6 +47,13 @@
 			<groupId>jakarta.annotation</groupId>
 			<artifactId>jakarta.annotation-api</artifactId>
 			<version>2.1.1</version>
+		</dependency>
+
+		<!-- json bodyParser -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
 		</dependency>
 
 		<!-- 集成Pebble View -->
