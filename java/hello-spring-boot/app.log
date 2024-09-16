@@ -1,0 +1,21 @@
+2024-09-16T18:01:07.002+08:00  INFO 13241 --- [main] com.yaolin.www.App                       : Starting App using Java 22.0.1 with PID 13241 (/Users/Franklin_1/Workspace/MyGits/demos/java/hello-spring-boot/target/classes started by Franklin in /Users/Franklin_1/Workspace/MyGits/demos/java/hello-spring-boot)
+2024-09-16T18:01:07.005+08:00  INFO 13241 --- [main] com.yaolin.www.App                       : No active profile set, falling back to 1 default profile: "default"
+2024-09-16T18:01:08.234+08:00  INFO 13241 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-09-16T18:01:08.249+08:00  INFO 13241 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-16T18:01:08.249+08:00  INFO 13241 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.1]
+2024-09-16T18:01:08.348+08:00  INFO 13241 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-16T18:01:08.348+08:00  INFO 13241 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1294 ms
+2024-09-16T18:01:08.479+08:00  WARN 13241 --- [main] com.zaxxer.hikari.HikariConfig           : HikariPool-1 - idleTimeout is close to or more than maxLifetime, disabling it.
+2024-09-16T18:01:08.481+08:00  INFO 13241 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-16T18:01:08.886+08:00  INFO 13241 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Driver does not support get/set network timeout for connections. (feature not supported)
+2024-09-16T18:01:08.887+08:00  INFO 13241 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.hsqldb.jdbc.JDBCConnection@4f379769
+2024-09-16T18:01:08.888+08:00  INFO 13241 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-16T18:01:09.173+08:00  WARN 13241 --- [main] ocalVariableTableParameterNameDiscoverer : Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: io.pebbletemplates.boot.autoconfigure.PebbleServletWebConfiguration
+2024-09-16T18:01:09.180+08:00  WARN 13241 --- [main] ocalVariableTableParameterNameDiscoverer : Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: io.pebbletemplates.boot.autoconfigure.PebbleAutoConfiguration
+2024-09-16T18:01:09.351+08:00  INFO 13241 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-16T18:01:09.359+08:00  INFO 13241 --- [main] com.yaolin.www.App                       : Started App in 3.015 seconds (process running for 3.778)
+2024-09-16T18:01:18.300+08:00  INFO 13241 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-16T18:01:18.300+08:00  INFO 13241 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-16T18:01:18.301+08:00  INFO 13241 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-09-16T18:01:30.763+08:00  INFO 13241 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-16T18:01:30.765+08:00  INFO 13241 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

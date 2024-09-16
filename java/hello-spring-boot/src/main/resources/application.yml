@@ -1,0 +1,22 @@
+server:
+  port: ${APP_PORT:8080}
+
+
+spring:
+  application:
+    name: hello-spring-boot-app
+  datasource:
+    url: jdbc:hsqldb:file:testdb
+    username: sa
+    password:
+    driver-class-name: org.hsqldb.jdbc.JDBCDriver
+    hikari:
+      auto-commit: false # 不自动提交sql，调用sql时标记Transactional会因为事务的提交而提交
+      connection-timeout: 3000
+      validation-timeout: 3000
+      max-lifetime: 60000
+      maximum-pool-size: 20
+      minimum-idle: 1
+pebble:
+  suffix:
+  cache: false
