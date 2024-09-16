@@ -19,3 +19,545 @@
 2024-09-16T18:01:18.301+08:00  INFO 13241 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 2024-09-16T18:01:30.763+08:00  INFO 13241 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2024-09-16T18:01:30.765+08:00  INFO 13241 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-16T18:02:27.187+08:00  INFO 13544 --- [main] com.yaolin.www.App                       : Starting App using Java 22.0.1 with PID 13544 (/Users/Franklin_1/Workspace/MyGits/demos/java/hello-spring-boot/target/classes started by Franklin in /Users/Franklin_1/Workspace/MyGits/demos/java/hello-spring-boot)
+2024-09-16T18:02:27.189+08:00  INFO 13544 --- [main] com.yaolin.www.App                       : No active profile set, falling back to 1 default profile: "default"
+2024-09-16T18:02:28.257+08:00  INFO 13544 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-09-16T18:02:28.282+08:00  INFO 13544 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-16T18:02:28.282+08:00  INFO 13544 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.1]
+2024-09-16T18:02:28.360+08:00  INFO 13544 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-16T18:02:28.360+08:00  INFO 13544 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1125 ms
+2024-09-16T18:02:28.477+08:00  WARN 13544 --- [main] com.zaxxer.hikari.HikariConfig           : HikariPool-1 - idleTimeout is close to or more than maxLifetime, disabling it.
+2024-09-16T18:02:28.479+08:00  INFO 13544 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-16T18:02:28.875+08:00  INFO 13544 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Driver does not support get/set network timeout for connections. (feature not supported)
+2024-09-16T18:02:28.876+08:00  INFO 13544 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.hsqldb.jdbc.JDBCConnection@3a479fda
+2024-09-16T18:02:28.878+08:00  INFO 13544 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-16T18:02:29.158+08:00  WARN 13544 --- [main] ocalVariableTableParameterNameDiscoverer : Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: io.pebbletemplates.boot.autoconfigure.PebbleServletWebConfiguration
+2024-09-16T18:02:29.163+08:00  WARN 13544 --- [main] ocalVariableTableParameterNameDiscoverer : Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: io.pebbletemplates.boot.autoconfigure.PebbleAutoConfiguration
+2024-09-16T18:02:29.330+08:00  INFO 13544 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-16T18:02:29.339+08:00  INFO 13544 --- [main] com.yaolin.www.App                       : Started App in 2.814 seconds (process running for 3.789)
+2024-09-16T18:02:53.444+08:00  INFO 13544 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-16T18:02:53.447+08:00  INFO 13544 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-16T18:03:06.671+08:00  INFO 13563 --- [restartedMain] com.yaolin.www.App                       : Starting App using Java 22.0.1 with PID 13563 (/Users/Franklin_1/Workspace/MyGits/demos/java/hello-spring-boot/target/classes started by Franklin in /Users/Franklin_1/Workspace/MyGits/demos/java/hello-spring-boot)
+2024-09-16T18:03:06.672+08:00  INFO 13563 --- [restartedMain] com.yaolin.www.App                       : No active profile set, falling back to 1 default profile: "default"
+2024-09-16T18:03:06.736+08:00  INFO 13563 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-16T18:03:06.736+08:00  INFO 13563 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-16T18:03:07.922+08:00  INFO 13563 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-09-16T18:03:07.935+08:00  INFO 13563 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-16T18:03:07.936+08:00  INFO 13563 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.1]
+2024-09-16T18:03:08.010+08:00  INFO 13563 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-16T18:03:08.010+08:00  INFO 13563 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1274 ms
+2024-09-16T18:03:08.146+08:00  WARN 13563 --- [restartedMain] com.zaxxer.hikari.HikariConfig           : HikariPool-1 - idleTimeout is close to or more than maxLifetime, disabling it.
+2024-09-16T18:03:08.150+08:00  INFO 13563 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-16T18:03:08.665+08:00  INFO 13563 --- [restartedMain] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Driver does not support get/set network timeout for connections. (feature not supported)
+2024-09-16T18:03:08.667+08:00  INFO 13563 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.hsqldb.jdbc.JDBCConnection@4421315a
+2024-09-16T18:03:08.671+08:00  INFO 13563 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-16T18:03:09.045+08:00  WARN 13563 --- [restartedMain] ocalVariableTableParameterNameDiscoverer : Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: io.pebbletemplates.boot.autoconfigure.PebbleServletWebConfiguration
+2024-09-16T18:03:09.049+08:00  WARN 13563 --- [restartedMain] ocalVariableTableParameterNameDiscoverer : Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: io.pebbletemplates.boot.autoconfigure.PebbleAutoConfiguration
+2024-09-16T18:03:09.171+08:00  INFO 13563 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-16T18:03:09.207+08:00  INFO 13563 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-16T18:03:09.215+08:00  INFO 13563 --- [restartedMain] com.yaolin.www.App                       : Started App in 3.122 seconds (process running for 3.888)
+2024-09-16T18:03:34.795+08:00  INFO 13563 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 15 class path changes (0 additions, 9 deletions, 6 modifications)
+2024-09-16T18:03:34.827+08:00  INFO 13563 --- [Thread-6] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-09-16T18:03:34.847+08:00  INFO 13563 --- [Thread-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-16T18:03:34.849+08:00  INFO 13563 --- [Thread-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-16T18:03:34.957+08:00  INFO 13563 --- [restartedMain] com.yaolin.www.App                       : Starting App using Java 22.0.1 with PID 13563 (/Users/Franklin_1/Workspace/MyGits/demos/java/hello-spring-boot/target/classes started by Franklin in /Users/Franklin_1/Workspace/MyGits/demos/java/hello-spring-boot)
+2024-09-16T18:03:34.957+08:00  INFO 13563 --- [restartedMain] com.yaolin.www.App                       : No active profile set, falling back to 1 default profile: "default"
+2024-09-16T18:03:35.337+08:00  INFO 13563 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-09-16T18:03:35.339+08:00  INFO 13563 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-16T18:03:35.340+08:00  INFO 13563 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.1]
+2024-09-16T18:03:35.372+08:00  INFO 13563 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-16T18:03:35.373+08:00  INFO 13563 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 413 ms
+2024-09-16T18:03:35.433+08:00  WARN 13563 --- [restartedMain] com.zaxxer.hikari.HikariConfig           : HikariPool-2 - idleTimeout is close to or more than maxLifetime, disabling it.
+2024-09-16T18:03:35.434+08:00  INFO 13563 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2024-09-16T18:03:35.436+08:00  INFO 13563 --- [restartedMain] com.zaxxer.hikari.pool.PoolBase          : HikariPool-2 - Driver does not support get/set network timeout for connections. (feature not supported)
+2024-09-16T18:03:35.436+08:00  INFO 13563 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection org.hsqldb.jdbc.JDBCConnection@38df0390
+2024-09-16T18:03:35.437+08:00  INFO 13563 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2024-09-16T18:03:35.593+08:00  WARN 13563 --- [restartedMain] ocalVariableTableParameterNameDiscoverer : Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: io.pebbletemplates.boot.autoconfigure.PebbleServletWebConfiguration
+2024-09-16T18:03:35.601+08:00  WARN 13563 --- [restartedMain] ocalVariableTableParameterNameDiscoverer : Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: io.pebbletemplates.boot.autoconfigure.PebbleAutoConfiguration
+2024-09-16T18:03:35.670+08:00  INFO 13563 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-16T18:03:35.691+08:00  INFO 13563 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-16T18:03:35.696+08:00  INFO 13563 --- [restartedMain] com.yaolin.www.App                       : Started App in 0.782 seconds (process running for 30.369)
+2024-09-16T18:03:35.702+08:00  INFO 13563 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-09-16T18:03:37.091+08:00  INFO 13563 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 9 class path changes (9 additions, 0 deletions, 0 modifications)
+2024-09-16T18:03:37.094+08:00  INFO 13563 --- [Thread-8] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-09-16T18:03:37.100+08:00  INFO 13563 --- [Thread-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2024-09-16T18:03:37.101+08:00  INFO 13563 --- [Thread-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2024-09-16T18:03:37.266+08:00  INFO 13563 --- [restartedMain] com.yaolin.www.App                       : Starting App using Java 22.0.1 with PID 13563 (/Users/Franklin_1/Workspace/MyGits/demos/java/hello-spring-boot/target/classes started by Franklin in /Users/Franklin_1/Workspace/MyGits/demos/java/hello-spring-boot)
+2024-09-16T18:03:37.266+08:00  INFO 13563 --- [restartedMain] com.yaolin.www.App                       : No active profile set, falling back to 1 default profile: "default"
+2024-09-16T18:03:37.788+08:00  INFO 13563 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-09-16T18:03:37.789+08:00  INFO 13563 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-16T18:03:37.789+08:00  INFO 13563 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.1]
+2024-09-16T18:03:37.805+08:00  INFO 13563 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-16T18:03:37.806+08:00  INFO 13563 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 533 ms
+2024-09-16T18:03:37.831+08:00  WARN 13563 --- [restartedMain] com.zaxxer.hikari.HikariConfig           : HikariPool-3 - idleTimeout is close to or more than maxLifetime, disabling it.
+2024-09-16T18:03:37.832+08:00  INFO 13563 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2024-09-16T18:03:37.833+08:00  INFO 13563 --- [restartedMain] com.zaxxer.hikari.pool.PoolBase          : HikariPool-3 - Driver does not support get/set network timeout for connections. (feature not supported)
+2024-09-16T18:03:37.833+08:00  INFO 13563 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection org.hsqldb.jdbc.JDBCConnection@4ae40ec6
+2024-09-16T18:03:37.833+08:00  INFO 13563 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2024-09-16T18:03:37.910+08:00  WARN 13563 --- [restartedMain] ocalVariableTableParameterNameDiscoverer : Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: io.pebbletemplates.boot.autoconfigure.PebbleServletWebConfiguration
+2024-09-16T18:03:37.913+08:00  WARN 13563 --- [restartedMain] ocalVariableTableParameterNameDiscoverer : Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: io.pebbletemplates.boot.autoconfigure.PebbleAutoConfiguration
+2024-09-16T18:03:37.933+08:00  INFO 13563 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-16T18:03:37.943+08:00  INFO 13563 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-16T18:03:37.945+08:00  INFO 13563 --- [restartedMain] com.yaolin.www.App                       : Started App in 0.747 seconds (process running for 32.618)
+2024-09-16T18:03:37.946+08:00  INFO 13563 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-09-16T18:04:15.656+08:00  INFO 13563 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 1 deletion, 0 modifications)
+2024-09-16T18:04:15.660+08:00  INFO 13563 --- [Thread-12] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-09-16T18:04:15.664+08:00  INFO 13563 --- [Thread-12] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2024-09-16T18:04:15.665+08:00  INFO 13563 --- [Thread-12] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+2024-09-16T18:04:15.757+08:00  INFO 13563 --- [restartedMain] com.yaolin.www.App                       : Starting App using Java 22.0.1 with PID 13563 (/Users/Franklin_1/Workspace/MyGits/demos/java/hello-spring-boot/target/classes started by Franklin in /Users/Franklin_1/Workspace/MyGits/demos/java/hello-spring-boot)
+2024-09-16T18:04:15.757+08:00  INFO 13563 --- [restartedMain] com.yaolin.www.App                       : No active profile set, falling back to 1 default profile: "default"
+2024-09-16T18:04:16.044+08:00  INFO 13563 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-09-16T18:04:16.045+08:00  INFO 13563 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-16T18:04:16.045+08:00  INFO 13563 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.1]
+2024-09-16T18:04:16.056+08:00  INFO 13563 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-16T18:04:16.057+08:00  INFO 13563 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 298 ms
+2024-09-16T18:04:16.103+08:00  WARN 13563 --- [restartedMain] com.zaxxer.hikari.HikariConfig           : HikariPool-4 - idleTimeout is close to or more than maxLifetime, disabling it.
+2024-09-16T18:04:16.103+08:00  INFO 13563 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Starting...
+2024-09-16T18:04:16.104+08:00  INFO 13563 --- [restartedMain] com.zaxxer.hikari.pool.PoolBase          : HikariPool-4 - Driver does not support get/set network timeout for connections. (feature not supported)
+2024-09-16T18:04:16.105+08:00  INFO 13563 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-4 - Added connection org.hsqldb.jdbc.JDBCConnection@6f8d7460
+2024-09-16T18:04:16.105+08:00  INFO 13563 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Start completed.
+2024-09-16T18:04:16.179+08:00  WARN 13563 --- [restartedMain] ocalVariableTableParameterNameDiscoverer : Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: io.pebbletemplates.boot.autoconfigure.PebbleServletWebConfiguration
+2024-09-16T18:04:16.183+08:00  WARN 13563 --- [restartedMain] ocalVariableTableParameterNameDiscoverer : Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: io.pebbletemplates.boot.autoconfigure.PebbleAutoConfiguration
+2024-09-16T18:04:16.212+08:00  INFO 13563 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-16T18:04:16.222+08:00  INFO 13563 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-16T18:04:16.225+08:00  INFO 13563 --- [restartedMain] com.yaolin.www.App                       : Started App in 0.502 seconds (process running for 70.897)
+2024-09-16T18:04:16.226+08:00  INFO 13563 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-09-16T18:04:17.627+08:00  INFO 13563 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (1 addition, 0 deletions, 0 modifications)
+2024-09-16T18:04:17.630+08:00  INFO 13563 --- [Thread-16] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-09-16T18:04:17.634+08:00  INFO 13563 --- [Thread-16] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown initiated...
+2024-09-16T18:04:17.634+08:00  INFO 13563 --- [Thread-16] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown completed.
+2024-09-16T18:04:17.695+08:00  INFO 13563 --- [restartedMain] com.yaolin.www.App                       : Starting App using Java 22.0.1 with PID 13563 (/Users/Franklin_1/Workspace/MyGits/demos/java/hello-spring-boot/target/classes started by Franklin in /Users/Franklin_1/Workspace/MyGits/demos/java/hello-spring-boot)
+2024-09-16T18:04:17.695+08:00  INFO 13563 --- [restartedMain] com.yaolin.www.App                       : No active profile set, falling back to 1 default profile: "default"
+2024-09-16T18:04:17.837+08:00  INFO 13563 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-09-16T18:04:17.838+08:00  INFO 13563 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-16T18:04:17.838+08:00  INFO 13563 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.1]
+2024-09-16T18:04:17.847+08:00  INFO 13563 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-16T18:04:17.848+08:00  INFO 13563 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 152 ms
+2024-09-16T18:04:17.871+08:00  WARN 13563 --- [restartedMain] com.zaxxer.hikari.HikariConfig           : HikariPool-5 - idleTimeout is close to or more than maxLifetime, disabling it.
+2024-09-16T18:04:17.872+08:00  INFO 13563 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Starting...
+2024-09-16T18:04:17.872+08:00  INFO 13563 --- [restartedMain] com.zaxxer.hikari.pool.PoolBase          : HikariPool-5 - Driver does not support get/set network timeout for connections. (feature not supported)
+2024-09-16T18:04:17.873+08:00  INFO 13563 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-5 - Added connection org.hsqldb.jdbc.JDBCConnection@6279a739
+2024-09-16T18:04:17.873+08:00  INFO 13563 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Start completed.
+2024-09-16T18:04:17.943+08:00  WARN 13563 --- [restartedMain] ocalVariableTableParameterNameDiscoverer : Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: io.pebbletemplates.boot.autoconfigure.PebbleServletWebConfiguration
+2024-09-16T18:04:17.946+08:00  WARN 13563 --- [restartedMain] ocalVariableTableParameterNameDiscoverer : Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: io.pebbletemplates.boot.autoconfigure.PebbleAutoConfiguration
+2024-09-16T18:04:17.968+08:00  INFO 13563 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-16T18:04:17.976+08:00  INFO 13563 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-16T18:04:17.979+08:00  INFO 13563 --- [restartedMain] com.yaolin.www.App                       : Started App in 0.304 seconds (process running for 72.651)
+2024-09-16T18:04:17.980+08:00  INFO 13563 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-09-16T18:04:23.066+08:00  INFO 13563 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-16T18:04:23.067+08:00  INFO 13563 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-16T18:04:23.068+08:00  INFO 13563 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-09-16T18:04:30.480+08:00  INFO 13563 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-09-16T18:04:30.483+08:00  INFO 13563 --- [Thread-20] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-09-16T18:04:30.483+08:00  INFO 13563 --- [Thread-20] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2024-09-16T18:04:30.486+08:00  INFO 13563 --- [Thread-20] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown initiated...
+2024-09-16T18:04:30.486+08:00  INFO 13563 --- [Thread-20] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown completed.
+2024-09-16T18:04:30.551+08:00  INFO 13563 --- [restartedMain] com.yaolin.www.App                       : Starting App using Java 22.0.1 with PID 13563 (/Users/Franklin_1/Workspace/MyGits/demos/java/hello-spring-boot/target/classes started by Franklin in /Users/Franklin_1/Workspace/MyGits/demos/java/hello-spring-boot)
+2024-09-16T18:04:30.551+08:00  INFO 13563 --- [restartedMain] com.yaolin.www.App                       : No active profile set, falling back to 1 default profile: "default"
+2024-09-16T18:04:30.709+08:00  INFO 13563 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-09-16T18:04:30.711+08:00  INFO 13563 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-16T18:04:30.711+08:00  INFO 13563 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.1]
+2024-09-16T18:04:30.723+08:00  INFO 13563 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-16T18:04:30.723+08:00  INFO 13563 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 170 ms
+2024-09-16T18:04:30.752+08:00  WARN 13563 --- [restartedMain] com.zaxxer.hikari.HikariConfig           : HikariPool-6 - idleTimeout is close to or more than maxLifetime, disabling it.
+2024-09-16T18:04:30.752+08:00  INFO 13563 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Starting...
+2024-09-16T18:04:30.753+08:00  INFO 13563 --- [restartedMain] com.zaxxer.hikari.pool.PoolBase          : HikariPool-6 - Driver does not support get/set network timeout for connections. (feature not supported)
+2024-09-16T18:04:30.753+08:00  INFO 13563 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-6 - Added connection org.hsqldb.jdbc.JDBCConnection@19adfba7
+2024-09-16T18:04:30.753+08:00  INFO 13563 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Start completed.
+2024-09-16T18:04:30.847+08:00  WARN 13563 --- [restartedMain] ocalVariableTableParameterNameDiscoverer : Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: io.pebbletemplates.boot.autoconfigure.PebbleServletWebConfiguration
+2024-09-16T18:04:30.852+08:00  WARN 13563 --- [restartedMain] ocalVariableTableParameterNameDiscoverer : Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: io.pebbletemplates.boot.autoconfigure.PebbleAutoConfiguration
+2024-09-16T18:04:30.885+08:00  INFO 13563 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-16T18:04:30.899+08:00  INFO 13563 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-16T18:04:30.905+08:00  INFO 13563 --- [restartedMain] com.yaolin.www.App                       : Started App in 0.376 seconds (process running for 85.577)
+2024-09-16T18:04:30.907+08:00  INFO 13563 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-09-16T18:04:35.503+08:00  INFO 13563 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-16T18:04:35.503+08:00  INFO 13563 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-16T18:04:35.504+08:00  INFO 13563 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-09-16T18:04:44.807+08:00  INFO 13563 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-09-16T18:04:44.811+08:00  INFO 13563 --- [Thread-24] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-09-16T18:04:44.811+08:00  INFO 13563 --- [Thread-24] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2024-09-16T18:04:44.814+08:00  INFO 13563 --- [Thread-24] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown initiated...
+2024-09-16T18:04:44.815+08:00  INFO 13563 --- [Thread-24] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown completed.
+2024-09-16T18:04:44.877+08:00  INFO 13563 --- [restartedMain] com.yaolin.www.App                       : Starting App using Java 22.0.1 with PID 13563 (/Users/Franklin_1/Workspace/MyGits/demos/java/hello-spring-boot/target/classes started by Franklin in /Users/Franklin_1/Workspace/MyGits/demos/java/hello-spring-boot)
+2024-09-16T18:04:44.878+08:00  INFO 13563 --- [restartedMain] com.yaolin.www.App                       : No active profile set, falling back to 1 default profile: "default"
+2024-09-16T18:04:45.018+08:00  INFO 13563 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-09-16T18:04:45.018+08:00  INFO 13563 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-16T18:04:45.019+08:00  INFO 13563 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.1]
+2024-09-16T18:04:45.027+08:00  INFO 13563 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-16T18:04:45.028+08:00  INFO 13563 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 149 ms
+2024-09-16T18:04:45.054+08:00  WARN 13563 --- [restartedMain] com.zaxxer.hikari.HikariConfig           : HikariPool-7 - idleTimeout is close to or more than maxLifetime, disabling it.
+2024-09-16T18:04:45.055+08:00  INFO 13563 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Starting...
+2024-09-16T18:04:45.056+08:00  INFO 13563 --- [restartedMain] com.zaxxer.hikari.pool.PoolBase          : HikariPool-7 - Driver does not support get/set network timeout for connections. (feature not supported)
+2024-09-16T18:04:45.056+08:00  INFO 13563 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-7 - Added connection org.hsqldb.jdbc.JDBCConnection@2a2bd612
+2024-09-16T18:04:45.056+08:00  INFO 13563 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Start completed.
+2024-09-16T18:04:45.136+08:00  WARN 13563 --- [restartedMain] ocalVariableTableParameterNameDiscoverer : Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: io.pebbletemplates.boot.autoconfigure.PebbleServletWebConfiguration
+2024-09-16T18:04:45.139+08:00  WARN 13563 --- [restartedMain] ocalVariableTableParameterNameDiscoverer : Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: io.pebbletemplates.boot.autoconfigure.PebbleAutoConfiguration
+2024-09-16T18:04:45.164+08:00  INFO 13563 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-16T18:04:45.174+08:00  INFO 13563 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-16T18:04:45.178+08:00  INFO 13563 --- [restartedMain] com.yaolin.www.App                       : Started App in 0.321 seconds (process running for 99.85)
+2024-09-16T18:04:45.179+08:00  INFO 13563 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-09-16T18:04:46.227+08:00  INFO 13563 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-16T18:04:46.227+08:00  INFO 13563 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-16T18:04:46.228+08:00  INFO 13563 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-09-16T18:06:38.331+08:00  INFO 13563 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown initiated...
+2024-09-16T18:06:38.332+08:00  INFO 13563 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown completed.
+2024-09-16T20:30:20.160+08:00  INFO 17032 --- [restartedMain] com.yaolin.www.App                       : Starting App using Java 22.0.1 with PID 17032 (/Users/Franklin_1/Workspace/MyGits/demos/java/hello-spring-boot/target/classes started by Franklin in /Users/Franklin_1/Workspace/MyGits/demos/java/hello-spring-boot)
+2024-09-16T20:30:20.163+08:00  INFO 17032 --- [restartedMain] com.yaolin.www.App                       : No active profile set, falling back to 1 default profile: "default"
+2024-09-16T20:30:20.212+08:00  INFO 17032 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-16T20:30:20.213+08:00  INFO 17032 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-16T20:30:21.278+08:00  INFO 17032 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-09-16T20:30:21.289+08:00  INFO 17032 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-16T20:30:21.290+08:00  INFO 17032 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.1]
+2024-09-16T20:30:21.346+08:00  INFO 17032 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-16T20:30:21.346+08:00  INFO 17032 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1133 ms
+2024-09-16T20:30:21.485+08:00  WARN 17032 --- [restartedMain] com.zaxxer.hikari.HikariConfig           : HikariPool-1 - idleTimeout is close to or more than maxLifetime, disabling it.
+2024-09-16T20:30:21.487+08:00  INFO 17032 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-16T20:30:21.865+08:00  INFO 17032 --- [restartedMain] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Driver does not support get/set network timeout for connections. (feature not supported)
+2024-09-16T20:30:21.866+08:00  INFO 17032 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.hsqldb.jdbc.JDBCConnection@52d4eb1e
+2024-09-16T20:30:21.870+08:00  INFO 17032 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-16T20:30:22.189+08:00  WARN 17032 --- [restartedMain] ocalVariableTableParameterNameDiscoverer : Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: io.pebbletemplates.boot.autoconfigure.PebbleServletWebConfiguration
+2024-09-16T20:30:22.195+08:00  WARN 17032 --- [restartedMain] ocalVariableTableParameterNameDiscoverer : Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: io.pebbletemplates.boot.autoconfigure.PebbleAutoConfiguration
+2024-09-16T20:30:22.332+08:00  INFO 17032 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-16T20:30:22.368+08:00  INFO 17032 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-16T20:30:22.376+08:00  INFO 17032 --- [restartedMain] com.yaolin.www.App                       : Started App in 2.79 seconds (process running for 3.741)
+2024-09-16T20:30:32.389+08:00  INFO 17032 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-16T20:30:32.390+08:00  INFO 17032 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-16T20:30:32.391+08:00  INFO 17032 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-09-16T20:32:33.317+08:00  INFO 17032 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-16T20:32:33.321+08:00  INFO 17032 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-16T20:32:38.204+08:00  INFO 17147 --- [restartedMain] com.yaolin.www.App                       : Starting App using Java 22.0.1 with PID 17147 (/Users/Franklin_1/Workspace/MyGits/demos/java/hello-spring-boot/target/classes started by Franklin in /Users/Franklin_1/Workspace/MyGits/demos/java/hello-spring-boot)
+2024-09-16T20:32:38.208+08:00  INFO 17147 --- [restartedMain] com.yaolin.www.App                       : No active profile set, falling back to 1 default profile: "default"
+2024-09-16T20:32:38.298+08:00  INFO 17147 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-16T20:32:38.299+08:00  INFO 17147 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-16T20:32:39.496+08:00  INFO 17147 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-09-16T20:32:39.506+08:00  INFO 17147 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-16T20:32:39.506+08:00  INFO 17147 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.1]
+2024-09-16T20:32:39.558+08:00  INFO 17147 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-16T20:32:39.559+08:00  INFO 17147 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1259 ms
+2024-09-16T20:32:39.705+08:00  WARN 17147 --- [restartedMain] com.zaxxer.hikari.HikariConfig           : HikariPool-1 - idleTimeout is close to or more than maxLifetime, disabling it.
+2024-09-16T20:32:39.707+08:00  INFO 17147 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-16T20:32:40.055+08:00  INFO 17147 --- [restartedMain] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Driver does not support get/set network timeout for connections. (feature not supported)
+2024-09-16T20:32:40.056+08:00  INFO 17147 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.hsqldb.jdbc.JDBCConnection@1b341aff
+2024-09-16T20:32:40.058+08:00  INFO 17147 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-16T20:32:40.372+08:00  WARN 17147 --- [restartedMain] ocalVariableTableParameterNameDiscoverer : Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: io.pebbletemplates.boot.autoconfigure.PebbleServletWebConfiguration
+2024-09-16T20:32:40.377+08:00  WARN 17147 --- [restartedMain] ocalVariableTableParameterNameDiscoverer : Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: io.pebbletemplates.boot.autoconfigure.PebbleAutoConfiguration
+2024-09-16T20:32:40.543+08:00  INFO 17147 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-16T20:32:40.595+08:00  INFO 17147 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-16T20:32:40.609+08:00  INFO 17147 --- [restartedMain] com.yaolin.www.App                       : Started App in 3.055 seconds (process running for 3.932)
+2024-09-16T20:32:49.490+08:00  INFO 17147 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-16T20:32:49.490+08:00  INFO 17147 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-16T20:32:49.491+08:00  INFO 17147 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-09-16T20:33:41.811+08:00  WARN 17147 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m1s652ms).
+2024-09-16T20:34:48.762+08:00  INFO 17147 --- [http-nio-8080-exec-6] .f.AuthFilterRegistrationBean$AuthFilter : Authoriztion:
+2024-09-16T20:34:49.901+08:00  INFO 17147 --- [http-nio-8080-exec-6] .f.AuthFilterRegistrationBean$AuthFilter : DecodeName:
+2024-09-16T20:34:52.453+08:00  INFO 17147 --- [http-nio-8080-exec-6] .f.AuthFilterRegistrationBean$AuthFilter : name:
+2024-09-16T20:34:55.592+08:00 ERROR 17147 --- [http-nio-8080-exec-6] .f.AuthFilterRegistrationBean$AuthFilter : auth user error:
+
+java.lang.NullPointerException: Cannot invoke "java.util.List.stream()" because "this.this$0.users" is null
+	at com.yaolin.www.filter.AuthFilterRegistrationBean$AuthFilter.authByHeader(AuthFilterRegistrationBean.java:66)
+	at com.yaolin.www.filter.AuthFilterRegistrationBean$AuthFilter.doFilter(AuthFilterRegistrationBean.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:119)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1739)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+
+2024-09-16T20:35:15.211+08:00  INFO 17147 --- [http-nio-8080-exec-8] .f.AuthFilterRegistrationBean$AuthFilter : Authoriztion:
+2024-09-16T20:35:15.212+08:00  INFO 17147 --- [http-nio-8080-exec-8] .f.AuthFilterRegistrationBean$AuthFilter : DecodeName:
+2024-09-16T20:35:15.212+08:00  INFO 17147 --- [http-nio-8080-exec-8] .f.AuthFilterRegistrationBean$AuthFilter : name:
+2024-09-16T20:35:15.212+08:00 ERROR 17147 --- [http-nio-8080-exec-8] .f.AuthFilterRegistrationBean$AuthFilter : auth user error:
+
+java.lang.NullPointerException: Cannot invoke "java.util.List.stream()" because "this.this$0.users" is null
+	at com.yaolin.www.filter.AuthFilterRegistrationBean$AuthFilter.authByHeader(AuthFilterRegistrationBean.java:66)
+	at com.yaolin.www.filter.AuthFilterRegistrationBean$AuthFilter.doFilter(AuthFilterRegistrationBean.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:119)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1739)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+
+2024-09-16T20:37:18.092+08:00  INFO 17147 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-16T20:37:18.095+08:00  INFO 17147 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-16T20:37:24.499+08:00  INFO 17331 --- [restartedMain] com.yaolin.www.App                       : Starting App using Java 22.0.1 with PID 17331 (/Users/Franklin_1/Workspace/MyGits/demos/java/hello-spring-boot/target/classes started by Franklin in /Users/Franklin_1/Workspace/MyGits/demos/java/hello-spring-boot)
+2024-09-16T20:37:24.502+08:00  INFO 17331 --- [restartedMain] com.yaolin.www.App                       : No active profile set, falling back to 1 default profile: "default"
+2024-09-16T20:37:24.556+08:00  INFO 17331 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-16T20:37:24.557+08:00  INFO 17331 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-16T20:37:25.564+08:00  INFO 17331 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-09-16T20:37:25.575+08:00  INFO 17331 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-16T20:37:25.575+08:00  INFO 17331 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.1]
+2024-09-16T20:37:25.635+08:00  INFO 17331 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-16T20:37:25.635+08:00  INFO 17331 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1078 ms
+2024-09-16T20:37:25.787+08:00  WARN 17331 --- [restartedMain] com.zaxxer.hikari.HikariConfig           : HikariPool-1 - idleTimeout is close to or more than maxLifetime, disabling it.
+2024-09-16T20:37:25.789+08:00  INFO 17331 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-16T20:37:26.127+08:00  INFO 17331 --- [restartedMain] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Driver does not support get/set network timeout for connections. (feature not supported)
+2024-09-16T20:37:26.128+08:00  INFO 17331 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.hsqldb.jdbc.JDBCConnection@461dd28d
+2024-09-16T20:37:26.130+08:00  INFO 17331 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-16T20:37:26.480+08:00  WARN 17331 --- [restartedMain] ocalVariableTableParameterNameDiscoverer : Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: io.pebbletemplates.boot.autoconfigure.PebbleServletWebConfiguration
+2024-09-16T20:37:26.487+08:00  WARN 17331 --- [restartedMain] ocalVariableTableParameterNameDiscoverer : Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: io.pebbletemplates.boot.autoconfigure.PebbleAutoConfiguration
+2024-09-16T20:37:26.616+08:00  INFO 17331 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-16T20:37:26.653+08:00  INFO 17331 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-16T20:37:26.662+08:00  INFO 17331 --- [restartedMain] com.yaolin.www.App                       : Started App in 2.707 seconds (process running for 3.527)
+2024-09-16T20:37:35.008+08:00  INFO 17331 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-16T20:37:35.009+08:00  INFO 17331 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-16T20:37:35.010+08:00  INFO 17331 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-09-16T20:37:41.006+08:00  INFO 17331 --- [http-nio-8080-exec-1] .f.AuthFilterRegistrationBean$AuthFilter : Authoriztion:
+2024-09-16T20:37:41.008+08:00  INFO 17331 --- [http-nio-8080-exec-1] .f.AuthFilterRegistrationBean$AuthFilter : DecodeName:
+2024-09-16T20:37:41.008+08:00  INFO 17331 --- [http-nio-8080-exec-1] .f.AuthFilterRegistrationBean$AuthFilter : name:
+2024-09-16T20:37:41.009+08:00 ERROR 17331 --- [http-nio-8080-exec-1] .f.AuthFilterRegistrationBean$AuthFilter : auth user error:
+
+java.lang.NullPointerException: Cannot invoke "java.util.List.stream()" because "this.this$0.users" is null
+	at com.yaolin.www.filter.AuthFilterRegistrationBean$AuthFilter.authByHeader(AuthFilterRegistrationBean.java:66)
+	at com.yaolin.www.filter.AuthFilterRegistrationBean$AuthFilter.doFilter(AuthFilterRegistrationBean.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:119)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1739)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+
+2024-09-16T20:38:24.743+08:00  INFO 17331 --- [http-nio-8080-exec-2] .f.AuthFilterRegistrationBean$AuthFilter : Authoriztion:
+2024-09-16T20:38:25.650+08:00  INFO 17331 --- [http-nio-8080-exec-2] .f.AuthFilterRegistrationBean$AuthFilter : DecodeName:
+2024-09-16T20:38:27.690+08:00  INFO 17331 --- [http-nio-8080-exec-2] .f.AuthFilterRegistrationBean$AuthFilter : name:
+2024-09-16T20:40:23.270+08:00  WARN 17331 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m56s993ms).
+2024-09-16T20:40:23.272+08:00 ERROR 17331 --- [http-nio-8080-exec-2] .f.AuthFilterRegistrationBean$AuthFilter : auth user error:
+
+java.lang.NullPointerException: Cannot invoke "java.util.List.stream()" because "this.this$0.users" is null
+	at com.yaolin.www.filter.AuthFilterRegistrationBean$AuthFilter.authByHeader(AuthFilterRegistrationBean.java:66)
+	at com.yaolin.www.filter.AuthFilterRegistrationBean$AuthFilter.doFilter(AuthFilterRegistrationBean.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:119)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1739)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+
+2024-09-16T20:40:23.380+08:00  INFO 17331 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-16T20:40:23.382+08:00  INFO 17331 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-16T20:40:44.069+08:00  INFO 17460 --- [restartedMain] com.yaolin.www.App                       : Starting App using Java 22.0.1 with PID 17460 (/Users/Franklin_1/Workspace/MyGits/demos/java/hello-spring-boot/target/classes started by Franklin in /Users/Franklin_1/Workspace/MyGits/demos/java/hello-spring-boot)
+2024-09-16T20:40:44.071+08:00  INFO 17460 --- [restartedMain] com.yaolin.www.App                       : No active profile set, falling back to 1 default profile: "default"
+2024-09-16T20:40:44.111+08:00  INFO 17460 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-16T20:40:44.111+08:00  INFO 17460 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-16T20:40:45.116+08:00  INFO 17460 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-09-16T20:40:45.126+08:00  INFO 17460 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-16T20:40:45.127+08:00  INFO 17460 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.1]
+2024-09-16T20:40:45.174+08:00  INFO 17460 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-16T20:40:45.175+08:00  INFO 17460 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1064 ms
+2024-09-16T20:40:45.309+08:00  WARN 17460 --- [restartedMain] com.zaxxer.hikari.HikariConfig           : HikariPool-1 - idleTimeout is close to or more than maxLifetime, disabling it.
+2024-09-16T20:40:45.310+08:00  INFO 17460 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-16T20:40:45.625+08:00  INFO 17460 --- [restartedMain] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Driver does not support get/set network timeout for connections. (feature not supported)
+2024-09-16T20:40:45.626+08:00  INFO 17460 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.hsqldb.jdbc.JDBCConnection@79749b0f
+2024-09-16T20:40:45.628+08:00  INFO 17460 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-16T20:40:45.892+08:00  WARN 17460 --- [restartedMain] ocalVariableTableParameterNameDiscoverer : Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: io.pebbletemplates.boot.autoconfigure.PebbleServletWebConfiguration
+2024-09-16T20:40:45.897+08:00  WARN 17460 --- [restartedMain] ocalVariableTableParameterNameDiscoverer : Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: io.pebbletemplates.boot.autoconfigure.PebbleAutoConfiguration
+2024-09-16T20:40:46.015+08:00  INFO 17460 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-16T20:40:46.054+08:00  INFO 17460 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-16T20:40:46.063+08:00  INFO 17460 --- [restartedMain] com.yaolin.www.App                       : Started App in 2.537 seconds (process running for 3.422)
+2024-09-16T20:40:54.432+08:00  INFO 17460 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-16T20:40:54.433+08:00  INFO 17460 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-16T20:40:54.434+08:00  INFO 17460 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-09-16T20:40:57.939+08:00  INFO 17460 --- [http-nio-8080-exec-1] .f.AuthFilterRegistrationBean$AuthFilter : Authoriztion:
+2024-09-16T20:40:57.942+08:00  INFO 17460 --- [http-nio-8080-exec-1] .f.AuthFilterRegistrationBean$AuthFilter : DecodeName:
+2024-09-16T20:40:57.942+08:00  INFO 17460 --- [http-nio-8080-exec-1] .f.AuthFilterRegistrationBean$AuthFilter : name:
+2024-09-16T20:40:57.942+08:00 ERROR 17460 --- [http-nio-8080-exec-1] .f.AuthFilterRegistrationBean$AuthFilter : auth user error:
+
+java.lang.NullPointerException: Cannot invoke "java.util.List.stream()" because "this.this$0.users" is null
+	at com.yaolin.www.filter.AuthFilterRegistrationBean$AuthFilter.authByHeader(AuthFilterRegistrationBean.java:66)
+	at com.yaolin.www.filter.AuthFilterRegistrationBean$AuthFilter.doFilter(AuthFilterRegistrationBean.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:119)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1739)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+
+2024-09-16T20:41:06.832+08:00  INFO 17460 --- [http-nio-8080-exec-2] .f.AuthFilterRegistrationBean$AuthFilter : Authoriztion:
+2024-09-16T20:41:06.832+08:00  INFO 17460 --- [http-nio-8080-exec-2] .f.AuthFilterRegistrationBean$AuthFilter : DecodeName:
+2024-09-16T20:41:06.833+08:00  INFO 17460 --- [http-nio-8080-exec-2] .f.AuthFilterRegistrationBean$AuthFilter : name:
+2024-09-16T20:41:37.396+08:00  WARN 17460 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=51s668ms).
+2024-09-16T20:41:37.398+08:00 ERROR 17460 --- [http-nio-8080-exec-2] .f.AuthFilterRegistrationBean$AuthFilter : auth user error:
+
+java.lang.NullPointerException: Cannot invoke "java.util.List.stream()" because "this.this$0.users" is null
+	at com.yaolin.www.filter.AuthFilterRegistrationBean$AuthFilter.authByHeader(AuthFilterRegistrationBean.java:66)
+	at com.yaolin.www.filter.AuthFilterRegistrationBean$AuthFilter.doFilter(AuthFilterRegistrationBean.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:119)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1739)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+
+2024-09-16T20:41:37.487+08:00  INFO 17460 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-16T20:41:37.489+08:00  INFO 17460 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-16T20:41:43.928+08:00  INFO 17510 --- [restartedMain] com.yaolin.www.App                       : Starting App using Java 22.0.1 with PID 17510 (/Users/Franklin_1/Workspace/MyGits/demos/java/hello-spring-boot/target/classes started by Franklin in /Users/Franklin_1/Workspace/MyGits/demos/java/hello-spring-boot)
+2024-09-16T20:41:43.931+08:00  INFO 17510 --- [restartedMain] com.yaolin.www.App                       : No active profile set, falling back to 1 default profile: "default"
+2024-09-16T20:41:43.984+08:00  INFO 17510 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-16T20:41:43.984+08:00  INFO 17510 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-16T20:41:45.004+08:00  INFO 17510 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-09-16T20:41:45.016+08:00  INFO 17510 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-16T20:41:45.016+08:00  INFO 17510 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.1]
+2024-09-16T20:41:45.066+08:00  INFO 17510 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-16T20:41:45.066+08:00  INFO 17510 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1082 ms
+2024-09-16T20:41:45.148+08:00  WARN 17510 --- [restartedMain] com.zaxxer.hikari.HikariConfig           : HikariPool-1 - idleTimeout is close to or more than maxLifetime, disabling it.
+2024-09-16T20:41:45.150+08:00  INFO 17510 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-16T20:41:45.484+08:00  INFO 17510 --- [restartedMain] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Driver does not support get/set network timeout for connections. (feature not supported)
+2024-09-16T20:41:45.485+08:00  INFO 17510 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.hsqldb.jdbc.JDBCConnection@6bce789f
+2024-09-16T20:41:45.487+08:00  INFO 17510 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-16T20:41:45.825+08:00  WARN 17510 --- [restartedMain] ocalVariableTableParameterNameDiscoverer : Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: io.pebbletemplates.boot.autoconfigure.PebbleServletWebConfiguration
+2024-09-16T20:41:45.830+08:00  WARN 17510 --- [restartedMain] ocalVariableTableParameterNameDiscoverer : Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: io.pebbletemplates.boot.autoconfigure.PebbleAutoConfiguration
+2024-09-16T20:41:45.927+08:00  INFO 17510 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-16T20:41:45.962+08:00  INFO 17510 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-09-16T20:41:45.973+08:00  INFO 17510 --- [restartedMain] com.yaolin.www.App                       : Started App in 2.554 seconds (process running for 3.42)
+2024-09-16T20:41:51.918+08:00  INFO 17510 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-16T20:41:51.918+08:00  INFO 17510 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-16T20:41:51.919+08:00  INFO 17510 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-09-16T20:41:54.841+08:00  INFO 17510 --- [http-nio-8080-exec-1] .f.AuthFilterRegistrationBean$AuthFilter : Authoriztion:
+2024-09-16T20:41:54.843+08:00  INFO 17510 --- [http-nio-8080-exec-1] .f.AuthFilterRegistrationBean$AuthFilter : DecodeName:
+2024-09-16T20:41:54.844+08:00  INFO 17510 --- [http-nio-8080-exec-1] .f.AuthFilterRegistrationBean$AuthFilter : name:
+2024-09-16T20:42:05.707+08:00  INFO 17510 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-16T20:42:05.710+08:00  INFO 17510 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

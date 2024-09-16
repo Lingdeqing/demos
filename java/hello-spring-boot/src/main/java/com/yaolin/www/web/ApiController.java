@@ -46,12 +46,12 @@ public class ApiController {
         return user;
     }
 
-//    @GetMapping("/user/filter")
-//    public User helloUser(HttpSession session) {
-//        System.out.println("/user/filter");
-//        User user = (User) session.getAttribute("filter_user");
-//        return user;
-//    }
+    @GetMapping("/user/filter")
+    public User helloUser(HttpSession session) {
+        System.out.println("/user/filter");
+        User user = (User) session.getAttribute("filter_user");
+        return user;
+    }
 
     @PostMapping("/user/register")
     public User registerUser(@RequestParam("name") String name, @RequestParam("email") String email, @RequestParam("password") String password) {

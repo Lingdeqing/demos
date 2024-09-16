@@ -27,6 +27,10 @@ public class UserService {
             new User("Alan", "alan@example.com", "123456"),
             new User("Lisa", "lisa@example.com", "123456"));
 
+    public List<User> getUsers() {
+        return this.users;
+    }
+
 
     public User register(String email, String password, String name) {
         User user = new User(email, password, name);
