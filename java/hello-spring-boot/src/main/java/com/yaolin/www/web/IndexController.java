@@ -27,7 +27,8 @@ public class IndexController {
 
     @PostConstruct
     public void init() {
-        this.users = userService.users;
+//        this.users = userService.users; // Transactional使用了AOP，代理模式只代理了methods
+        this.users = userService.getUsers();
     }
 
     @GetMapping("/hello")
