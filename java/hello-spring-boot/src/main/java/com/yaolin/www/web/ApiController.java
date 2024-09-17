@@ -31,7 +31,7 @@ public class ApiController {
 
     @PostConstruct
     public void init() {
-        this.users = userService.users;
+        this.users = userService.getUsers();
     }
 
     @GetMapping("/status")

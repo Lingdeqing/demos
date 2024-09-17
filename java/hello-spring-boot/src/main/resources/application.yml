@@ -27,3 +27,14 @@ management:
     web:
       exposure:
         include: info, health, beans, env, metrics
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prd
+server:
+  port: 3000
+pebble:
+  cache: true
