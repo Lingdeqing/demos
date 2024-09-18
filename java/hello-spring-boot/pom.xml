@@ -17,6 +17,7 @@
         <java.version>17</java.version>
 
         <pebble.version>3.2.0</pebble.version>
+        <openapi.version>2.0.0</openapi.version>
     </properties>
 
     <dependencies>
@@ -56,6 +57,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!-- 集成swagger -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>${openapi.version}</version>
         </dependency>
 
     </dependencies>

@@ -2,6 +2,8 @@ package com.yaolin.www.web;
 
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -54,7 +56,8 @@ public class ApiController {
     }
 
     @PostMapping("/user/register")
-    public User registerUser(@RequestParam("name") String name, @RequestParam("email") String email, @RequestParam("password") String password) {
+    @Operation(summary = "注册用户")
+    public User registerUser(@Parameter(description = "用户名") @RequestParam("name") String name, @RequestParam("email") String email, @RequestParam("password") String password) {
         System.out.println("/user/register");
         return userService.register(email, password, name);
     }
