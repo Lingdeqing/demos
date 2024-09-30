@@ -49,6 +49,19 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
+@FunctionalInterface
+interface TestLamda {
+    int inc(int a, int b);
+
+    default long inc2(long a, long b) {
+        return a - b;
+    }
+
+    long inc3(long b);
+
+    boolean equals(Object o);
+}
+
 public class 输入输出 {
 
     static final Object LOCK_A = new Object();
@@ -58,6 +71,10 @@ public class 输入输出 {
         Stream<Integer> fib = Stream.generate(new NatualSupplier());
         // 打印Fibonacci数列：1，1，2，3，5，8，13，21...
         System.out.println(Arrays.toString(fib.limit(10).toArray(Integer[]::new)));
+
+        // TestLamda testLamda = (a, b) -> a + b;
+        // System.out.println(testLamda.inc(1, 2));
+
     }
 
     static class NatualSupplier implements Supplier<Integer> {
