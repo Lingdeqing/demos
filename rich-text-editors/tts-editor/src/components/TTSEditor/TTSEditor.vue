@@ -1,7 +1,7 @@
 <template>
     <textarea id="lexical-state" ref="lexicalStateRef"></textarea>
     <div class="editor-wrapper">
-        <Editable class="lexical-editor-root"></Editable>
+        <Editable class="lexical-editor-root" @change="onEditorStateChange"></Editable>
     </div>
 
 </template>
@@ -10,6 +10,11 @@ import Editable from "./components/Editable.vue"
 export default {
     components: {
         Editable
+    },
+    methods: {
+        onEditorStateChange({ editorState }) {
+            this.$refs.lexicalStateRef.value = JSON.stringify(editorState.toJSON(), undefined, 2);
+        }
     }
 }
 </script>

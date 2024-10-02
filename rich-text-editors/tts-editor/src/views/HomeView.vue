@@ -9,10 +9,10 @@ import TTSEditor from "../components/TTSEditor/TTSEditor.vue"
 
     <h3 class="mt-30px">todo list</h3>
     <ul>
-      <li><input type="checkbox"> 特效()局部变速</li>
+      <li><input type="checkbox"> 特效() 局部变速</li>
       <li><input type="checkbox"> 特效[]</li>
       <li><input type="checkbox"> 特效|</li>
-      <li><input type="checkbox"> 特效+</li>
+      <li><input type="checkbox"> 特效+ 多音字</li>
       <li><input type="checkbox"> 特效嵌套</li>
       <li><input type="checkbox"> 高亮</li>
       <li><input type="checkbox"> 协同</li>

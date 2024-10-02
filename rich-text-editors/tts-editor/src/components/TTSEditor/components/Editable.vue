@@ -5,6 +5,9 @@
 import { createEditor, $getRoot, $createParagraphNode, $createTextNode, type LexicalEditor } from "lexical"
 import { mergeRegister } from '@lexical/utils';
 import { registerRichText } from "@lexical/rich-text"
+
+import { PolyphoneNode } from "../plugins/polyphone/PolyphoneNode"
+import { registerPolyphone } from "../plugins/polyphone/PolyphonePlugin"
 export default {
     data() {
         return {}
@@ -12,6 +15,7 @@ export default {
     mounted() {
         // 初始化编辑器
         const editorIns = createEditor({
+            nodes: [PolyphoneNode],
             onError: (error) => {
                 throw error;
             }
@@ -19,7 +23,10 @@ export default {
         editorIns.setRootElement(this.$refs.lexicalEditorRoot as HTMLElement);
 
         // 编辑器插件
-        mergeRegister(registerRichText(editorIns));
+        mergeRegister(
+            registerRichText(editorIns),
+            registerPolyphone(editorIns)
+        );
 
         editorIns.update(() => {
             const root = $getRoot();
