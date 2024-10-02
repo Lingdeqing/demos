@@ -8,6 +8,15 @@ import { registerRichText } from "@lexical/rich-text"
 
 import { PolyphoneNode } from "../plugins/polyphone/PolyphoneNode"
 import { registerPolyphone } from "../plugins/polyphone/PolyphonePlugin"
+
+export let activeEditor: LexicalEditor | null = null; // 当前激活的编辑器
+export function getActiveEditor() {
+    if (!activeEditor) {
+        throw Error(`Unable to find an active editor. This method can only be used synchronously during the callback of editor.update() or editor.read().`);
+
+    }
+    return activeEditor
+}
 export default {
     data() {
         return {}
@@ -40,6 +49,7 @@ export default {
         })
 
         this.updateListener = editorIns.registerUpdateListener(({ editorState }) => {
+            activeEditor = editorIns;
             // onChange
             this.$emit('change', {
                 editorState

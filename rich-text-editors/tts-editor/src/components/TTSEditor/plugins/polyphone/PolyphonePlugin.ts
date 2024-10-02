@@ -8,9 +8,9 @@
 
 import { type LexicalEditor, TextNode } from 'lexical';
 
-import { $createEmojiNode } from './PolyphoneNode';
+import { PolyphoneNode } from './PolyphoneNode';
 
-function $textNodeTransform(node: TextNode): void {
+function $textNodeTransform(node: TextNode, editor: LexicalEditor) {
     console.log(111)
     if (!node.isSimpleText() || node.hasFormat('code')) {
         return;
@@ -39,14 +39,25 @@ function $textNodeTransform(node: TextNode): void {
         );
     }
 
-    const emojiNode = $createEmojiNode(emojiMatch.unifiedID);
+    const emojiNode = new PolyphoneNode(emojiMatch.unifiedID, 'kǎ')
+        // In token mode node can be navigated through character-by-character,
+        // but are deleted as a single entity (not invdividually by character).
+        // This also forces Lexical to create adjacent TextNode on user input instead of
+        // modifying Emoji node as it now acts as immutable node.
+        .setMode('token');
     targetNode.replace(emojiNode);
+
+    return () => {
+        // 节点销毁
+    }
 }
 
 export function registerPolyphone(editor: LexicalEditor): () => void {
     // We don't use editor.registerUpdateListener here as alternative approach where we rely
     // on update listener is highly discouraged as it triggers an additional render (the most expensive lifecycle operation).
-    return editor.registerNodeTransform(TextNode, $textNodeTransform);
+    return editor.registerNodeTransform(TextNode, (node: TextNode) => {
+        return $textNodeTransform(node, editor)
+    });
 }
 
 /**

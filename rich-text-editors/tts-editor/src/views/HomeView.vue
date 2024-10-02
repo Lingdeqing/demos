@@ -15,6 +15,7 @@ import TTSEditor from "../components/TTSEditor/TTSEditor.vue"
       <li><input type="checkbox"> 特效+ 多音字</li>
       <li><input type="checkbox"> 特效嵌套</li>
       <li><input type="checkbox"> 高亮</li>
+      <li><input type="checkbox"> 前进回退</li>
       <li><input type="checkbox"> 协同</li>
     </ul>
   </main>
