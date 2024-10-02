@@ -1,6 +1,7 @@
 import type { EditorConfig, NodeKey, SerializedTextNode, Spread } from 'lexical';
 
 import { TextNode } from 'lexical';
+import "./PolyphoneNode.less"
 
 const emojiReplacementMap = new Map<string, string>([[":)", "😄"]]);
 export type SerializedEmojiNode = Spread<
@@ -10,12 +11,10 @@ export type SerializedEmojiNode = Spread<
     SerializedTextNode
 >;
 
-// @emoji-datasource-facebook is defined in vite.config.ts
-const BASE_EMOJI_URI = new URL(`@emoji-datasource-facebook/`, import.meta.url)
-    .href;
-
+const POLYPHONE_NODE_CSS = 'polyphone-node'
 export class PolyphoneNode extends TextNode {
     __unifiedID: string;
+    __effectTagDom: HTMLElement | null;
 
     static getType(): string {
         return 'emoji';
@@ -33,6 +32,8 @@ export class PolyphoneNode extends TextNode {
         super(text, key);
 
         this.__unifiedID = unifiedID.toLowerCase();
+
+        this.__effectTagDom = null;
     }
 
     /**
@@ -41,10 +42,48 @@ export class PolyphoneNode extends TextNode {
      */
     createDOM(_config: EditorConfig): HTMLElement {
         const dom = document.createElement('span');
-        dom.className = 'emoji-node';
-        // dom.style.backgroundImage = `url('${BASE_EMOJI_URI}/${this.__unifiedID}.png')`;
+        dom.className = POLYPHONE_NODE_CSS;
         dom.innerText = this.__text;
+        this.createEffectDom(dom);
         return dom;
+    }
+
+    createEffectDom(textNode: HTMLElement) {
+        const bottomLine = document.createElement('span');
+        bottomLine.className = `${POLYPHONE_NODE_CSS}-bottom-line`
+        bottomLine.contentEditable = "false";
+        textNode.appendChild(bottomLine)
+
+
+        const effectTag = document.createElement('span');
+        effectTag.className = `${POLYPHONE_NODE_CSS}-effect-tag`
+        effectTag.contentEditable = "false"
+        effectTag.innerHTML = `<span class="${POLYPHONE_NODE_CSS}-remove-btn"></span><span class="${POLYPHONE_NODE_CSS}-text">kǎ</span>`
+        textNode.appendChild(effectTag)
+
+        this.__effectTagDom = effectTag;
+
+        this.bindEvents();
+    }
+    bindEvents() {
+        const effectTagDom = this.__effectTagDom!;
+        effectTagDom.addEventListener('click', this.onEffectUpdateClick)
+        effectTagDom.querySelector(`.${POLYPHONE_NODE_CSS}-remove-btn`)
+            ?.addEventListener('click', this.onEffectRemoveClick)
+    }
+    unbindEvents() {
+        const effectTagDom = this.__effectTagDom;
+        if (!effectTagDom) return;
+        effectTagDom.removeEventListener('click', this.onEffectUpdateClick)
+        effectTagDom.querySelector(`.${POLYPHONE_NODE_CSS}-remove-btn`)
+            ?.removeEventListener('click', this.onEffectRemoveClick)
+    }
+    onEffectRemoveClick(e: Event) {
+        e.stopPropagation()
+        console.log('删除特效')
+    }
+    onEffectUpdateClick() {
+        console.log('更新特效')
     }
 
     static importJSON(serializedNode: SerializedEmojiNode): PolyphoneNode {
