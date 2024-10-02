@@ -32,16 +32,28 @@ export default {
             root.append(para)
         })
 
-        editorIns.registerUpdateListener(({ editorState }) => {
+        this.updateListener = editorIns.registerUpdateListener(({ editorState }) => {
             // onChange
             this.$emit('change', {
                 editorState
             })
         })
 
-        Object.assign(this, {
-            editorIns
-        })
+        this.editorIns = editorIns
+    },
+    beforeDestroy() {
+        this.updateListener();
+    },
+    methods: {
+        addLocalSpeed() {
+
+        },
+        updateLocalSpeed() {
+
+        },
+        removeLocalSpeed() {
+
+        }
     }
 };
 </script>
