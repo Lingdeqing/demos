@@ -1,43 +1,35 @@
 import type { EditorConfig, NodeKey, SerializedTextNode, Spread } from 'lexical';
+import { $getNodeByKey, TextNode } from 'lexical';
 
-import { $getEditor, $getNodeByKey, $getRoot, TextNode } from 'lexical';
 import "./PolyphoneNode.less"
+
 import { getActiveEditor } from '../../components/Editable.vue';
 
-const emojiReplacementMap = new Map<string, string>([[":)", "😄"]]);
-export type SerializedEmojiNode = Spread<
+export type SerializedPolyphoneNode = Spread<
     {
-        unifiedID: string;
         pinyin: string;
     },
     SerializedTextNode
 >;
 
 const POLYPHONE_NODE_CSS = 'polyphone-node'
+
 export class PolyphoneNode extends TextNode {
-    __unifiedID: string;
-    __effectTagDom: HTMLElement | null;
-    __pinyin: string;
+    effectDom: HTMLElement | null;
+    pinyin: string;
 
     static getType(): string {
-        return 'emoji';
+        return 'polyphone';
     }
 
     static clone(node: PolyphoneNode): PolyphoneNode {
-        return new PolyphoneNode(node.__unifiedID, node.__pinyin, node.__key);
+        return new PolyphoneNode(node.__text, node.pinyin, node.__key);
     }
 
-    constructor(unifiedID: string, pinyin: string, key?: NodeKey) {
-        // const unicodeEmoji = String.fromCodePoint(
-        //     ...unifiedID.split('-').map((v) => parseInt(v, 16)),
-        // );
-        const text = emojiReplacementMap.get(unifiedID)!
+    constructor(text: string, pinyin: string, key?: NodeKey) {
         super(text, key);
-
-        this.__unifiedID = unifiedID.toLowerCase();
-        this.__pinyin = pinyin
-
-        this.__effectTagDom = null;
+        this.pinyin = pinyin
+        this.effectDom = null;
     }
 
     /**
@@ -62,21 +54,21 @@ export class PolyphoneNode extends TextNode {
         const effectTag = document.createElement('span');
         effectTag.className = `${POLYPHONE_NODE_CSS}-effect-tag`
         effectTag.contentEditable = "false"
-        effectTag.innerHTML = `<span class="${POLYPHONE_NODE_CSS}-remove-btn"></span><span class="${POLYPHONE_NODE_CSS}-text">${this.__pinyin}</span>`
+        effectTag.innerHTML = `<span class="${POLYPHONE_NODE_CSS}-remove-btn"></span><span class="${POLYPHONE_NODE_CSS}-text">${this.pinyin}</span>`
         textNode.appendChild(effectTag)
 
-        this.__effectTagDom = effectTag;
+        this.effectDom = effectTag;
 
         this.bindEvents();
     }
     bindEvents() {
-        const effectTagDom = this.__effectTagDom!;
+        const effectTagDom = this.effectDom!;
         effectTagDom.addEventListener('click', this.onEffectUpdateClick)
         effectTagDom.querySelector(`.${POLYPHONE_NODE_CSS}-remove-btn`)
             ?.addEventListener('click', this.onEffectRemoveClick)
     }
     unbindEvents() {
-        const effectTagDom = this.__effectTagDom;
+        const effectTagDom = this.effectDom;
         if (!effectTagDom) return;
         effectTagDom.removeEventListener('click', this.onEffectUpdateClick)
         effectTagDom.querySelector(`.${POLYPHONE_NODE_CSS}-remove-btn`)
@@ -89,7 +81,8 @@ export class PolyphoneNode extends TextNode {
         const editor = getActiveEditor()
         editor.update(() => {
             const node = $getNodeByKey(this.getKey())
-            node?.remove();
+            const textNode = new TextNode(this.__text)
+            node?.replace(textNode)
         })
     }
     onEffectUpdateClick = () => {
@@ -98,21 +91,20 @@ export class PolyphoneNode extends TextNode {
         const editor = getActiveEditor()
         editor.update(() => {
             const node = $getNodeByKey(this.getKey()) as PolyphoneNode
-            const newNode = new PolyphoneNode(node.__unifiedID, "heng")
+            const newNode = new PolyphoneNode(node.__text, "heng")
             node?.replace(newNode)
         })
     }
 
-    static importJSON(serializedNode: SerializedEmojiNode): PolyphoneNode {
-        return new PolyphoneNode(serializedNode.unifiedID, serializedNode.pinyin);
+    static importJSON(serializedNode: SerializedPolyphoneNode): PolyphoneNode {
+        return new PolyphoneNode(serializedNode.text, serializedNode.pinyin);
     }
 
-    exportJSON(): SerializedEmojiNode {
+    exportJSON(): SerializedPolyphoneNode {
         return {
             ...super.exportJSON(),
-            type: 'emoji',
-            unifiedID: this.__unifiedID,
-            pinyin: this.__pinyin,
+            type: 'polyphone',
+            pinyin: this.pinyin,
         };
     }
 }

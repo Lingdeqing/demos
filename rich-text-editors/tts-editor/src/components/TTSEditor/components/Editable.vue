@@ -1,5 +1,7 @@
 <template>
-    <div ref="lexicalEditorRoot" contenteditable class="lexical-editor-root"></div>
+    <div class="editable">
+        <div ref="lexicalEditorRoot" contenteditable class="lexical-editor-root"></div>
+    </div>
 </template>
 <script lang="ts">
 import { createEditor, $getRoot, $createParagraphNode, $createTextNode, type LexicalEditor } from "lexical"
@@ -7,7 +9,7 @@ import { mergeRegister } from '@lexical/utils';
 import { registerRichText } from "@lexical/rich-text"
 
 import { PolyphoneNode } from "../plugins/polyphone/PolyphoneNode"
-import { registerPolyphone } from "../plugins/polyphone/PolyphonePlugin"
+import { registerPolyphone, registerPolyphoneCmd } from "../plugins/polyphone/PolyphonePlugin"
 
 export let activeEditor: LexicalEditor | null = null; // 当前激活的编辑器
 export function getActiveEditor() {
@@ -37,6 +39,8 @@ export default {
             registerPolyphone(editorIns)
         );
 
+        registerPolyphoneCmd(editorIns)
+
         editorIns.update(() => {
             const root = $getRoot();
             if (root.getFirstChild() !== null) {
@@ -57,6 +61,9 @@ export default {
         })
 
         this.editorIns = editorIns
+        this.$emit('init', {
+            editor: editorIns
+        })
     },
     beforeDestroy() {
         this.updateListener();
@@ -75,12 +82,11 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-#lexical-state {
-    width: 100%;
-    height: 300px;
+.editable {
+    padding: 10px;
 }
 
-.editor-wrapper {
-    border: 2px solid gray;
+.lexical-editor-root {
+    outline: none;
 }
 </style>

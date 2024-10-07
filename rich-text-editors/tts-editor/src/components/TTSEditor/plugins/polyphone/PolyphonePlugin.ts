@@ -6,12 +6,11 @@
  *
  */
 
-import { type LexicalEditor, TextNode } from 'lexical';
+import { type LexicalEditor, TextNode, createCommand, COMMAND_PRIORITY_LOW, COMMAND_PRIORITY_EDITOR, $getSelection, type RangeSelection, $getNodeByKey } from 'lexical';
 
 import { PolyphoneNode } from './PolyphoneNode';
 
-function $textNodeTransform(node: TextNode, editor: LexicalEditor) {
-    console.log(111)
+function $polyphoneNodeTransform(node: TextNode, editor: LexicalEditor) {
     if (!node.isSimpleText() || node.hasFormat('code')) {
         return;
     }
@@ -56,8 +55,40 @@ export function registerPolyphone(editor: LexicalEditor): () => void {
     // We don't use editor.registerUpdateListener here as alternative approach where we rely
     // on update listener is highly discouraged as it triggers an additional render (the most expensive lifecycle operation).
     return editor.registerNodeTransform(TextNode, (node: TextNode) => {
-        return $textNodeTransform(node, editor)
+        return $polyphoneNodeTransform(node, editor)
     });
+}
+
+export type POLYPHONE_CMD_OPTION = {
+    pinyin: string
+}
+export const SET_POLYPHONE_CMD = createCommand<POLYPHONE_CMD_OPTION>('SET_POLYPHONE_CMD')
+export function registerPolyphoneCmd(editor: LexicalEditor) {
+    return editor.registerCommand(SET_POLYPHONE_CMD, (payload: POLYPHONE_CMD_OPTION) => {
+        editor.update(() => {
+            const selection = $getSelection() as RangeSelection
+            if (!selection) return;
+            const word = selection.getTextContent()
+            const wordLen = 1
+            if (!word || word.length > wordLen) return
+            console.log(selection, word)
+
+            const focusNode = $getNodeByKey(selection.focus.key) as TextNode
+            console.log(focusNode)
+
+            let targetNode
+            const offset = Math.min(selection.anchor.offset, selection.focus.offset);
+            if (offset === 0) {
+                [targetNode] = focusNode.splitText(1)
+            } else {
+                [, targetNode] = focusNode.splitText(offset, offset + wordLen)
+            }
+            const polyphoneNode = new PolyphoneNode(word, payload.pinyin)
+                .setMode('token');
+            targetNode.replace(polyphoneNode);
+        })
+        return true
+    }, COMMAND_PRIORITY_EDITOR);
 }
 
 /**
