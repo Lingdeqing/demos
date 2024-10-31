@@ -1,0 +1,3 @@
+var maximalSquare = function (matrix) {
+
+};
