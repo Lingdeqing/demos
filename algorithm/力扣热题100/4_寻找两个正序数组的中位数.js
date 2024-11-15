@@ -105,7 +105,7 @@ function findMedianSortedArrays(nums1, nums2) {
 // 找到nums1和nums2两个有序数组中第k小的数（本质就是 二分法查找两个有序数组合并后的第k个小的元素。理解了这个就很容易解决了。copy官方代码 附带详细注释）
 // 思路 https://leetcode.cn/problems/median-of-two-sorted-arrays/solutions/258842/xun-zhao-liang-ge-you-xu-shu-zu-de-zhong-wei-s-114/?envType=featured-list&envId=2cktkvj
 // 比较 A[k/2−1] 和 B[k/2−1]
-//      由于 A[k/2−1] 和 B[k/2−1] 的前面分别有 A[0 .. k/2−2] 和 B[0 .. k/2−2]，即 k/2−1 个元素，对于 A[k/2−1]\ 和 B[k/2−1] 中的较小值，最多只会有 (k/2−1)+(k/2−1)≤k−2 个元素比它小，那么它就不能是第 k 小的数了。
+//      由于 A[k/2−1] 和 B[k/2−1] 的前面分别有 A[0 .. k/2−2] 和 B[0 .. k/2−2]，即 k/2−1 个元素，对于 A[k/2−1] 和 B[k/2−1] 中的较小值，最多只会有 (k/2−1)+(k/2−1)≤k−2 个元素比它小，那么它就不能是第 k 小的数了。
 function getKthElement(nums1, nums2, k) {
     let i = 0, j = 0
     while (true) {
