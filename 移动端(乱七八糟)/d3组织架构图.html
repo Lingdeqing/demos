@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<div id="container"></div>
+<script src="d3@7.js"></script>
+<script src="./connection-straight.js"></script>
+<script type="module">
+    const container = d3.select("#container");
+    const data = {
+        "nodes": [
+            {
+                "shape": "security-domain-rect",
+                "data": {
+                    "parent": true,
+                    "name": "建邺电信",
+                    "group_type": "security_domain",
+                    "front_type": "security_domain"
+                },
+                "size": {
+                    "width": 300,
+                    "height": 200
+                },
+                "id": "node_1icvce94h2",
+                "position": {
+                    "x": 470,
+                    "y": -50
+                },
+                "zIndex": 1
+            },
+            {
+                "shape": "security-domain-rect",
+                "data": {
+                    "parent": true,
+                    "name": "鼓楼电信",
+                    "group_type": "security_domain",
+                    "front_type": "security_domain"
+                },
+                "size": {
+                    "width": 300,
+                    "height": 200
+                },
+                "id": "node_1icveqe075",
+                "position": {
+                    "x": 1030,
+                    "y": -60
+                },
+                "zIndex": 2
+            },
+            {
+                "shape": "security-domain-rect",
+                "data": {
+                    "parent": true,
+                    "name": "江宁电信",
+                    "group_type": "security_domain",
+                    "front_type": "security_domain"
+                },
+                "size": {
+                    "width": 300,
+                    "height": 200
+                },
+                "id": "node_1icveqkol6",
+                "position": {
+                    "x": 320,
+                    "y": 333
+                },
+                "zIndex": 3
+            },
+            {
+                "shape": "security-domain-rect",
+                "data": {
+                    "parent": true,
+                    "name": "浦口网段",
+                    "group_type": "security_domain",
+                    "front_type": "security_domain"
+                },
+                "size": {
+                    "width": 300,
+                    "height": 200
+                },
+                "id": "node_1icver06o7",
+                "position": {
+                    "x": 1040,
+                    "y": 310
+                },
+                "zIndex": 4
+            },
+            {
+                "shape": "security-domain-rect",
+                "data": {
+                    "parent": true,
+                    "name": "江宁移动",
+                    "group_type": "security_domain",
+                    "front_type": "security_domain"
+                },
+                "size": {
+                    "width": 300,
+                    "height": 200
+                },
+                "id": "node_1icver7pu8",
+                "position": {
+                    "x": 716,
+                    "y": 593
+                },
+                "zIndex": 5
+            }
+        ],
+        "edges": [
+            {
+                "sourceAnchor": "2",
+                "targetAnchor": "0",
+                "shape": "common-edge",
+                "id": "edge1icves12ta",
+                "source": "node_1icvce94h2",
+                "zIndex": 6,
+                "target": "node_1icveqkol6"
+            },
+            {
+                "sourceAnchor": "1",
+                "targetAnchor": "3",
+                "shape": "common-edge",
+                "id": "edge1icvesh0bc",
+                "source": "node_1icvce94h2",
+                "zIndex": 7,
+                "target": "node_1icveqe075"
+            },
+            {
+                "sourceAnchor": "2",
+                "targetAnchor": "0",
+                "shape": "common-edge",
+                "id": "edge1icvetq45d",
+                "source": "node_1icveqe075",
+                "zIndex": 8,
+                "target": "node_1icver06o7"
+            },
+            {
+                "sourceAnchor": "2",
+                "targetAnchor": "0",
+                "shape": "common-edge",
+                "id": "edge1icvetug3e",
+                "source": "node_1icver06o7",
+                "zIndex": 9,
+                "target": "node_1icver7pu8"
+            },
+            {
+                "sourceAnchor": "2",
+                "targetAnchor": "3",
+                "shape": "common-edge",
+                "id": "edge1icveu4n7f",
+                "source": "node_1icveqkol6",
+                "zIndex": 10,
+                "target": "node_1icver7pu8"
+            }
+        ]
+    };
+
+    const ANCHOR_MAP = [
+        { name: "1", direction: [1, 0] },
+        { name: "3", direction: [-1, 0] },
+        { name: "0", direction: [0, -1] },
+        { name: "2", direction: [0, 1] }
+    ]
+    const MARGIN = 10; // 折线进入和离开拐点与节点间的距离
+
+    // 定义画布大小
+    const width = 2640;
+    const height = 1400;
+    const centerX = width / 2;
+    const centerY = height / 2;
+
+    // 创建一个 SVG 元素
+    const svg = d3.create("svg")
+        .attr("width", width)
+        .attr("height", height);
+
+    // svg 元素添加到容器中
+    container.node().appendChild(svg.node());
+
+    // 布局节点
+    const nodes = svg.selectAll('.org-node').data(data.nodes)
+        .enter()
+        .append('g')
+        .attr('class', 'org-node')
+        .attr('transform', d => {
+            const { x, y } = d.position;
+            const { width, height } = d.size;
+            return `translate(${centerX + x - width / 2},${centerY + y - height / 2})`
+        })
+
+    // 图片
+    nodes.append('rect')
+        .attr('width', d => d.size.width)
+        .attr('height', d => d.size.height)
+        .attr('fill', 'blue')
+    // 文本
+    nodes.append('text')
+        .text(d => d.id)
+
+    // 布局连线
+    const edges = svg.selectAll('.org-edge').data(data.edges)
+        .enter()
+        .append('g')
+        .attr('class', 'org-edge')
+        .append('path')
+        .attr('d', d => {
+            const { source, target, sourceAnchor, targetAnchor } = d;
+            const sourceNode = data.nodes.find(node => node.id === source);
+            const targetNode = data.nodes.find(node => node.id === target);
+            const sourceAnchorPosition = getNodeAnchorPosition(sourceNode, sourceAnchor);
+            const targetAnchorPosition = getNodeAnchorPosition(targetNode, targetAnchor);
+
+            // 计算折线
+            const [startX, startY] = [centerX + sourceAnchorPosition.x, centerY + sourceAnchorPosition.y];
+            const [endX, endY] = [centerX + targetAnchorPosition.x, centerY + targetAnchorPosition.y];
+            const points = generateConnectionPoints({
+                entryPoint: [startX, startY],
+                entryDirection: ANCHOR_MAP.find(v => v.name == sourceAnchor).direction,
+                entryExt: MARGIN,
+                exitPoint: [endX, endY],
+                exitDirection: ANCHOR_MAP.find(v => v.name == targetAnchor).direction,
+                exitExt: MARGIN,
+            });
+            const linePath = getConnectionPath(points, 0);
+            return linePath
+        })
+        .attr('stroke', 'black')
+        .attr('stroke-width', 2)
+        .attr('fill', 'transparent')
+
+
+    function getNodeAnchorPosition(node, anchor) {
+        const { width, height } = node.size;
+        const { x, y } = node.position;
+        switch (anchor) {
+            case "0": // 上
+                return { x: x, y: y - height / 2 };
+            case "1": // 下
+                return { x: x + width / 2, y: y };
+            case "2": // 左
+                return { x: x, y: y + height / 2 };
+            case "3": // 右
+                return { x: x - width / 2, y: y };
+        }
+    }
+
+</script>
