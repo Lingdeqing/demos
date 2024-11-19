@@ -1,7 +1,27 @@
 <!DOCTYPE html>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        padding: 10px;
+    }
+
+    #container {
+        position: relative;
+    }
+
+    svg,
+    canvas {
+        display: block;
+    }
+</style>
 <div id="container"></div>
 <script src="d3@7.js"></script>
 <script src="./connection-straight.js"></script>
+<script src="./fly-line.js"></script>
 <script type="module">
     const container = d3.select("#container");
     const data = {
@@ -112,42 +132,42 @@
                 "zIndex": 6,
                 "target": "node_1icveqkol6"
             },
-            {
-                "sourceAnchor": "1",
-                "targetAnchor": "3",
-                "shape": "common-edge",
-                "id": "edge1icvesh0bc",
-                "source": "node_1icvce94h2",
-                "zIndex": 7,
-                "target": "node_1icveqe075"
-            },
-            {
-                "sourceAnchor": "2",
-                "targetAnchor": "0",
-                "shape": "common-edge",
-                "id": "edge1icvetq45d",
-                "source": "node_1icveqe075",
-                "zIndex": 8,
-                "target": "node_1icver06o7"
-            },
-            {
-                "sourceAnchor": "2",
-                "targetAnchor": "0",
-                "shape": "common-edge",
-                "id": "edge1icvetug3e",
-                "source": "node_1icver06o7",
-                "zIndex": 9,
-                "target": "node_1icver7pu8"
-            },
-            {
-                "sourceAnchor": "2",
-                "targetAnchor": "3",
-                "shape": "common-edge",
-                "id": "edge1icveu4n7f",
-                "source": "node_1icveqkol6",
-                "zIndex": 10,
-                "target": "node_1icver7pu8"
-            }
+            // {
+            //     "sourceAnchor": "1",
+            //     "targetAnchor": "3",
+            //     "shape": "common-edge",
+            //     "id": "edge1icvesh0bc",
+            //     "source": "node_1icvce94h2",
+            //     "zIndex": 7,
+            //     "target": "node_1icveqe075"
+            // },
+            // {
+            //     "sourceAnchor": "2",
+            //     "targetAnchor": "0",
+            //     "shape": "common-edge",
+            //     "id": "edge1icvetq45d",
+            //     "source": "node_1icveqe075",
+            //     "zIndex": 8,
+            //     "target": "node_1icver06o7"
+            // },
+            // {
+            //     "sourceAnchor": "2",
+            //     "targetAnchor": "0",
+            //     "shape": "common-edge",
+            //     "id": "edge1icvetug3e",
+            //     "source": "node_1icver06o7",
+            //     "zIndex": 9,
+            //     "target": "node_1icver7pu8"
+            // },
+            // {
+            //     "sourceAnchor": "2",
+            //     "targetAnchor": "3",
+            //     "shape": "common-edge",
+            //     "id": "edge1icveu4n7f",
+            //     "source": "node_1icveqkol6",
+            //     "zIndex": 10,
+            //     "target": "node_1icver7pu8"
+            // }
         ]
     };
 
@@ -198,7 +218,9 @@
         .enter()
         .append('g')
         .attr('class', 'org-edge')
-        .append('path')
+
+    // 绘制连线
+    edges.append('path')
         .attr('d', d => {
             const { source, target, sourceAnchor, targetAnchor } = d;
             const sourceNode = data.nodes.find(node => node.id === source);
@@ -218,11 +240,46 @@
                 exitExt: MARGIN,
             });
             const linePath = getConnectionPath(points, 0);
+            d.points = points; // 保存折线端点信息，用来绘制飞线动画
             return linePath
         })
         .attr('stroke', 'black')
         .attr('stroke-width', 2)
         .attr('fill', 'transparent')
+
+    // 绘制飞线动画  
+    edges
+        .append('foreignObject')
+        .each(d => {
+            // 提前计算好飞线框尺寸和位置
+            let left = Infinity, right = -Infinity, top = Infinity, bottom = -Infinity
+            for (let point of d.points) {
+                const [x, y] = point.position
+                left = Math.min(x, left)
+                top = Math.min(y, top)
+                right = Math.max(x, right)
+                bottom = Math.max(y, bottom)
+            }
+
+            d.edgeRect = {
+                x: left,
+                y: top,
+                w: right - left,
+                h: bottom - top
+            }
+
+        })
+        .attr('width', (d) => d.edgeRect.w)
+        .attr('height', (d) => d.edgeRect.h)
+        .attr('transform', d => `translate(${d.edgeRect.x},${d.edgeRect.y})`)
+        .style('overflow', 'visible')
+        .html(
+            (d) => `
+      <canvas width="${d.edgeRect.w*window.devicePixelRatio}" height="${d.edgeRect.h*window.devicePixelRatio}" style="display:block;width: ${d.edgeRect.w}px; height: ${d.edgeRect.h}px;" />
+    `
+        );
+        // todo
+        
 
 
     function getNodeAnchorPosition(node, anchor) {
@@ -240,4 +297,137 @@
         }
     }
 
+    // 测试飞线
+    function flyLineDemo() {
+        const SPEED = 0.005 // 每一帧走千分之五
+        const FLY_LINE_LENGTH = 80 // 飞线长度
+        // 创建一个 canvas 元素
+        const dpr = window.devicePixelRatio || 1
+        const canvasWidth = width * dpr
+        const canvasHeight = height * dpr
+        const canvas = d3.create("canvas")
+            .attr("width", canvasWidth)
+            .attr("height", canvasHeight)
+            .attr('style', `width:${width}px;height:${height}px;`)
+
+        // canvas 元素添加到容器中
+        document.body.appendChild(canvas.node());
+        const canvasNode = canvas.node()
+        const context = canvasNode.getContext('2d')
+
+        // 创建渐变
+        function createGradient(context, p0, p1) {
+            const gradient = context.createLinearGradient(p0.x, p0.y, p1.x, p1.y);
+            gradient.addColorStop(0, "rgba(255, 0, 255, 0)");
+            gradient.addColorStop(1, "rgba(255, 0, 255, 1)");
+            return gradient;
+        }
+        // 绘制移动的飞线
+        function createMoveLine(points) {
+            const gradient = createGradient(
+                context,
+                points[0],
+                points[points.length - 1]
+            );
+
+            context.beginPath();
+            context.moveTo(points[0].x, points[0].y);
+
+            // 参数 points 是曲线上一部分连续点的集合，我们用 lineTo 把这些点连结起来，就近似的得到了曲线
+            for (let i = 0; i < points.length; i++) {
+                const p = points[i];
+                context.lineTo(p.x, p.y);
+            }
+
+            context.moveTo(points[0].x, points[0].y);
+            context.strokeStyle = gradient;
+            context.lineCap = "round";
+            context.lineWidth = 10;
+            context.shadowColor = "rgba(255, 255, 0, 1)";
+            context.shadowBlur = 5;
+            context.stroke();
+        }
+        // 绘制轨道线
+        function createTrackLine(points) {
+
+            context.beginPath();
+            context.moveTo(points[0].x, points[0].y);
+
+            // 参数 points 是曲线上一部分连续点的集合，我们用 lineTo 把这些点连结起来，就近似的得到了曲线
+            for (let i = 0; i < points.length; i++) {
+                const p = points[i];
+                context.lineTo(p.x, p.y);
+            }
+
+            context.moveTo(points[0].x, points[0].y);
+            context.strokeStyle = "black";
+            context.lineCap = "round";
+            context.lineWidth = 3;
+            context.shadowColor = "rgba(255, 255, 0, 1)";
+            context.shadowBlur = 5;
+            context.stroke();
+        }
+
+        let t0 = 0;
+        const P0 = {
+            x: 100,
+            y: 100,
+        };
+
+        const P1 = {
+            x: 600,
+            y: 300,
+        };
+        const POINTS = [
+            {
+                x: 100,
+                y: 100,
+            },
+            {
+                x: 500,
+                y: 100,
+            },
+            {
+                x: 500,
+                y: 120,
+            },
+            {
+                x: 520,
+                y: 120,
+            },
+            {
+                x: 520,
+                y: 100,
+            },
+            {
+                x: 540,
+                y: 100,
+            },
+        ]
+
+        function drawFlyLine() {
+            context.clearRect(0, 0, canvasWidth, canvasHeight);
+
+            context.save();
+            createTrackLine(POINTS)
+            context.restore();
+
+            const { movePoints, finishTime } = computeMultiLinePoints(POINTS, t0, FLY_LINE_LENGTH)
+
+            context.save();
+            createMoveLine(movePoints);
+            context.restore();
+            t0 += SPEED;
+
+            if (t0 > finishTime) {
+                // 回到起点
+                t0 = 0
+            }
+
+            requestAnimationFrame(drawFlyLine);
+        }
+
+        drawFlyLine();
+    }
+    flyLineDemo();
 </script>
