@@ -21,7 +21,7 @@
 <div id="container"></div>
 <script src="d3@7.js"></script>
 <script src="./connection-straight.js"></script>
-<script src="./fly-line.js"></script>
+<script src="./move-line.js"></script>
 <script type="module">
     const container = d3.select("#container");
     const data = {
@@ -178,8 +178,8 @@
         { name: "2", direction: [0, 1] }
     ]
     const MARGIN = 10; // 折线进入和离开拐点与节点间的距离
-    const FLY_LINE_LENGTH = 80 // 飞线长度
-    const FLY_LINE_WIDTH = 10 // 飞线宽度
+    const MOVE_LINE_LENGTH = 80 // 飞线长度
+    const MOVE_LINE_WIDTH = 10 // 飞线宽度
 
     // 定义画布大小
     const width = 2640;
@@ -264,10 +264,10 @@
             }
 
             d.edgeRect = {
-                x: left - FLY_LINE_WIDTH, // 留出飞线宽度，让飞线有一个边距
-                y: top - FLY_LINE_WIDTH,
-                w: right - left + 2 * FLY_LINE_WIDTH,
-                h: bottom - top + 2 * FLY_LINE_WIDTH,
+                x: left - MOVE_LINE_WIDTH, // 留出飞线宽度，让飞线有一个边距
+                y: top - MOVE_LINE_WIDTH,
+                w: right - left + 2 * MOVE_LINE_WIDTH,
+                h: bottom - top + 2 * MOVE_LINE_WIDTH,
             }
 
         })
@@ -294,11 +294,11 @@
                 y -= d.edgeRect.y
                 return { x, y }
             })
-            drawEdgeFlyLine({
+            drawEdgeMoveLine({
                 canvas,
                 points,
-                lineWidth: FLY_LINE_WIDTH,
-                lineLength: FLY_LINE_LENGTH,
+                lineWidth: MOVE_LINE_WIDTH,
+                lineLength: MOVE_LINE_LENGTH,
             });
         })
 
@@ -320,15 +320,15 @@
     }
 
     // 绘制架构图飞线
-    function drawEdgeFlyLine({
+    function drawEdgeMoveLine({
         canvas,
         points,
         lineLength = 80,
         lineWidth = 10,
     }) {
         const SPEED = 0.005 // 飞线速度，每一帧走千分之五
-        const FLY_LINE_LENGTH = lineLength // 飞线长度
-        const FLY_LINE_WIDTH = lineWidth // 飞线宽度
+        const MOVE_LINE_LENGTH = lineLength // 飞线长度
+        const MOVE_LINE_WIDTH = lineWidth // 飞线宽度
         const dpr = window.devicePixelRatio || 1
         const canvasWidth = canvas.width / dpr
         const canvasHeight = canvas.height / dpr
@@ -336,46 +336,17 @@
         let t0 = 0; // 飞线运动当前时刻 [0, 1.xx] 1 对应飞线起点走完运动轨道
         const POINTS = points // 运动轨道点集合
 
-        // 创建渐变
-        function createGradient(context, p0, p1) {
-            const gradient = context.createLinearGradient(p0.x, p0.y, p1.x, p1.y);
-            gradient.addColorStop(0, "rgba(255, 0, 255, 0)");
-            gradient.addColorStop(1, "rgba(255, 0, 255, 1)");
-            return gradient;
-        }
-        // 绘制移动的飞线
-        function createMoveLine(points) {
-            const gradient = createGradient(
-                context,
-                points[0],
-                points[points.length - 1]
-            );
-
-            context.beginPath();
-            context.moveTo(points[0].x, points[0].y);
-
-            // 参数 points 是曲线上一部分连续点的集合，我们用 lineTo 把这些点连结起来，就近似的得到了曲线
-            for (let i = 0; i < points.length; i++) {
-                const p = points[i];
-                context.lineTo(p.x, p.y);
-            }
-
-            context.moveTo(points[0].x, points[0].y);
-            context.strokeStyle = gradient;
-            context.lineCap = "round";
-            context.lineWidth = FLY_LINE_WIDTH;
-            context.shadowColor = "rgba(255, 255, 0, 1)";
-            context.shadowBlur = 5;
-            context.stroke();
-        }
-
         function draw() {
             context.clearRect(0, 0, canvasWidth, canvasHeight);
 
-            const { movePoints, finishTime } = computeMultiLinePoints(POINTS, t0, FLY_LINE_LENGTH)
+            const { movePoints, finishTime } = computeMultiLinePoints({
+                points: POINTS,
+                t: t0,
+                trailLength: MOVE_LINE_LENGTH,
+            })
 
             context.save();
-            createMoveLine(movePoints);
+            drawMoveLine(context, movePoints);
             context.restore();
             t0 += SPEED;
 
@@ -393,9 +364,9 @@
 
 
     // 测试飞线
-    function flyLineDemo() {
+    function moveLineDemo() {
         const SPEED = 0.005 // 每一帧走千分之五
-        const FLY_LINE_LENGTH = 80 // 飞线长度
+        const MOVE_LINE_LENGTH = 80 // 飞线长度
         // 创建一个 canvas 元素
         const dpr = window.devicePixelRatio || 1
         const canvasWidth = width * dpr
@@ -410,38 +381,6 @@
         const canvasNode = canvas.node()
         const context = canvasNode.getContext('2d')
 
-        // 创建渐变
-        function createGradient(context, p0, p1) {
-            const gradient = context.createLinearGradient(p0.x, p0.y, p1.x, p1.y);
-            gradient.addColorStop(0, "rgba(255, 0, 255, 0)");
-            gradient.addColorStop(1, "rgba(255, 0, 255, 1)");
-            return gradient;
-        }
-        // 绘制移动的飞线
-        function createMoveLine(points) {
-            const gradient = createGradient(
-                context,
-                points[0],
-                points[points.length - 1]
-            );
-
-            context.beginPath();
-            context.moveTo(points[0].x, points[0].y);
-
-            // 参数 points 是曲线上一部分连续点的集合，我们用 lineTo 把这些点连结起来，就近似的得到了曲线
-            for (let i = 0; i < points.length; i++) {
-                const p = points[i];
-                context.lineTo(p.x, p.y);
-            }
-
-            context.moveTo(points[0].x, points[0].y);
-            context.strokeStyle = gradient;
-            context.lineCap = "round";
-            context.lineWidth = 10;
-            context.shadowColor = "rgba(255, 255, 0, 1)";
-            context.shadowBlur = 5;
-            context.stroke();
-        }
         // 绘制轨道线
         function createTrackLine(points) {
 
@@ -491,17 +430,21 @@
             },
         ]
 
-        function drawFlyLine() {
+        function draw() {
             context.clearRect(0, 0, canvasWidth, canvasHeight);
 
             context.save();
             createTrackLine(POINTS)
             context.restore();
 
-            const { movePoints, finishTime } = computeMultiLinePoints(POINTS, t0, FLY_LINE_LENGTH)
+            const { movePoints, finishTime } = computeMultiLinePoints({
+                points: POINTS,
+                t: t0,
+                trailLength: MOVE_LINE_LENGTH,
+            })
 
             context.save();
-            createMoveLine(movePoints);
+            drawMoveLine(context, movePoints);
             context.restore();
             t0 += SPEED;
 
@@ -510,10 +453,10 @@
                 t0 = 0
             }
 
-            requestAnimationFrame(drawFlyLine);
+            requestAnimationFrame(draw);
         }
 
-        drawFlyLine();
+        draw();
     }
-    flyLineDemo();
+    moveLineDemo();
 </script>
