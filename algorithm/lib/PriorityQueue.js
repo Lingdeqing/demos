@@ -7,7 +7,7 @@ module.exports = class PriorityQueue {
         this._less = less
     }
     parent(root) {
-        return Math.floor(root / 2)
+        return root >> 1
     }
     left(root) {
         return root * 2
