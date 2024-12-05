@@ -1,3 +1,4 @@
+// https://labuladong.online/algo/essential-technique/binary-search-framework/
 /**
  * @param {number[]} nums
  * @param {number} target

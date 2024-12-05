@@ -1,22 +1,41 @@
-// https://leetcode.cn/problems/add-two-numbers/
-function addTwoNumbers(l1, l2) {
-    let p = l1, q = l2, carry = 0, res = { next: null }, cur = res;
-    while (p || q || carry) {
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+var addTwoNumbers = function (l1, l2) {
+    const l3 = { next: null }
+    let carry = 0;
+    let p = l3;
+    while (l1 || l2) {
         let sum = carry
-        if (p) {
-            sum += p.val;
-            p = p.next;
+        if (l1) {
+            sum += l1.val
+            l1 = l1.next
         }
-        if (q) {
-            sum += q.val;
-            q = q.next;
+        if (l2) {
+            sum += l2.val
+            l2 = l2.next
         }
-        carry = ~~(sum / 10)
-        cur.next = {
+        carry = Math.floor(sum / 10)
+        p.next = {
             val: sum % 10,
             next: null
         }
-        cur = cur.next
+        p = p.next
     }
-    return res.next
-}
+    if (carry) {
+        p.next = {
+            val: carry,
+            next: null
+        }
+    }
+    return l3.next
+};
