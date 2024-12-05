@@ -1,12 +1,14 @@
-// https://leetcode.cn/problems/two-sum/
-function twoSum(nums, target) {
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function (nums, target) {
     const map = new Map()
-    for (let i = 0, num; i < nums.length; i++) {
-        num = nums[i];
-        if (map.has(target - num)) {
-            return [map.get(target - num), i]
+    for (let i = 0; i < nums.length; i++) {
+        if (map.has(target - nums[i])) {
+            return [map.get(target - nums[i]), i]
         }
-        map.set(num, i)
+        map.set(nums[i], i)
     }
-    return []
-}
+};
