@@ -1,6 +1,6 @@
-class TrieNode {
-    isKey = false
-    children = new Array(26).fill(null)
+function TrieNode() {
+    this.isKey = false
+    this.children = new Array(26).fill(null)
 }
 var Trie = function () {
     this.root = new TrieNode()
