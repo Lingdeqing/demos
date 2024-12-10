@@ -1,6 +1,8 @@
 var maxPathSum = function (root) {
 
     let res = -Infinity;
+
+    //  返回以root节点为起点向下的最大路径值
     function dfs(root) {
         if (!root) return 0;
 

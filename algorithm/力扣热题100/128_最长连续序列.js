@@ -17,21 +17,24 @@ var longestConsecutive = function (nums) {
     return res
 };
 
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
 var longestConsecutive = function (nums) {
-    const set = new Set(nums);
+    const set = new Set(nums)
     let res = 0
-    for (let n of set) {
-        if (set.has(n - 1)) continue
+    for (let num of set) {
+        if (set.has(num - 1)) continue;
 
-        let len = 1;
-        let cur = n;
-        while (set.has(cur + 1)) {
-            cur++
-            len++
+        let counter = 1;
+        while (set.has(num + 1)) {
+            num++
+            counter++
         }
-        res = Math.max(len, res)
+        res = Math.max(res, counter)
     }
-    return res;
+    return res
 };
 
 longestConsecutive([1, 2, 0, 1])
