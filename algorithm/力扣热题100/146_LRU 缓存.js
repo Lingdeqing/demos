@@ -22,10 +22,8 @@ LRUCache.prototype.get = function (key) {
  * @return {void}
  */
 LRUCache.prototype.put = function (key, value) {
-    if (this.cache.has(key)) {
-        this._setRecent(key)
-    }
     this.cache.set(key, value)
+    this._setRecent(key)
     if (this.cache.size > this.capacity) {
         this.cache.delete(this.cache.keys().next().value)
     }
