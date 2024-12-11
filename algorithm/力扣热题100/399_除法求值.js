@@ -57,3 +57,43 @@ console.log(calcEquation([["a", "b"], ["b", "c"]],
     [2.0, 3.0],
     [["a", "c"], ["b", "a"], ["a", "e"], ["a", "a"], ["x", "x"]]
 ))
+
+
+// dfs
+var calcEquation = function (equations, values, queries) {
+    const adjList = new Map()
+    for (let i = 0; i < equations.length; i++) {
+        const [a, b] = equations[i]
+        if (!adjList.has(a)) adjList.set(a, [])
+        adjList.get(a).push({
+            name: b,
+            val: values[i]
+        })
+        if (!adjList.has(b)) adjList.set(b, [])
+        adjList.get(b).push({
+            name: a,
+            val: 1 / values[i]
+        })
+    }
+    function dfs(start, end, product, visited) {
+        if (!adjList.has(start) || !adjList.has(end)) return -1
+        if (start === end) {
+            return product
+        }
+        visited[start] = true
+        for (let next of adjList.get(start)) {
+            if (visited[next.name]) continue
+            const subRes = dfs(next.name, end, product * next.val, visited)
+            if (subRes !== -1) {
+                return subRes
+            }
+        }
+        return -1
+    }
+
+    const res = []
+    for (let [a, b] of queries) {
+        res.push(dfs(a, b, 1, {}))
+    }
+    return res
+}
