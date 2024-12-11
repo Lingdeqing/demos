@@ -17,19 +17,14 @@ var moveZeroes = function (nums) {
     }
     recur(nums, 0)
 };
-
-var moveZeroes2 = function (nums) {
-    let slow = 0, fast = 0;
-    while (fast < nums.length) {
-        if (nums[fast] !== 0) {
-            nums[slow] = nums[fast]
-            slow++
+// 快慢指针
+var moveZeroes = function (nums) {
+    let i = 0, j = 0;
+    while (j < nums.length) {
+        if (nums[j] !== 0) {
+            [nums[i], nums[j]] = [nums[j], nums[i]];
+            i++;
         }
-        fast++;
+        j++
     }
-
-    while (slow < nums.length) {
-        nums[slow] = 0;
-        slow++
-    }
-};
+}

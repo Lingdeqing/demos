@@ -12,19 +12,18 @@
  */
 var rob = function (root) {
     const memo = new Map()
-    // dp[node] 表示以node为根节点的最大收益
-    function dp(node) {
-        if (!node) return 0
-
-        if (memo.has(node)) return memo.get(node)
-
+    function dp(root) {
+        if (!root) return 0;
+        if (memo.has(root)) return memo.get(root)
         const res = Math.max(
-            dp(node.left) + dp(node.right),
-            node.val + (node.left ? dp(node.left.left) + dp(node.left.right) : 0)
-            + (node.right ? dp(node.right.left) + dp(node.right.right) : 0)
+            // 当前不偷
+            dp(root.left) + dp(root.right),
+            // 当前偷
+            root.val + (root.left ? dp(root.left.left) + dp(root.left.right) : 0)
+            + (root.right ? dp(root.right.left) + dp(root.right.right) : 0),
         )
-        memo.set(node, res)
+        memo.set(root, res)
         return res
     }
     return dp(root)
-};
+}
