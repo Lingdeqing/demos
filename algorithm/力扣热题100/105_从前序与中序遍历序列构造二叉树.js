@@ -13,32 +13,16 @@
  */
 var buildTree = function (preorder, inorder) {
     const val2Index = new Map()
-    for (let index = 0; index < inorder.length; index++) {
-        val2Index.set(inorder[index], index)
-    }
+    inorder.forEach((val, index) => val2Index.set(val, index))
+
     function dfs(preStart, preEnd, inStart, inEnd) {
-        if (preStart < 0 || preStart >= preorder.length || preStart > preEnd) return null
-        const root = {
+        if (preStart > preEnd) return null
+        const index = val2Index.get(preorder[preStart])
+        return {
             val: preorder[preStart],
-            left: null,
-            right: null
+            left: dfs(preStart + 1, preStart + 1 + (index - inStart) - 1, inStart, index - 1),
+            right: dfs(preStart + 1 + (index - inStart), preEnd, index + 1, inEnd)
         }
-        const i = val2Index.get(root.val)
-        const leftNum = i - inStart
-        const rightNum = inEnd - i
-        root.left = dfs(
-            preStart + 1,
-            preStart + 1 + leftNum - 1,
-            inStart,
-            i - 1
-        )
-        root.right = dfs(
-            preStart + 1 + leftNum,
-            preStart + 1 + leftNum + rightNum - 1,
-            i + 1,
-            inEnd
-        )
-        return root
     }
-    return dfs(0, preorder.length - 1, 0, inorder.length - 1)
-};
+    return dfs(0, preorder.length - 1, 0, preorder.length - 1)
+}
