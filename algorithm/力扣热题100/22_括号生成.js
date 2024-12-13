@@ -4,18 +4,17 @@
  */
 var generateParenthesis = function (n) {
     const res = []
-    function bt(i, str, left, right) {
-        if (left === n && right === n) {
-            res.push(str)
+    function bt(validStr, left, right) {
+        if (left < 0 || right < 0 || left > right) return
+
+        if (left === 0 && right === 0) {
+            res.push(validStr)
             return
         }
-        if (left < n) {
-            bt(i + 1, str + '(', left + 1, right)
-        }
-        if (left > 0 && right < left) {
-            bt(i + 1, str + ')', left, right + 1)
-        }
+
+        bt(validStr + '(', left - 1, right)
+        bt(validStr + ')', left, right - 1)
     }
-    bt(0, '', 0, 0)
+    bt('', n, n)
     return res
-};
+}
