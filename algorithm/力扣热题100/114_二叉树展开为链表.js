@@ -12,19 +12,15 @@
  */
 var flatten = function (root) {
     if (!root) return null
-    const left = flatten(root.left)
-    let leftTail = left;
-    while (leftTail && leftTail.right) {
-        leftTail = leftTail.right
-    }
-    const right = flatten(root.right)
 
-    if (leftTail) {
-        leftTail.right = right
+    let left = flatten(root.left)
+    let right = flatten(root.right)
+    if (left) {
         root.right = left
-    } else {
-        root.right = right
+        root.left = null
+        while (left && left.right) left = left.right  //找到左子树链表的尾巴指向右子树链表
+        left.right = right
     }
-    root.left = null
+
     return root
-};
+}
