@@ -10,37 +10,28 @@ var minWindow = function (s, t) {
     }
 
     const win = new Map()
-    let i = 0, j = 0;
-    let valid = 0;
-    let res = Infinity, start = 0, end = 0
+    let valid = 0
+    let i = 0, j = 0
+    let res = '', minLen = Infinity
     while (j < s.length) {
         if (need.has(s[j])) {
             win.set(s[j], (win.get(s[j]) || 0) + 1)
-            if (win.get(s[j]) === need.get(s[j])) {
-                valid++
-            }
+            if (win.get(s[j]) === need.get(s[j])) valid++
         }
-        j++
+        j++;
 
         while (valid === need.size) {
-            if (j - i < res) {
-                res = j - i
-                start = i
-                end = j
+            if (minLen > j - i) {
+                res = s.slice(i, j)
+                minLen = j - i
             }
-
             if (need.has(s[i])) {
-                if (win.get(s[i]) === need.get(s[i])) {
-                    valid--
-                }
-                win.set(s[i], win.get(s[i]) - 1)
+                if (win.get(s[i]) === need.get(s[i])) valid--
+                win.set(s[i], (win.get(s[i]) || 0) - 1)
             }
             i++
         }
     }
-    return res === Infinity ? '' : s.slice(start, end)
-};
 
-console.log(minWindow("ADOBECODEBANC",
-    "ABC"
-))
+    return res
+}

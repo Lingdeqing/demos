@@ -11,14 +11,11 @@
  * @return {boolean}
  */
 var isSymmetric = function (root) {
-    if (!root) return true
-    function dfs(p, q) {
-        if (!p && !q) return true
-        if ((p && !q) || (!p && q)) {
-            return false
-        }
-        if (p.val !== q.val) return false
-        return dfs(p.left, q.right) && dfs(p.right, q.left)
+    function dfs(root1, root2) {
+        if (!root1 && !root2) return true
+        if (!root1 || !root2) return false
+        if (root1.val !== root2.val) return false
+        return dfs(root1.left, root2.right) && dfs(root1.right, root2.left)
     }
-    return dfs(root.left, root.right)
-};
+    return dfs(root, root)
+}

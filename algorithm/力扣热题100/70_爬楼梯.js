@@ -1,11 +1,10 @@
-/**
- * @param {number} n
- * @return {number}
- */
-const memo = {}
+
 var climbStairs = function (n) {
-    if (n <= 1) return 1
-    if (memo[n]) return memo[n]
-    memo[n] = climbStairs(n - 1) + climbStairs(n - 2)
-    return memo[n]
-};
+    const memo = {}
+    // n阶有多少种方法
+    function dp(n) {
+        if (n <= 1) return 1
+        return memo[n] || (memo[n] = dp(n - 1) + dp(n - 2))
+    }
+    return dp(n)
+}
