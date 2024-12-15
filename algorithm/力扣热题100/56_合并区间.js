@@ -4,13 +4,8 @@
  */
 var merge = function (intervals) {
 
-    // 起点递增，终点递减
-    intervals.sort((a, b) => {
-        if (a[0] === b[0]) {
-            return b[1] - a[1]
-        }
-        return a[0] - b[0]
-    })
+    // 起点递增
+    intervals.sort((a, b) => a[0] - b[0])
 
     const res = []
     for (let range of intervals) {

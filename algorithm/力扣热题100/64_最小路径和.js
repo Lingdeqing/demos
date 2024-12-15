@@ -21,3 +21,23 @@ var minPathSum = function (grid) {
     }
     return dp[grid.length - 1][grid[0].length - 1]
 };
+
+
+
+var minPathSum = function (grid) {
+    const memo = new Map()
+    // 从(i,j)到右下角的最小和
+    function dp(i, j) {
+        if (i >= grid.length || j >= grid[0].length) return Infinity
+        if (i === grid.length - 1 && j === grid[0].length - 1) return grid[i][j]
+        const key = i + ',' + j
+        if (memo.has(key)) return memo.get(key)
+
+        const res = Math.min(dp(i + 1, j),
+            dp(i, j + 1)) + grid[i][j]
+        memo.set(key, res)
+        return res
+    }
+
+    return dp(0, 0)
+}

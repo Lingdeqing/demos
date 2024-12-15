@@ -8,5 +8,5 @@ var canJump = function (nums) {
         if (i > max) return false
         max = Math.max(max, i + nums[i])
     }
-    return max >= nums.length - 1
-};
+    return true
+}
