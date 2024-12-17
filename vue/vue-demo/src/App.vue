@@ -1,17 +1,23 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <button @click="a=!a">点</button>
+    <HelloWorld v-if="a" msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from './examples/HelloWorld.vue'
 
 export default {
   name: 'app',
   components: {
     HelloWorld
+  },
+  data(){
+    return  {
+      a:true
+    }
   }
 }
 </script>
