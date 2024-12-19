@@ -1,7 +1,3 @@
----
-home: true
-heroImage: null
-heroText: V8引擎中垃圾收集
-tagline: 垃圾收集简单介绍
-actionText: 进入文档 →
-actionLink: /guide/
+<a href="./guide/README.nd">JavaScript中的垃圾收集</a>
+
+<a href="./reactivity/README.nd">V8 的垃圾回收机制</a>
