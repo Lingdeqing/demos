@@ -20,4 +20,24 @@ var wordBreak = function (s, wordDict) {
     return dp(0)
 };
 
+function wordBreak(s: string, wordDict: string[]): boolean {
+    const memo = new Map()
+    // 表示s匹配成功
+    function dp(start) {
+        if (start >= s.length) return true
+        if (memo.has(start)) return memo.get(start)
+        for (let word of wordDict) {
+            if (s[start] === word[0] && s.indexOf(word, start) === start) {
+                if (dp(start + word.length)) {
+                    memo.set(start, true)
+                    return true
+                }
+            }
+        }
+        memo.set(start, false)
+        return false
+    }
+    return dp(0);
+};
+
 wordBreak('leetcode', ["leet", "code"])
