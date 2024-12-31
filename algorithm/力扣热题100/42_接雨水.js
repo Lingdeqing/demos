@@ -29,14 +29,13 @@ var trap = function (height) {
     let leftMax = 0, rightMax = 0
     let res = 0
     while (i <= j) {
-        leftMax = Math.max(leftMax, height[i])
-        rightMax = Math.max(rightMax, height[j])
-
         if (leftMax < rightMax) {
             res += Math.max(0, leftMax - height[i])
+            leftMax = Math.max(leftMax, height[i])
             i++;
         } else {
             res += Math.max(0, rightMax - height[j])
+            rightMax = Math.max(rightMax, height[j])
             j--;
         }
     }
