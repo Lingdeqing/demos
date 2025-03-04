@@ -1,3 +1,7 @@
+// 406. 根据身高重建队列
+// https://leetcode.cn/problems/queue-reconstruction-by-height/
+
+// 题解套路：https://leetcode.cn/problems/queue-reconstruction-by-height/solution/xian-pai-xu-zai-cha-dui-dong-hua-yan-shi-suan-fa-g/
 /**
  * @param {number[][]} people
  * @return {number[][]}

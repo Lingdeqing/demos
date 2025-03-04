@@ -31,18 +31,64 @@ var diameterOfBinaryTree = function (root) {
  * @return {number}
  */
 var diameterOfBinaryTree = function (root) {
-    function dfs1(root) {
+
+    let d = 0, resPath = null
+    function dfs1(root, path) {
         if (!root) return 0
-        return Math.max(dfs1(root.left), dfs1(root.right)) + 1
+        const leftPath = []
+        const rightPath = []
+        const left = dfs1(root.left, leftPath)
+        const right = dfs1(root.right, rightPath)
+        const res = Math.max(left, right) + 1
+
+        path.length = 0
+        path.push(root.val)
+        if (left > right) {
+            path.push(...leftPath)
+        } else {
+            path.push(...rightPath)
+        }
+
+        const curRes = Math.max(d, left + right)
+        if (curRes > d) {
+            d = curRes
+            resPath = [...leftPath.reverse(), root.val, ...rightPath]
+        }
+
+        return res
     }
 
-    let res = 0
-    function dfs2(root) {
-        if (!root) return 0
-        res = Math.max(res, dfs1(root.left) + dfs1(root.right))
-        dfs2(root.left)
-        dfs2(root.right)
-    }
-    dfs2(root)
-    return res
+    dfs1(root, [])
+    console.log(resPath)
+    return d
 }
+
+function deserializeArray(nodes) {
+    const root = {
+        val: nodes.shift()
+    }
+    const queue = [root]
+    while (queue.length && nodes.length) {
+        const node = queue.shift()
+
+        const leftVal = nodes.shift()
+        if (leftVal !== null) {
+            const leftNode = {
+                val: leftVal
+            }
+            node.left = leftNode
+            queue.push(leftNode)
+        }
+
+        const rightVal = nodes.shift()
+        if (rightVal !== null) {
+            const rightNode = {
+                val: rightVal
+            }
+            node.right = rightNode
+            queue.push(rightNode)
+        }
+    }
+    return root
+}
+console.log(diameterOfBinaryTree(deserializeArray([1, 2, 3, 4, 5])))
