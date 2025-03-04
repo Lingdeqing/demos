@@ -14,3 +14,13 @@ var hammingDistance = function (x, y) {
 
     return res
 };
+
+function hammingDistance(x, y) {
+    x ^= y
+    y = 0
+    while (x) {
+        x &= x - 1
+        y++
+    }
+    return y
+}
