@@ -19,6 +19,7 @@ console.log(findDuplicate([2, 1, 1]
 
 ))
 
+// 转换为环形链表入口 https://leetcode.cn/problems/find-the-duplicate-number/solutions/58841/287xun-zhao-zhong-fu-shu-by-kirsche
 var findDuplicate2 = function (nums) {
     let slow = 0, fast = 0
     while (true) {
