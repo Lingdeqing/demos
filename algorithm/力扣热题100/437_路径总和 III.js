@@ -38,12 +38,14 @@ var pathSum = function (root, targetSum) {
     prefixSum.set(0, 1)
     let res = 0
     function dfs(root, sum) {
-        if (prefixSum.has(sum - targetSum)) res += prefixSum.get(sum - targetSum);
+        if (!root) return
+        sum += root.val
+        if (prefixSum.has(sum - targetSum)) res += prefixSum.get(sum - targetSum)
         prefixSum.set(sum, (prefixSum.get(sum) || 0) + 1)
-        if (root.left) dfs(root.left, sum + root.left.val)
-        if (root.right) dfs(root.right, sum + root.right.val)
+        dfs(root.left, sum)
+        dfs(root.right, sum)
         prefixSum.set(sum, (prefixSum.get(sum) || 0) - 1)
     }
-    if (root) dfs(root, root.val)
+    dfs(root, 0)
     return res
 }
