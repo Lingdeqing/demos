@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="../node_modules/ethers/dist/ethers.umd.js"></script>
+    <script>
+        const { BrowserProvider, Wallet, id, parseEther } = ethers
+        async function test() {
+            // Connect to the MetaMask EIP-1193 object. This is a standard
+            // protocol that allows Ethers access to make all read-only
+            // requests through MetaMask.
+            // provider用来读链
+            const provider = new BrowserProvider(window.ethereum)
+
+            // 账号创建
+            const signer = new Wallet('', provider); // 这个私钥测试得换成主网真实账号
+
+            // 发送交易
+            const tx = await signer.sendTransaction({
+                to: "0xc18a95FEbBA0a4ae65c0Cc2931094fF7C8995e3F",
+                value: parseEther("0.000100000663367633"),
+
+            });
+            console.log('tx:', tx)
+
+            // 等待区块发布完成
+            const receipt = await tx.wait();
+            console.log('receipt:', receipt)
+        }
+        test()
+    </script>
+</body>
+
+</html>

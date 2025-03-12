@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="../node_modules/ethers/dist/ethers.umd.js"></script>
+    <script>
+        async function test() {
+            // Connect to the MetaMask EIP-1193 object. This is a standard
+            // protocol that allows Ethers access to make all read-only
+            // requests through MetaMask.
+            // provider用来读链
+            const provider = new ethers.BrowserProvider(window.ethereum)
+
+            // 获取最大区块号
+            const blockNum = await provider.getBlockNumber()
+
+            // 获取MetaMask以太坊账号余额
+            const balance = await provider.getBalance("ethers.eth")
+
+            // 获取交易次数
+            const nonce = await provider.getTransactionCount("ethers.eth")
+            console.log(blockNum)
+            console.log(balance)
+            console.log(nonce)
+        }
+        test()
+    </script>
+</body>
+
+</html>
