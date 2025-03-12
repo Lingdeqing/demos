@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="../node_modules/ethers/dist/ethers.umd.js"></script>
+    <script>
+        const { BrowserProvider, Wallet, id, parseEther, Contract } = ethers
+        async function test() {
+            // Connect to the MetaMask EIP-1193 object. This is a standard
+            // protocol that allows Ethers access to make all read-only
+            // requests through MetaMask.
+            // provider用来读链
+            const provider = new BrowserProvider(window.ethereum)
+
+            const abi = [
+                'function symbol() view returns (string)',
+                'function totalSupply() view returns (uint256)'
+            ];
+
+            // 实例化合约
+            const contract = new Contract('0x1f9840a85d5af5bf1d1762f925bdaddc4201f984', abi, provider)
+            // 调用call方法
+            const symbol = await contract.symbol()
+            console.log('Uniswap symbol:', symbol);
+            // 调用totalSupply方法
+            const totalSupply = await contract.totalSupply()
+            console.log('Uniswap Total supply:', totalSupply);
+        }
+        test()
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="../node_modules/ethers/dist/ethers.umd.js"></script>
+    <script>
+        const { BrowserProvider, Wallet, id, parseEther, Contract } = ethers
+        async function test() {
+            // Connect to the MetaMask EIP-1193 object. This is a standard
+            // protocol that allows Ethers access to make all read-only
+            // requests through MetaMask.
+            // provider用来读链
+            const provider = new BrowserProvider(window.ethereum)
+
+            const abi = [
+                "event Transfer(address indexed from, address indexed to, uint256 amount)"
+            ];
+
+            // 实例化合约
+            const contract = new Contract('0x1f9840a85d5af5bf1d1762f925bdaddc4201f984', abi, provider)
+
+            // 1. 查询过去的100个区块的事件
+            const events = await contract.queryFilter(contract.filters.Transfer, -100)
+            console.log(events)
+
+            // 2. 订阅未来的事件
+            contract.on("Transfer", (from, to, amount, event) => {
+                console.log(`${from} => ${to}: ${amount}`);
+
+                // The `event.log` has the entire EventLog
+
+                // Optionally, stop listening
+                // event.removeListener();
+            });
+
+        }
+        test()
+    </script>
+</body>
+
+</html>
