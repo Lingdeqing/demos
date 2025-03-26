@@ -4,12 +4,14 @@ export class IntensitySegments {
 
     // Adds an amount to the intensity between from and to points
     add(from, to, amount) {
+        this._validateParams(from, to, amount)
         this._addAmountAtKey(from, amount)
         this._addAmountAtKey(to, -amount)
     }
 
     // Sets the intensity between from and to points to a specific amount
     set(from, to, amount) {
+        this._validateParams(from, to, amount)
         const keys = this._orderedKeys();
         let leftAmount = 0, rightAmount = 0
 
@@ -64,5 +66,9 @@ export class IntensitySegments {
     // Returns the keys in sorted order
     _orderedKeys() {
         return Array.from(this._segments.keys()).sort((a, b) => a - b)
+    }
+
+    _validateParams(from, to, amount) {
+        if (from > to) throw new Error('Param "from" should big than "to"');
     }
 }
