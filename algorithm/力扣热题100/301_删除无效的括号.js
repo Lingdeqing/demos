@@ -44,7 +44,7 @@ var removeInvalidParentheses = function (s) {
 // 剪枝 https://leetcode.cn/problems/remove-invalid-parentheses/solutions/1068652/gong-shui-san-xie-jiang-gua-hao-de-shi-f-asu8/comments/1689413
 var removeInvalidParentheses2 = function (s) {
     let maxValidLen = 0;
-    let left = 0, right = 0
+    let left = 0, right = 0 // 多余的左右括号数量
     for (let c of s) {
         if (c === '(') left++;
         if (c === ')') {
@@ -52,27 +52,28 @@ var removeInvalidParentheses2 = function (s) {
             else right++;
         }
     }
-    maxValidLen = s.length - (left + right)
+    maxValidLen = s.length - (left + right)// 最长有效长度
 
     let left1 = 0, right1 = 0
     for (let c of s) {
         if (c === '(') left1++;
         if (c === ')') right1++;
     }
+    const max = Math.min(left1, right1) // 最多括号对数
 
-    const max = Math.min(left1, right1)
     const set = new Set()
 
     function dfs(s, i, validStr, score, left, right) {
         if (left < 0 || right < 0 || score < 0 || score > max) return;
 
-        if (left === 0 && right === 0) {
+        if (left === 0 && right === 0 && score === 0) {
             if (validStr.length === maxValidLen) {
                 set.add(validStr)
+                return
             }
         }
 
-        if (i === s.length) return
+        if (i >= s.length) return
 
         if (s[i] === '(') {
             dfs(s, i + 1, validStr + s[i], score + 1, left, right)
