@@ -7,6 +7,7 @@ export class IntensitySegments {
     // Adds an amount to the intensity between from and to points
     add(from, to, amount) {
         this._validateParams(from, to, amount);
+        if (amount === 0) return
 
         // Ensure from is less than to
         [from, to] = this._normalizeParams(from, to)
@@ -46,6 +47,7 @@ export class IntensitySegments {
             if (keys[i] > from && keys[i] < to) {
                 this._segments.delete(keys[i])
                 this._orderedKeys.splice(i--, 1)
+                toIndex--
             }
         }
         // Set new intensity values at the boundaries

@@ -51,4 +51,44 @@ describe('Test IntensitySegments:', () => {
         segments.add(10, 40, -2);
         expect(segments.toString()).toEqual('[[10,-1],[20,0],[30,-1],[40,0]]');
     });
+
+    test('Test the add method in an intersection interval:', () => {
+        const segments = new IntensitySegments();
+        segments.add(2, 5, 1);
+        expect(segments.toString()).toEqual('[[2,1],[5,0]]');
+        segments.add(1, 4, 6);
+        expect(segments.toString()).toEqual('[[1,6],[2,7],[4,1],[5,0]]');
+        segments.add(3, 7, 2);
+        expect(segments.toString()).toEqual('[[1,6],[2,7],[3,9],[4,3],[5,2],[7,0]]');
+    });
+
+    test('Test the set method in an intersection interval:', () => {
+        const segments = new IntensitySegments();
+        segments.set(2, 5, 1);
+        expect(segments.toString()).toEqual('[[2,1],[5,0]]');
+        segments.set(1, 4, 6);
+        expect(segments.toString()).toEqual('[[1,6],[4,1],[5,0]]');
+        segments.set(3, 7, 2);
+        expect(segments.toString()).toEqual('[[1,6],[3,2],[7,0]]');
+    });
+
+    test('Add amount out of range:', () => {
+        const segments = new IntensitySegments();
+        segments.add(2, 5, 1);
+        expect(segments.toString()).toEqual('[[2,1],[5,0]]');
+        segments.add(-1, 1, 6);
+        expect(segments.toString()).toEqual('[[-1,6],[1,0],[2,1],[5,0]]');
+        segments.add(5, 7, 2);
+        expect(segments.toString()).toEqual('[[-1,6],[1,0],[2,1],[5,2],[7,0]]');
+    });
+
+    test('Set amount out of range:', () => {
+        const segments = new IntensitySegments();
+        segments.set(2, 5, 1);
+        expect(segments.toString()).toEqual('[[2,1],[5,0]]');
+        segments.set(-1, 1, 6);
+        expect(segments.toString()).toEqual('[[-1,6],[1,0],[2,1],[5,0]]');
+        segments.set(5, 7, 2);
+        expect(segments.toString()).toEqual('[[-1,6],[1,0],[2,1],[5,2],[7,0]]');
+    });
 });
