@@ -1,7 +1,3 @@
-// https://www.nowcoder.com/practice/9999764a61484d819056f807d2a91f1e
-
-// 最全面的题解 参考 224. 基本计算器
-
 // 最清楚解法
 // 直接用双栈做
 /**
@@ -16,76 +12,80 @@
  * 
  * 上面运算符出栈的同时，取数字栈顶两个数字运算，把结果放回数字栈中
  */
-function calc(str) {
-    const nums = [], ops = []
-    for (let i = 0; i < str.length;) {
-        if (isDigit(str[i])) {
+function calculate(s) {
+    let ops = [], nums = [], i = 0
+    let isNeg = true //  是否是负号，前面是")"或者"数字"，就是减号。前面是空白或者"("或者+-*/，就是负号。
+    while (i < s.length) {
+        if (s[i] === ' ') {
+            i++
+        } else if (s[i] >= '0' && s[i] <= '9') {
             let num = 0
-            while (i < str.length && isDigit(str[i])) {
-                num = num * 10 + (+str[i])
-                i++;
+            while (i < s.length && s[i] >= '0' && s[i] <= '9') {
+                num = num * 10 + +s[i]
+                i++
             }
             nums.push(num)
-        } else if (isLeft(str[i])) {
-            ops.push('(');
-            i++;
-        } else if (isRight(str[i])) {
-            while (!isLeft(ops.at(-1))) {
-                calcOnce()
+            isNeg = false
+        } else if (s[i] === '(') {
+            ops.push('(')
+            i++
+            isNeg = true
+        } else if (s[i] === ')') {
+            while (ops[ops.length - 1] !== '(') {
+                compute()
             }
-            ops.pop() // 左括号出栈
-            i++;
-        } else { // +-*/
-            if (canPushOp(str[i])) { // 栈空 或 栈顶为( 或 当前字符优先级>栈顶
-                ops.push(str[i])
+            ops.pop()
+            i++
+            isNeg = false
+        } else { // + - * /
+            if (s[i] === '-' && isNeg) {
+                ops.push("负")
             } else {
-                while (!(canPushOp(str[i]))) {
-                    calcOnce()
+                while (!canPush(s[i])) {
+                    compute()
                 }
-                ops.push(str[i])
+                ops.push(s[i])
             }
             i++
+            isNeg = true
         }
     }
-    function isDigit(ch) {
-        const n = +ch;
-        return n >= 0 && n <= 9
+    function canPush(op) {
+        return ops.length === 0
+            || ops[ops.length - 1] === '('
+            || ((op === '*' || op === '/') && (ops[ops.length - 1] === '+' || ops[ops.length - 1] === '-'))
     }
-    function isLeft(ch) {
-        return ch === '(' || ch === '[' || ch === '{'
-    }
-    function isRight(ch) {
-        return ch === ')' || ch === ']' || ch === '}'
-    }
-    function higher(a, b) {
-        return (a === '*' || a === '/') && (b === '+' || b === '-')
-    }
-    function canPushOp(ch) {
-        return ops.length === 0 || isLeft(ops.at(-1)) || higher(ch, ops.at(-1))
-    }
-    function calcOnce() {
-        const symbol = ops.pop()
-        const n2 = nums.pop(), n1 = nums.pop()
-        switch (symbol) {
+    function compute() {
+        const op = ops.pop()
+        if (op === '负') {
+            nums.push(-nums.pop())
+            return
+        }
+        const b = nums.pop(), a = nums.pop()
+        switch (op) {
             case '+':
-                nums.push(n1 + n2)
+                nums.push(a + b)
                 break;
             case '-':
-                nums.push(n1 - n2)
+                nums.push(a - b)
                 break;
             case '*':
-                nums.push(n1 * n2)
+                nums.push(a * b)
                 break;
             case '/':
-                nums.push(n1 / n2)
+                nums.push(a / b)
                 break;
         }
     }
     while (ops.length > 0) {
-        calcOnce()
+        compute()
     }
-    return nums.at(-1)
-}
+    return nums[0]
+};
+console.log(calculate("1-(     -2)"))
+
+
+
 
 
 // 递归解法
