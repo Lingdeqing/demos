@@ -31,7 +31,7 @@ function useScaledStyles<T extends RnStyleSheet>(
   scaleStyles: ScaleUtil["scaleStyles"];
   scaleStyleSheet: ScaleUtil["scaleStyleSheet"];
 } {
-  const { width } = useWindowDimensions();
+  const { width } = useWindowDimensions(); // todo: fontScale fix font size 
   const uiWidth = UI_DESIGN_WIDTH;
   const scaleUtil = ScaleUtil.getInstance(uiWidth, width);
   const scaledStyles = useMemo(() => {
