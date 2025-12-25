@@ -111,6 +111,14 @@ func DownloadZipFromURLs(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 
+		// 4️⃣ 最后兜底, 兼容奇怪扩展名
+		switch ext {
+		case ".jpe":
+			ext = ".jpg"
+		case ".mpga":
+			ext = ".mp3"
+		}
+
 		filename := fmt.Sprintf("file_%d%s", i+1, ext)
 		// fmt.Println(filename, u)
 		zipPath := path.Join("assets", filename)
