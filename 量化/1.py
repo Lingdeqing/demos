@@ -191,6 +191,7 @@ def has_recent_limit_up(klines, min_days=5, max_days=20):
 
     
 if __name__ == "__main__":
+    start = time.perf_counter()
     stocks = fetch_all_stocks()
     print(f"全市场股票数：{len(stocks)}")
 
@@ -222,24 +223,25 @@ if __name__ == "__main__":
         try:
             # info = fetch_ma10("0.002598")
             info = fetch_ma10(secid)
-            if info is None or info["ma10"] or info["ma20"] or info["ma30"] is None:
+            print(
+                f"{s['f12']} {s['f14']:<6}\t"
+                f"现价:{s['f2']/100}\t"
+                f"涨跌幅:{s['f3']/100}%\t"
+            )
+            if info["ma10"] is None or info["ma20"] is None or info["ma30"] is None:
                 continue
+
+            print(
+                f"10日线:{round(info["ma10"], 2)}\t"
+                f"20日线:{round(info["ma20"], 2)}\t"
+                f"30日线:{round(info["ma30"], 2)}\t"
+            )
             
             is_shrinking = info["vol_today"] / info["vol_ma10"] < 0.7
             ratio = s["f2"]/100 / info["ma10"]
 
             # 影线不能太夸张
             is_good_pullback = (info["ma10"] - info["low_today"]) / info["ma10"] < 0.03
-
-            if is_shrinking and is_good_pullback:
-              print(
-                  f"{s['f12']} {s['f14']:<6}\t"
-                  f"现价:{s['f2']/100}\t"
-                  f"涨跌幅:{s['f3']/100}%\t"
-                  f"10日线:{round(info["ma10"], 2)}\t"
-                  f"缩量:{is_shrinking}\t"
-                  f"ratio:{round(ratio,3)}\t"
-              )
             if is_good_pullback and is_shrinking and info["ma10"] > info["ma20"] and info["ma20"] > info["ma30"] and ratio <= 1.04 and s["f2"]/100 > info["ma10"]:
                 s.update({"ma10": round(info["ma10"],2), "ratio": round(ratio,3), "has_limit_up": info["has_limit_up"]})
                 result.append(s)
@@ -253,6 +255,7 @@ if __name__ == "__main__":
     result.sort(key=lambda x: x.get("has_limit_up", False), reverse=True)
 
     print(f"\n筛选出靠近 MA10 的股票数：{len(result)}\n")
+    print(f"筛选耗时: {(time.perf_counter() - start):.4f} 秒")
     for s in result:
         print(
           f"{s['f12']} {s['f14']:<6}\t"
