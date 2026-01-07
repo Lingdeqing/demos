@@ -4,7 +4,8 @@ import urllib.parse
 import time
 import traceback
 
-LIST_URL = "https://push2.eastmoney.com/api/qt/clist/get"
+#https://quote.eastmoney.com/center/gridlist.html#hs_a_board
+LIST_URL = "https://push2.eastmoney.com/api/qt/clist/get" 
 
 PARAMS = {
     "np": 1,
@@ -55,7 +56,7 @@ def fetch_page(page):
 
     return data["data"]
 
-
+# https://quote.eastmoney.com/sz002163.html
 KLINE_URL = "https://push2his.eastmoney.com/api/qt/stock/kline/get"
 
 def fetch_all_stocks():
