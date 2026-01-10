@@ -135,7 +135,7 @@ if __name__ == "__main__":
     up_stocks = [
         s for s in stocks  
         if to_float(s["f3"]) is not None
-          and to_float(s["f3"]) >=5
+          and to_float(s['f3']/100) >=5
     ]
     for s in up_stocks:
         print(
