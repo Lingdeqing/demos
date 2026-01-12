@@ -129,6 +129,7 @@ if __name__ == "__main__":
         s for s in stocks  
         if to_float(s["f3"]) is not None
           and to_float(s["f3"]) > 0
+          and to_float(s['f2']/100) <=50
     ]
 
     print(f"\n涨幅超过5%：")
