@@ -114,7 +114,7 @@ if __name__ == "__main__":
     start = time.perf_counter()
     stocks = fetch_all_stocks()
 
-    stocks.sort(key=lambda x: x.get("f3", False), reverse=True)
+    stocks.sort(key=lambda x: x.get("f6", False), reverse=True)
     stocks = stocks[:20]
     print(f"全市场成交额前20：")
     for s in stocks:
