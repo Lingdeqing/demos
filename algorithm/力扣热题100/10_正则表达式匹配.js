@@ -21,14 +21,13 @@ var isMatch = function (s, p) {
         if (j >= p.length) return false
 
         let res = false
-        if (j < p.length - 1 && p[j + 1] === '*') {
-            if (p[j] === s[i] || p[j] === '.') {
-                res = dp(i, j + 2) || dp(i + 1, j)
-            } else {
-                res = dp(i, j + 2)
-            }
-        } else if (p[j] === s[i] || p[j] === '.') {
-            res = dp(i + 1, j + 1)
+        if (s[i] === p[j] || p[j] === '.') {
+            if (p[j + 1] === '*') res = dp(i + 1, j) || dp(i, j + 2)
+
+            else res = dp(i + 1, j + 1)
+        } else {
+            if (p[j + 1] === '*') res = dp(i, j + 2)
+            else res = false
         }
         memo.set(i + ',' + j, res)
         return res
