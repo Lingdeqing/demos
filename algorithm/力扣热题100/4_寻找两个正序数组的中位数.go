@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"math"
 )
 
@@ -40,9 +39,9 @@ func findKth(nums1 []int, nums2 []int, k int) int {
 	}
 }
 
-func main() {
-	// findMedianSortedArrays([]int{1, 3}, []int{2})
-	a := 2
-	b := 3
-	fmt.Println(float64((a + b)) / float64(2))
-}
+// func main() {
+// 	// findMedianSortedArrays([]int{1, 3}, []int{2})
+// 	a := 2
+// 	b := 3
+// 	fmt.Println(float64((a + b)) / float64(2))
+// }
