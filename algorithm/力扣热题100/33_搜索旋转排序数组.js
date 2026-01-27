@@ -8,17 +8,17 @@ var search = function (nums, target) {
     while (i <= j) {
         const mid = i + ((j - i) >> 1)
         if (nums[mid] === target) return mid
-        if (nums[mid] < nums[j]) { // [mid, j]必然有序
-            if (nums[mid] < target && target <= nums[j]) {
-                i = mid + 1
-            } else {
-                j = mid - 1
-            }
-        } else {
+        if (nums[mid] >= nums[i]) { // 此处必须是>= 不能是>，因为 mid==i时可能会错过
             if (target >= nums[i] && target < nums[mid]) { // [i, mid] 必然有序
                 j = mid - 1
             } else {
                 i = mid + 1
+            }
+        } else {
+            if (nums[mid] < target && target <= nums[j]) { // [mid, j]必然有序
+                i = mid + 1
+            } else {
+                j = mid - 1
             }
         }
     }

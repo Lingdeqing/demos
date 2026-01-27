@@ -1,6 +1,8 @@
 // 图形题解
 // https://leetcode.cn/problems/next-permutation/solution/xia-yi-ge-pai-lie-suan-fa-xiang-jie-si-lu-tui-dao-/
 
+// 1 2 4 6 5 3
+// 1 2 5 3 4 6
 var nextPermutation = function (nums) {
     let i = nums.length - 2, j = nums.length - 1;
 
