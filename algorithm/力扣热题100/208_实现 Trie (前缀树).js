@@ -19,7 +19,7 @@ Trie.prototype.insert = function (word) {
         }
         p = p.children[index]
     }
-    p.isKey = word;
+    p.isKey = !!word;
 };
 
 /** 

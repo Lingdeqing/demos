@@ -12,7 +12,7 @@ var isPalindrome = function (head) {
     return true
 };
 
-// 递归反向遍历
+// 递归反向遍历(后序遍历)
 var isPalindrome = function (head) {
     let p = head;
     const recur = (q) => {
