@@ -12,6 +12,7 @@ function findKth(nums1, nums2, k) {
         if (k === 1) return Math.min(nums1[i], nums2[j])
 
         // https://leetcode.cn/problems/median-of-two-sorted-arrays/solutions/258842/xun-zhao-liang-ge-you-xu-shu-zu-de-zhong-wei-s-114/?envType=featured-list&envId=2cktkvj
+        // 原理：最多大于k-2个元素，那必然不是第k小的，最多是第k-1小的
         // 对于 nums1[k/2-1] 和 nums2[k/2-1] 中较小的，最多nums1[0...k/2-2]和nums2[0...k/2-2]都小于它
         // 因而最多(k/2-1)*2=k-2个元素小于它，因而它不是第k小的，可以排除
         // [0,k/2-1] (k/2-1)*2 = k-2

@@ -1,0 +1,38 @@
+{
+  "name": "tiptap-yjs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "server": "PORT=4444 node ./bin/server.mjs"
+  },
+  "dependencies": {
+    "@tiptap/core": "^3.19.0",
+    "@tiptap/extension-collaboration": "^3.19.0",
+    "@tiptap/extension-document": "^3.19.0",
+    "@tiptap/extension-paragraph": "^3.19.0",
+    "@tiptap/extension-text": "^3.19.0",
+    "@tiptap/pm": "^3.19.0",
+    "@tiptap/react": "^3.19.0",
+    "@tiptap/starter-kit": "^3.19.0",
+    "@tiptap/y-tiptap": "^3.0.2",
+    "next": "16.1.6",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "y-webrtc": "^10.3.0",
+    "yjs": "^13.6.29"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.6",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
