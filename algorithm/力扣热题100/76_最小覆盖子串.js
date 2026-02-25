@@ -14,10 +14,8 @@ var minWindow = function (s, t) {
     let i = 0, j = 0
     let res = '', minLen = Infinity
     while (j < s.length) {
-        if (need.has(s[j])) {
-            win.set(s[j], (win.get(s[j]) || 0) + 1)
-            if (win.get(s[j]) === need.get(s[j])) valid++
-        }
+        win.set(s[j], (win.get(s[j]) || 0) + 1)
+        if (win.get(s[j]) === need.get(s[j])) valid++
         j++;
 
         while (valid === need.size) {
@@ -25,10 +23,8 @@ var minWindow = function (s, t) {
                 res = s.slice(i, j)
                 minLen = j - i
             }
-            if (need.has(s[i])) {
-                if (win.get(s[i]) === need.get(s[i])) valid--
-                win.set(s[i], (win.get(s[i]) || 0) - 1)
-            }
+            if (win.get(s[i]) === need.get(s[i])) valid--
+            win.set(s[i], (win.get(s[i]) || 0) - 1)
             i++
         }
     }

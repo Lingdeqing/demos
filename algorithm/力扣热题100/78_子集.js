@@ -4,13 +4,13 @@
  */
 var subsets = function (nums) {
     const res = []
-    const set = []
+    const path = []
     function bt(start) {
-        res.push([...set])
+        res.push([...path])
         for (let i = start; i < nums.length; i++) {
-            set.push(nums[i])
+            path.push(nums[i])
             bt(i + 1)
-            set.pop()
+            path.pop()
         }
     }
     bt(0)
