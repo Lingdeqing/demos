@@ -14,7 +14,9 @@ export default function Index() {
   }
 
   return (
-    <div className="p-10">
+    <div className="p-10" onClick={() => {
+      console.log('=====>>> click index')
+    }}>
       <div className="flex flex-row gap-2">
         <button className={`px-2 border-1 rounded-1 ${tab === 'about' && 'bg-[#ccc]'}`} type="button" onClick={() => {
           switchTab('about')
