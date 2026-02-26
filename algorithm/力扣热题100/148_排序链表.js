@@ -10,7 +10,7 @@
  * @return {ListNode}
  */
 var sortList = function (head) {
-    if (!head || !head.next) return head;
+    if (!head || !head.next) return head; // 至少两个节点
 
     // 切成两半
     const middle = findMiddle(head);
