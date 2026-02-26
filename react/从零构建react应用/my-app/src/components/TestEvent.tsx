@@ -4,6 +4,8 @@ export default function TestEvent() {
   const divDom = useRef<HTMLDivElement>(null);
   const h1Dom = useRef<HTMLHeadingElement>(null);
   useEffect(() => {
+    const div = divDom.current
+    const h1 = h1Dom.current
     const click1 = () => {
       console.log('div.onClick.native')
     }
@@ -14,11 +16,12 @@ export default function TestEvent() {
       console.log('document.onClick.native')
     }
     document?.addEventListener('click', click3)
-    divDom.current?.addEventListener('click', click1)
-    h1Dom.current?.addEventListener('click', click2)
+    div?.addEventListener('click', click1)
+    h1?.addEventListener('click', click2)
 
 
-    const click11 = () => {
+    const click11 = (e: MouseEvent) => {
+      // e.stopPropagation() // 阻止继续传播
       console.log('div.onClickCapture.native')
     }
     const click22 = () => {
@@ -28,14 +31,14 @@ export default function TestEvent() {
       console.log('document.onClickCapture.native')
     }
     document?.addEventListener('click', click33, true)
-    divDom.current?.addEventListener('click', click11, true)
-    h1Dom.current?.addEventListener('click', click22, true)
+    div?.addEventListener('click', click11, true)
+    h1?.addEventListener('click', click22, true)
     return () => {
-      divDom.current?.removeEventListener('click', click1)
-      h1Dom.current?.removeEventListener('click', click2)
+      div?.removeEventListener('click', click1)
+      h1?.removeEventListener('click', click2)
       document?.removeEventListener('click', click3)
-      divDom.current?.removeEventListener('click', click11, true)
-      h1Dom.current?.removeEventListener('click', click22, true)
+      div?.removeEventListener('click', click11, true)
+      h1?.removeEventListener('click', click22, true)
       document?.removeEventListener('click', click33, true)
     };
   }, []);

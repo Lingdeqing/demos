@@ -5,7 +5,7 @@ import { createRoot } from 'react-dom/client'
 import TestEvent from './components/TestEvent.tsx'
 
 createRoot(document.getElementById('root')!).render(
-  // <StrictMode>
-  <TestEvent />
-  // </StrictMode>,
+  <StrictMode>
+    <TestEvent />
+  </StrictMode>,
 )
