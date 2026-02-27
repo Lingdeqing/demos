@@ -14,7 +14,7 @@ var canFinish = function (numCourses, prerequisites) {
     const onPath = new Set()
     const visited = new Set()
     function dfs(i) {
-        if (onPath.has(i)) return true
+        if (onPath.has(i)) return true // 先判定是否形成环，因为visited和onPath是同时设置的
 
         if (visited.has(i)) return false // 访问过，那么必然从i往后走没有环，有环的话整个递归就结束了
 
