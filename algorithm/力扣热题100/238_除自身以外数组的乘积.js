@@ -2,14 +2,16 @@
 var productExceptSelf = function (nums) {
     const res = new Array(nums.length).fill(1);
     // 下三角
+    let prefix = nums[0]
     for (let i = 1; i < nums.length; i++) {
-        res[i] = nums[i - 1] * res[i - 1]
+        res[i] = prefix
+        prefix *= nums[i]
     }
     // 上三角
-    let temp = 1
+    let postfix = nums[nums.length - 1]
     for (let i = nums.length - 2; i >= 0; i--) {
-        temp *= nums[i + 1]
-        res[i] *= temp
+        res[i] *= postfix
+        postfix *= nums[i]
     }
     return res;
 };

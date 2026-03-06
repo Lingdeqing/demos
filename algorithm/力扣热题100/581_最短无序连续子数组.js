@@ -34,6 +34,7 @@ var findUnsortedSubarray = function (nums) {
 };
 
 // 单调栈
+// https://leetcode.cn/problems/shortest-unsorted-continuous-subarray/solutions/912231/gong-shui-san-xie-yi-ti-shuang-jie-shuan-e1le/comments/1060437/
 var findUnsortedSubarray = function (nums) {
     const st = []
     let left = Infinity, right = -Infinity

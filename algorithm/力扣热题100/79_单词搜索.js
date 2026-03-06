@@ -5,15 +5,15 @@
  */
 var exist = function (board, word) {
     if (board.length === 0 || !word) return false
-    const visited = new Map()
+    const onPath = new Map()
     function dfs(i, j, k) {
         if (k >= word.length) return true
         if (i < 0 || i >= board.length || j < 0 || j >= board[0].length) return false
         if (board[i][j] !== word[k]) return false
 
         const key = i + ',' + j
-        if (visited.get(key)) return false
-        visited.set(key, true)
+        if (onPath.get(key)) return false
+        onPath.set(key, true)
 
         if (dfs(i, j + 1, k + 1)
             || dfs(i + 1, j, k + 1)
@@ -23,7 +23,7 @@ var exist = function (board, word) {
             return true
         }
 
-        visited.set(key, false)
+        onPath.set(key, false)
         return false
     }
     for (let i = 0; i < board.length; i++) {

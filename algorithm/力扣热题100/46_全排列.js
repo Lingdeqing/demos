@@ -5,7 +5,7 @@
 var permute = function (nums) {
 
     const res = []
-    const used = []
+    const onPath = []
     const path = []
     function bt() {
         if (path.length === nums.length) {
@@ -14,12 +14,12 @@ var permute = function (nums) {
         }
 
         for (let k = 0; k < nums.length; k++) {
-            if (used[k]) continue;
+            if (onPath[k]) continue;
             path.push(nums[k])
-            used[k] = true
+            onPath[k] = true
             bt()
             path.pop()
-            used[k] = false
+            onPath[k] = false
         }
     }
     bt()

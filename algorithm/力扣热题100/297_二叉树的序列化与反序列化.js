@@ -39,14 +39,11 @@ var deserialize = function (data) {
         if (data.length === 0) return null
         const cur = data.shift()
         if (cur === '#') return null
-        const node = {
+        return {
             val: +cur,
-            left: null,
-            right: null
+            left: recur(),
+            right: recur()
         }
-        node.left = recur()
-        node.right = recur()
-        return node
     }
     return recur()
 };

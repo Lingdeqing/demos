@@ -24,7 +24,7 @@ var topKFrequent = function (nums, k) {
         [arr[i], arr[left]] = [arr[left], arr[i]];
 
         if (i === k - 1) {
-            // 前k个已就位
+            // 第k个已就位
         } else if (i < k - 1) {
             quickSelect(i + 1, right)
         } else if (i > k - 1) {
