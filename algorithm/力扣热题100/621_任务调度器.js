@@ -16,5 +16,5 @@ var leastInterval = function (tasks, n) {
         if (arr[i][1] === maxCount) minLen++
     }
 
-    return Math.max(minLen, tasks.length)
+    return Math.max(minLen, tasks.length) // 空穴没填满就是minLen，填满了就是tasks.length
 };

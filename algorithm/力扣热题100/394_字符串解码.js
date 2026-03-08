@@ -21,7 +21,7 @@ var decodeString = function (s) {
             }
             i++
         }
-        return res
+        return [res, -1]
     }
-    return recur(0)
+    return recur(0)[0]
 }

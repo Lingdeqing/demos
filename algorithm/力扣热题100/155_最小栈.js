@@ -10,14 +10,19 @@ var MinStack = function () {
  */
 MinStack.prototype.push = function (val) {
     this.stack.push(val)
-    this.min.push(this.min.length === 0 ? val : Math.min(val, this.min[this.min.length - 1]))
+    // this.min.push(this.min.length === 0 ? val : Math.min(val, this.min[this.min.length - 1]))
+    if (this.min.length === 0 || val <= this.min[this.min.length - 1]) {
+        this.min.push(val)
+    }
 };
 
 /**
  * @return {void}
  */
 MinStack.prototype.pop = function () {
-    this.min.pop()
+    if (this.stack[this.stack.length - 1] === this.min[this.min.length - 1]) {
+        this.min.pop()
+    }
     return this.stack.pop()
 };
 
