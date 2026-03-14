@@ -18,3 +18,14 @@ var isPalindrome = function (x) {
     // 由于处于中位的数字不影响回文（它总是与自己相等），所以我们可以简单地将其去除。
     return x === reverted || x === ~~(reverted / 10)
 };
+
+
+function isPalindrome(x) {
+    if (x < 0) return false
+    let res = 0, origin = x
+    while (x) {
+        res = res * 10 + (x % 10)
+        x = ~~(x / 10)
+    }
+    return res === origin
+};

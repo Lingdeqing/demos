@@ -19,9 +19,9 @@ var myAtoi = function (s) {
     while (i < s.length) {
         const num = s.charCodeAt(i) - '0'.charCodeAt(0)
         if (num > 9 || num < 0) break
-        if (symbol * res < ~~(MIN / 10) || (symbol * res === ~~(MIN / 10) && num >= 8)) {
+        if (symbol * res < MIN / 10 || (symbol * res === ~~(MIN / 10) && num >= 8)) {
             return MIN // -2147483648
-        } else if (symbol * res > ~~(MAX / 10) || (symbol * res === ~~(MAX / 10) && num >= 7)) {
+        } else if (symbol * res > MAX / 10 || (symbol * res === ~~(MAX / 10) && num >= 7)) {
             return MAX //  2147483647
         }
         res = res * 10 + num

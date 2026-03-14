@@ -13,11 +13,19 @@ class TestComp extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      counter: 0
+      counter: 0,
+      shit: 22
     }
   }
   componentDidMount(): void {
-    debugger
+    this.setState({ counter: 1 })
+    console.log(this.state.counter)
+    setTimeout(() => {
+      this.setState({ counter: 2 })
+      console.log(this.state.counter)
+      this.setState({ counter: 3 })
+      console.log(this.state.counter)
+    }, 200)
   }
   render() {
     return <div onClick={() => {
@@ -33,7 +41,7 @@ class TestComp extends Component {
         this.setState({ counter: 1 })
         console.log(this.state.counter)
       })
-    }}>TestComp</div>
+    }}>TestComp shit:{this.state.shit} counter:{this.state.counter}</div>
   }
 }
 

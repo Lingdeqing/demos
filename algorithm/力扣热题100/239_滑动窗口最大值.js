@@ -26,7 +26,7 @@ class MonoQueue {
         this.queue.push(item)
     }
     dequeue(item) {
-        if (item === this.queue[0]) this.queue.shift()
+        if (item === this.queue[0]) this.queue.shift() // 为什么判定===， 因为enqueue时重复的等于栈顶的都留在了栈顶
     }
     max() {
         return this.queue[0]
