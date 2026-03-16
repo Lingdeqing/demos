@@ -1,3 +1,45 @@
+// 递归解法，思路类似于 394_字符串解码.js
+function calculate(s: string): number {
+    function recur(i: number): [number, number] {
+        let num = 0, res = [] as number[], op = '+'
+        const pushNum = (num: number) => {
+            if (op === '+') {
+                res.push(num)
+            } else if (op === '-') {
+                res.push(-num)
+            } else if (op === '*') {
+                res.push(res.pop()! * num)
+            } else if (op === '/') {
+                res.push(res.pop()! / num)
+            }
+            op = '+'
+        }
+        while (i < s.length) {
+            if (s[i] >= '0' && s[i] <= '9') {
+                num = 0
+                while (i < s.length && s[i] >= '0' && s[i] <= '9') {
+                    num = num * 10 + +s[i]
+                    i++
+                }
+                pushNum(num)
+            } else if (s[i] === '(') { // 左括号递归
+                [num, i] = recur(i + 1)
+                pushNum(num)
+            } else if (s[i] === ')') { // 右括号返回
+                return [res.reduce((s, n) => s + n, 0), i + 1]
+            } else if (s[i] === '+' || s[i] === '-' || s[i] === '*' || s[i] === '/') {
+                op = s[i]
+                i++
+            } else {
+                i++
+            }
+        }
+        return [res.reduce((s, n) => s + n, 0), -1]
+    }
+    return recur(0)[0]
+};
+
+
 // 最清楚解法
 // 直接用双栈做
 /**

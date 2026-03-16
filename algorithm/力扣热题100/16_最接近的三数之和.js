@@ -8,6 +8,8 @@ var threeSumClosest = function (nums, target) {
     return nSum(nums, 3, 0, target)
 };
 function nSum(nums, n, start, target) {
+    if (start > nums.length - k) return Infinity
+
     let res = Infinity
     if (n === 2) {
         let i = start, j = nums.length - 1, minDelta = Infinity
