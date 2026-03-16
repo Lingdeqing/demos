@@ -11,7 +11,7 @@ import TestWillUnmount from './components/TestWillUnmount.tsx'
 import TestErrorBoundary from './components/TestErrorBoundary.tsx'
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <TestErrorBoundary />
-  </StrictMode>,
+  // <StrictMode>
+  <TestSetState />
+  // </StrictMode>,
 )
