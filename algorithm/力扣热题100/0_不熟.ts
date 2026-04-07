@@ -42,33 +42,34 @@
 // ts类型体操
 
 
-// 8.30-9.30 
-// 9.30-10.30 
-// 10.30-11.30 算法
-// 1.30-2.30 
-// 2.30-3.30 
-// 3.30-4.30 
-// 4.30-5.30 
-// 5.30-6.30 算法
+// 9.00-12:00 3
+// 2.00-9.00 7 // 抽出半小时看算法手写 0.5中间吃晚饭
 
 
+// 八股文顺序，看的过程中可以延伸
+// 面试题4、5、3、1、2
+// node面试题 
+// 工程化 
+// js手写题 
+// css八股文
+// 框架react 
+// 框架vue 
+// 面试引导 
 
 
+// 算法 看labuladong有题解的
+// https://leetcode.cn/problem-list/2cktkvj/
+// codeTop
+// https://leetcode.cn/problemset/
+
+// ts体操 popular easy medium 
+// https://typehero.dev/challenge/hello-world/solutions/2754 popular到medium
+// https://github.com/type-challenges/type-challenges
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+//  暂停新题，将旧题反复看 
+// ts next: popular
+// 力抠next：codetop 83. 删除排序链表中的重复元素.js
 
 
 

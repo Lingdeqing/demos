@@ -2,12 +2,27 @@ import { useRef, useEffect, useState, Component, type ReactNode } from "react";
 import { flushSync } from "react-dom";
 
 export default function TestSetState() {
+  const [a, setA] = useState(true)
 
 
   return (
-    <div>TestSetState<TestComp /></div>
+    <div onClick={() => setA(!a)}>TestSetState.  {a && <TestSetState2 />}</div>
   );
 }
+
+export function TestSetState2() {
+  const [a, setA] = useState(0)
+  useEffect(() => {
+    return () => {
+      console.log('willUnmount')
+    }
+  }, []);
+
+  return (
+    <div onClick={() => setA(a + 1)}>TestSetState2<TestComp /></div>
+  );
+}
+
 
 class TestComp extends Component {
   constructor(props) {
