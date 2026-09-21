@@ -63,14 +63,13 @@ var removeInvalidParentheses2 = function (s) {
     const set = new Set()
 
     function bt(s, i, validStr, score, left, right) {
-        if (left < 0 || right < 0 || score < 0 || score > max) return;
 
         if (left === 0 && right === 0 && score === 0 && validStr.length === maxValidLen) {
             set.add(validStr)
             return
         }
 
-        if (i >= s.length) return
+        if (i >= s.length || left < 0 || right < 0 || score < 0 || score > max) return;
 
         if (s[i] === '(') {
             bt(s, i + 1, validStr + s[i], score + 1, left, right)
